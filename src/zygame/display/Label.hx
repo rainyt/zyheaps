@@ -23,7 +23,7 @@ class Label extends Text {
 	}
 
 	override function set_text(t:String):String {
-		if (t == this.text)
+		if (font != null && t == this.text)
 			return t;
 		// 当文本存在时，将旧的文本清理，重新构造
 		if (this.font != null)
@@ -42,6 +42,12 @@ class Label extends Text {
 	 */
 	public function setSize(size:Int):Void {
 		_size = size;
+		if (font != null) {
+			if (_size != font.size) {
+				font = null;
+				this.text = this.text;
+			}
+		}
 	}
 
 	/**
