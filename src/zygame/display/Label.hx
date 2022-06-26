@@ -1,5 +1,6 @@
 package zygame.display;
 
+import h2d.Font;
 import hxd.res.FontBuilder;
 import h2d.Text;
 
@@ -22,15 +23,28 @@ class Label extends Text {
 			this.text = text;
 	}
 
+	/**
+	 * 指定使用的字体
+	 */
+	public var useFont:Font;
+
 	override function set_text(t:String):String {
 		if (font != null && t == this.text)
 			return t;
 		// 当文本存在时，将旧的文本清理，重新构造
-		if (this.font != null)
-			this.font.dispose();
-		this.font = FontBuilder.getFont(defaultFont, _size, {
-			chars: t
-		});
+		if (useFont != null) {
+			if (font != useFont) {
+				this.font.dispose();
+			}
+			this.font = useFont;
+		} else {
+			if (this.font != null) {
+				this.font.dispose();
+			}
+			this.font = FontBuilder.getFont(defaultFont, _size, {
+				chars: t
+			});
+		}
 		return super.set_text(t);
 	}
 
