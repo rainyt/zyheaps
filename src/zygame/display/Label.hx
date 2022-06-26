@@ -7,7 +7,6 @@ import h2d.Text;
  * 文本类
  */
 class Label extends Text {
-
 	/**
 	 * 默认字体
 	 */
@@ -35,7 +34,7 @@ class Label extends Text {
 		return super.set_text(t);
 	}
 
-	private var _size:Int = 12;
+	private var _size:Int = 24;
 
 	/**
 	 * 设置文本大小
@@ -43,5 +42,13 @@ class Label extends Text {
 	 */
 	public function setSize(size:Int):Void {
 		_size = size;
+	}
+
+	/**
+	 * 设置文本颜色
+	 * @param color 
+	 */
+	public function setColor(color:UInt):Void {
+		this.color.setColor(0xff000000 + color);
 	}
 }
