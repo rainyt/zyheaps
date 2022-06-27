@@ -1,3 +1,6 @@
+import h2d.Bitmap;
+import h2d.Graphics;
+import h2d.SpriteBatch;
 import zygame.display.Label;
 import zygame.display.ImageBitmap;
 import zygame.utils.Assets;
@@ -5,7 +8,7 @@ import zygame.core.Start;
 
 class ImageTest extends Start {
 	static function main() {
-        hxd.Res.initEmbed();
+		hxd.Res.initEmbed();
 		#if wechat
 		untyped window.start = function() {
 			new ImageTest();
@@ -23,23 +26,23 @@ class ImageTest extends Start {
 
 	override function init() {
 		super.init();
-		// var label = new Label();
-		// this.s2d.add(label);
-		// label.setColor(0xffffff);
-		// label.text = "加载中";
 		// 构造一个加载器
 		var assets:Assets = new Assets();
 		assets.loadFile("img.png");
 		assets.start(function(f) {
 			if (f == 1) {
+				var sprite:SpriteBatch = new SpriteBatch(assets.getBitmapDataTile("img"), s2d);
 				// 加载完成，渲染图片
 				for (i in 0...1000) {
-					var bmd = new ImageBitmap(assets.getBitmapDataTile("img"));
+					var bmd = new BatchElement(sprite.tile);
+					sprite.add(bmd);
+					// var bmd = new ImageBitmap(assets.getBitmapDataTile("img"));
 					// var bmd = new ImageBitmap(hxd.Res.img.toTile());
-					Start.current.s2d.add(bmd);
+					// Start.current.s2d.add(bmd);
+					// sprite.addChild(bmd);
 					bmd.x = Std.random(Start.current.s2d.width);
-					bmd.y = Std.random(Start.current.s2d.height);   
-					_imgs.push(bmd);
+					bmd.y = Std.random(Start.current.s2d.height);
+					// _imgs.push(bmd);
 				}
 				var tile = assets.getBitmapDataTile("img");
 				tile.setCenterRatio();

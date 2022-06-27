@@ -9,6 +9,20 @@ import hxd.App;
 class Start extends App {
 	public static var current:Start;
 
+	/**
+	 * 初始化入口
+	 * @param c 
+	 */
+	public static function initApp(c:Class<Dynamic>):Void {
+		#if wechat
+		untyped window.start = function() {
+			current = Type.createInstance(c, []);
+		}
+		#else
+		current = Type.createInstance(c, []);
+		#end
+	}
+
 	private var _hdsize = {
 		width: 0,
 		height: 0
@@ -24,7 +38,6 @@ class Start extends App {
 		super();
 		_hdsize.width = width;
 		_hdsize.height = height;
-		current = this;
 	}
 
 	override function init() {
