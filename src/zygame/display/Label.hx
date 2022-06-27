@@ -1,7 +1,7 @@
 package zygame.display;
 
 import h2d.Font;
-import hxd.res.FontBuilder;
+import zygame.res.FontBuilder;
 import h2d.Text;
 
 /**
