@@ -137,6 +137,19 @@ class Assets {
 	}
 
 	/**
+	 * 获取纹理数据，请注意，ImageBitmap使用的是`Tile`数据，可直接通过`getBitmapDataTile`获取。
+	 * @param id 
+	 * @return BitmapData
+	 */
+	public function getBitmapData(id:String):BitmapData {
+		if (hasTypeAssets(BITMAP, id)) {
+			var bitmap:LoadedBitmap = getTypeAssets(BITMAP, id);
+			return bitmap.toBitmap();
+		}
+		return null;
+	}
+
+	/**
 	 * 获取位图瓦片数据
 	 * @return Tile
 	 */

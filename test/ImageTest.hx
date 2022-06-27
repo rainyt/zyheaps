@@ -1,7 +1,5 @@
 import zygame.display.ImageBitmap;
-import h3d.Engine;
 import zygame.utils.Assets;
-import hxd.BitmapData;
 import zygame.core.Start;
 
 class ImageTest extends Start {
@@ -17,20 +15,21 @@ class ImageTest extends Start {
 
 	override function init() {
 		super.init();
+        // 构造一个加载器
 		var assets:Assets = new Assets();
 		assets.loadFile("img.jpg");
 		assets.start(function(f) {
-			trace("加载ing：", f);
 			if (f == 1) {
-				// 加载完成
-				trace("加载完成", assets.getBitmapDataTile("img"));
+				// 加载完成，渲染图片
 				for (i in 0...1000) {
 					var bmd = new ImageBitmap(assets.getBitmapDataTile("img"));
 					Start.current.s2d.add(bmd);
 					bmd.x = Std.random(Start.current.s2d.width);
 					bmd.y = Std.random(Start.current.s2d.height);
-                    _imgs.push(bmd);
+					_imgs.push(bmd);
 				}
+				var tile = assets.getBitmapDataTile("img");
+				tile.setCenterRatio();
 			}
 		});
 	}
@@ -38,7 +37,7 @@ class ImageTest extends Start {
 	override function update(dt:Float) {
 		super.update(dt);
 		for (bitmap in _imgs) {
-            bitmap.rotation += 0.1;
-        }
+			bitmap.rotation += 0.1;
+		}
 	}
 }
