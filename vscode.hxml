@@ -1,6 +1,16 @@
 -cp src
 -cp test
 -lib heaps
--js bin/html5/hello.js
+-js bin/wechat/hello.js
+-main ImageTest
+-debug
+-D wechat
+
+--next
+
+-cp src
+-cp test
+-lib heaps
+-js bin/html5//hello.js
 -main ImageTest
 -debug

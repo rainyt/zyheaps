@@ -1,10 +1,17 @@
+import zygame.display.Label;
 import zygame.display.ImageBitmap;
 import zygame.utils.Assets;
 import zygame.core.Start;
 
 class ImageTest extends Start {
 	static function main() {
+		#if wechat
+		untyped window.start = function() {
+			new ImageTest();
+		}
+		#else
 		new ImageTest();
+		#end
 	}
 
 	public function new() {
@@ -15,7 +22,11 @@ class ImageTest extends Start {
 
 	override function init() {
 		super.init();
-        // 构造一个加载器
+		// var label = new Label();
+		// this.s2d.add(label);
+		// label.setColor(0xffffff);
+		// label.text = "加载中";
+		// 构造一个加载器
 		var assets:Assets = new Assets();
 		assets.loadFile("img.jpg");
 		assets.start(function(f) {
