@@ -5,6 +5,7 @@ import zygame.core.Start;
 
 class ImageTest extends Start {
 	static function main() {
+        hxd.Res.initEmbed();
 		#if wechat
 		untyped window.start = function() {
 			new ImageTest();
@@ -28,15 +29,16 @@ class ImageTest extends Start {
 		// label.text = "加载中";
 		// 构造一个加载器
 		var assets:Assets = new Assets();
-		assets.loadFile("img.jpg");
+		assets.loadFile("img.png");
 		assets.start(function(f) {
 			if (f == 1) {
 				// 加载完成，渲染图片
 				for (i in 0...1000) {
 					var bmd = new ImageBitmap(assets.getBitmapDataTile("img"));
+					// var bmd = new ImageBitmap(hxd.Res.img.toTile());
 					Start.current.s2d.add(bmd);
 					bmd.x = Std.random(Start.current.s2d.width);
-					bmd.y = Std.random(Start.current.s2d.height);
+					bmd.y = Std.random(Start.current.s2d.height);   
 					_imgs.push(bmd);
 				}
 				var tile = assets.getBitmapDataTile("img");

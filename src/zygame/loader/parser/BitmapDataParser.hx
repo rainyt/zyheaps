@@ -1,5 +1,6 @@
 package zygame.loader.parser;
 
+import hxd.res.Image;
 import hxd.fs.BytesFileSystem;
 import hxd.net.BinaryLoader;
 
@@ -18,9 +19,8 @@ class BitmapDataParser extends BaseParser {
 		}
 		loader.onLoaded = function(data) {
 			var fs = new BytesFileEntry(getData(), data);
-			fs.loadBitmap(function(data) {
-				this.out(this, BITMAP, data, 1);
-			});
+			var image:Image = new Image(fs);
+			this.out(this, BITMAP, image, 1);
 		};
 		loader.onError = function(err) {
 			trace("加载失败：", err);

@@ -1,5 +1,7 @@
 package zygame.utils;
 
+import hxd.res.Image;
+import h3d.mat.Texture;
 import hxd.fs.LoadedBitmap;
 import hxd.BitmapData;
 import zygame.loader.parser.AssetsType;
@@ -155,9 +157,8 @@ class Assets {
 	 */
 	public function getBitmapDataTile(id:String):Tile {
 		if (!hasTypeAssets(BITMAP_TILE, id)) {
-			var bitmap:LoadedBitmap = getTypeAssets(BITMAP, id);
-			if (bitmap != null)
-				setTypeAssets(BITMAP_TILE, id, Tile.fromBitmap(bitmap.toBitmap()));
+			var bitmap:Image = getTypeAssets(BITMAP, id);
+			setTypeAssets(BITMAP_TILE, id, Tile.fromTexture(bitmap.toTexture()));
 		}
 		return getTypeAssets(BITMAP_TILE, id);
 	}
