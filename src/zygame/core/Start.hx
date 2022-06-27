@@ -7,6 +7,8 @@ import hxd.App;
  * 启动类
  */
 class Start extends App {
+	public static var current:Start;
+
 	private var _hdsize = {
 		width: 0,
 		height: 0
@@ -22,6 +24,7 @@ class Start extends App {
 		super();
 		_hdsize.width = width;
 		_hdsize.height = height;
+		current = this;
 	}
 
 	override function init() {
