@@ -1,3 +1,4 @@
+import zygame.res.AssetsBuilder;
 import h2d.Bitmap;
 import h2d.Graphics;
 import h2d.SpriteBatch;
@@ -9,17 +10,7 @@ import zygame.core.Start;
 class ImageTest extends Start {
 	static function main() {
 		hxd.Res.initEmbed();
-		#if wechat
-		untyped window.start = function() {
-			new ImageTest();
-		}
-		#else
-		new ImageTest();
-		#end
-	}
-
-	public function new() {
-		super();
+		Start.initApp(ImageTest, 1080, 1920);
 	}
 
 	private var _imgs:Array<ImageBitmap> = [];
@@ -28,10 +19,13 @@ class ImageTest extends Start {
 		super.init();
 		// 构造一个加载器
 		var assets:Assets = new Assets();
+		AssetsBuilder.bindAssets(assets);
 		assets.loadFile("img.png");
 		assets.start(function(f) {
 			if (f == 1) {
-				var sprite:SpriteBatch = new SpriteBatch(assets.getBitmapDataTile("img"), s2d);
+				var tile = AssetsBuilder.getBitmapDataTile("img");
+				trace(tile);
+				var sprite:SpriteBatch = new SpriteBatch(tile, s2d);
 				// 加载完成，渲染图片
 				for (i in 0...1000) {
 					var bmd = new BatchElement(sprite.tile);

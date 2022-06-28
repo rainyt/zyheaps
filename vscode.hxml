@@ -14,5 +14,5 @@
 -cp test
 -lib heaps
 -js bin/html5//hello.js
--main LabelTest
+-main ImageTest
 -debug
