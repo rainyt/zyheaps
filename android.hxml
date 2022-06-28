@@ -1,0 +1,7 @@
+-cp src
+-cp test
+-lib heaps
+-lib hlsdl
+--hl bin/c/main.c
+-main ImageTest
+-debug

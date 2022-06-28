@@ -18,6 +18,7 @@ class FontBuilder extends hxd.res.FontBuilder {
 		return f;
 	}
 
+	#if js
 	/**
 	 * 兼容小游戏
 	 * @param font 
@@ -31,4 +32,5 @@ class FontBuilder extends hxd.res.FontBuilder {
 		return super.getFontHeight(font, chars);
 		#end
 	}
+	#end
 }

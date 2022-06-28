@@ -20,7 +20,7 @@ class Start extends App {
 			current = Type.createInstance(c, [hdwidth, hdheight, debug]);
 		}
 		#else
-		current = Type.createInstance(c, []);
+		current = Type.createInstance(c, [hdwidth, hdheight, debug]);
 		#end
 	}
 

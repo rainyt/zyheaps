@@ -4,7 +4,8 @@
 -js bin/wechat/hello.js
 # -main Test3DMain
 # -main LabelTest
--main GraphicsTest
+# -main GraphicsTest
+-main ImageTest
 -debug
 -D wechat
 

@@ -13,7 +13,7 @@ class ImageTest extends Start {
 		Start.initApp(ImageTest, 1080, 1920);
 	}
 
-	private var _imgs:Array<ImageBitmap> = [];
+	private var _imgs:Array<BatchElement> = [];
 
 	override function init() {
 		super.init();
@@ -24,19 +24,15 @@ class ImageTest extends Start {
 		assets.start(function(f) {
 			if (f == 1) {
 				var tile = AssetsBuilder.getBitmapDataTile("img");
-				trace(tile);
 				var sprite:SpriteBatch = new SpriteBatch(tile, s2d);
+				sprite.hasRotationScale = true;
 				// 加载完成，渲染图片
-				for (i in 0...1000) {
+				for (i in 0...3000) {
 					var bmd = new BatchElement(sprite.tile);
 					sprite.add(bmd);
-					// var bmd = new ImageBitmap(assets.getBitmapDataTile("img"));
-					// var bmd = new ImageBitmap(hxd.Res.img.toTile());
-					// Start.current.s2d.add(bmd);
-					// sprite.addChild(bmd);
 					bmd.x = Std.random(Start.current.s2d.width);
 					bmd.y = Std.random(Start.current.s2d.height);
-					// _imgs.push(bmd);
+					_imgs.push(bmd);
 				}
 				var tile = assets.getBitmapDataTile("img");
 				tile.setCenterRatio();
