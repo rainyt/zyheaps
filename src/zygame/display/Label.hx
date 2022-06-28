@@ -1,5 +1,8 @@
 package zygame.display;
 
+import zygame.core.Start;
+import zygame.display.base.IDisplayObject;
+import h2d.Object;
 import h2d.Font;
 import zygame.res.FontBuilder;
 import h2d.Text;
@@ -7,7 +10,7 @@ import h2d.Text;
 /**
  * 文本类
  */
-class Label extends Text {
+class Label extends Text implements IDisplayObject {
 	/**
 	 * 默认字体
 	 */
@@ -17,8 +20,8 @@ class Label extends Text {
 	 * 构造一个Label文本
 	 * @param text 
 	 */
-	public function new(text:String = null) {
-		super(null);
+	public function new(text:String = null, parent:Object = null) {
+		super(null, parent);
 		if (text != null)
 			this.text = text;
 	}
@@ -71,4 +74,16 @@ class Label extends Text {
 	public function setColor(color:UInt):Void {
 		this.color.setColor(0xff000000 + color);
 	}
+
+	public function get_stageWidth():Float {
+		return Start.current.stageWidth;
+	}
+
+	public var stageWidth(get, never):Float;
+
+	public function get_stageHeight():Float {
+		return Start.current.stageHeight;
+	}
+
+	public var stageHeight(get, never):Float;
 }

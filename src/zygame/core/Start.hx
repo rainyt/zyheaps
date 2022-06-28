@@ -1,5 +1,6 @@
 package zygame.core;
 
+import h2d.Scene.ScaleMode;
 import zygame.utils.ScaleUtils;
 import hxd.App;
 
@@ -13,10 +14,10 @@ class Start extends App {
 	 * 初始化入口
 	 * @param c 
 	 */
-	public static function initApp(c:Class<Dynamic>):Void {
+	public static function initApp(c:Class<Dynamic>, hdwidth:Float, hdheight:Float, debug:Bool = false):Void {
 		#if wechat
 		untyped window.start = function() {
-			current = Type.createInstance(c, []);
+			current = Type.createInstance(c, [hdwidth, hdheight, debug]);
 		}
 		#else
 		current = Type.createInstance(c, []);
@@ -48,8 +49,44 @@ class Start extends App {
 	override function onResize() {
 		super.onResize();
 		trace("stage size:", this.s2d.width, this.s2d.height);
-		var scale = ScaleUtils.mathScale(this.s2d.width, this.s2d.height, _hdsize.width, _hdsize.height);
-		this.s2d.setScale(scale);
-		trace("changed scale:", scale, "size:", this.s2d.width, this.s2d.height);
+		__currentScale = ScaleUtils.mathScale(this.s2d.width, this.s2d.height, _hdsize.width, _hdsize.height);
+		this.s2d.setScale(__currentScale);
+		this.__stateSize.width = Math.round(s2d.width / __currentScale);
+		this.__stateSize.height = Math.round(s2d.height / __currentScale);
+		trace("changed scale:", __currentScale, "size:", this.stageWidth, this.stageHeight);
+	}
+
+	/**
+	 * 当前缩放比例
+	 */
+	public var currentScale(get, never):Float;
+
+	private var __currentScale:Float = 0;
+
+	private var __stateSize = {
+		width: 0.,
+		height: 0.
+	}
+
+	function get_currentScale() {
+		return __currentScale;
+	}
+
+	/**
+	 * 获取舞台宽度
+	 */
+	public var stageWidth(get, never):Float;
+
+	function get_stageWidth():Float {
+		return __stateSize.width;
+	}
+
+	/**
+	 * 获取舞台高度
+	 */
+	public var stageHeight(get, never):Float;
+
+	function get_stageHeight():Float {
+		return __stateSize.height;
 	}
 }

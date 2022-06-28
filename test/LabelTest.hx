@@ -9,11 +9,11 @@ import zygame.core.Start;
 
 class LabelTest extends Start {
 	static function main() {
-		Start.initApp(LabelTest);
+		Start.initApp(LabelTest, 1080, 1920);
 	}
 
 	public function new() {
-		super(1080,1920);
+		super(1080, 1920);
 	}
 
 	override function init() {
@@ -37,6 +37,6 @@ class LabelTest extends Start {
 			label.x = Math.random() * s2d.width;
 			label.y = Math.random() * s2d.height;
 		}
-        label.x += 0.2;
+		label.x += 0.2;
 	}
 }

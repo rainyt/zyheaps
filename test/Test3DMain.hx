@@ -1,4 +1,5 @@
 // import game.role.BaseRole;
+import h3d.Engine;
 import zygame.display.Label;
 import h3d.scene.fwd.DirLight;
 
@@ -42,81 +43,80 @@ class Test3DMain extends hxd.App {
 
   override function init() {
     
-    // light = new DirLight(new h3d.Vector( 0.3, -0.4, -0.9), s3d);
-    // light.enableSpecular = true;
-    // light.color.set(0.28, 0.28, 0.28);
-    // // s3d.lightSystem.ambientLight.set(0.74, 0.74, 0.74);
+    Engine.getCurrent().backgroundColor = 0xffffffff;
+
+    light = new DirLight(new h3d.Vector( 0.3, -0.4, -0.9), s3d);
+    light.enableSpecular = true;
+    light.color.set(0.28, 0.28, 0.28);
+    // s3d.lightSystem.ambientLight.set(0.74, 0.74, 0.74);
     
-    // rnd = new hxd.Rand(5);
-    // for(i in 0...8) {
-    //   var c = if( rnd.random(2) == 0 ) new h3d.prim.Cube() else new h3d.prim.Sphere(1,64,32);
-    //   //c.unindex();
-    //   c.addNormals();
-    //   c.addUVs();
-    //   var m = new h3d.scene.Mesh(c, s3d);
-    //   m.x = rnd.srand() * 0.9;
-    //   m.y = rnd.srand() * 0.9;
-    //   m.scale(0.25 + rnd.rand() * 0.3);
-    //   m.material.mainPass.enableLights = true;
-    //   m.material.shadows = true;
-    //   var c = 0.3 + rnd.rand() * 0.3;
-    //   var color = new h3d.Vector(c, c * 0.6, c * 0.6);
-    //   m.material.color.load(color);
+    rnd = new hxd.Rand(5);
+    for(i in 0...8) {
+      var c = if( rnd.random(2) == 0 ) new h3d.prim.Cube() else new h3d.prim.Sphere(1,64,32);
+      //c.unindex();
+      c.addNormals();
+      c.addUVs();
+      var m = new h3d.scene.Mesh(c, s3d);
+      m.x = rnd.srand() * 0.9;
+      m.y = rnd.srand() * 0.9;
+      m.scale(0.25 + rnd.rand() * 0.3);
+      m.material.mainPass.enableLights = true;
+      m.material.shadows = true;
+      var c = 0.3 + rnd.rand() * 0.3;
+      var color = new h3d.Vector(c, c * 0.6, c * 0.6);
+      m.material.color.load(color);
 
-    //   var interact = new h3d.scene.Interactive(m.getCollider(), s3d);
-    //   initInteract(interact, m);
-    // }
+      var interact = new h3d.scene.Interactive(m.getCollider(), s3d);
+      initInteract(interact, m);
+    }
 
-    // var cache = new h3d.prim.ModelCache();
-    // obj = cache.loadModel(hxd.Res.Model);
-    // obj.scale(1 / 20);
-    // obj.rotate(0,0,Math.PI / 2);
-    // obj.y = 0.2;
-    // obj.z = 0.2;
-    // s3d.addChild(obj);
+    var cache = new h3d.prim.ModelCache();
+    obj = cache.loadModel(hxd.Res.Model);
+    obj.scale(1 / 20);
+    obj.rotate(0,0,Math.PI / 2);
+    obj.y = 0.2;
+    obj.z = 0.2;
+    s3d.addChild(obj);
 
-    // obj.playAnimation(cache.loadAnimation(hxd.Res.Model)).speed = 0.1;
+    obj.playAnimation(cache.loadAnimation(hxd.Res.Model)).speed = 0.1;
 
-    // for( o in obj ) {
-    //   var m = o.toMesh();
-    //   var i = new h3d.scene.Interactive(m.getCollider(), s3d);
-    //   initInteract(i, m);
-    // }
+    for( o in obj ) {
+      var m = o.toMesh();
+      var i = new h3d.scene.Interactive(m.getCollider(), s3d);
+      initInteract(i, m);
+    }
 
-    // b = new h2d.Interactive(150, 100, s2d);
-    // b.backgroundColor = 0x80204060;
-    // b.rotation = Math.PI / 3;
-    // //b.scaleX = 1.5; // TODO
+    b = new h2d.Interactive(150, 100, s2d);
+    b.backgroundColor = 0x80204060;
+    b.rotation = Math.PI / 3;
+    //b.scaleX = 1.5; // TODO
 
-    // var pix = null;
-    // b.onOver = function(e) {
-    //   var t = h2d.Tile.fromColor(0xFF0000, 3, 3);
-    //   t.dx = -1;
-    //   t.dy = -1;
-    //   pix = new h2d.Bitmap(t, b);
-    //   pix.x = e.relX;
-    //   pix.y = e.relY;
-    // };
-    // b.onMove = function(e) {
-    //   if( pix == null ) return;
-    //   pix.x = e.relX;
-    //   pix.y = e.relY;
-    // }
-    // b.onOut = function(e) {
-    //   pix.remove();
-    //   pix = null;
-    // };
+    var pix = null;
+    b.onOver = function(e) {
+      var t = h2d.Tile.fromColor(0xFF0000, 3, 3);
+      t.dx = -1;
+      t.dy = -1;
+      pix = new h2d.Bitmap(t, b);
+      pix.x = e.relX;
+      pix.y = e.relY;
+    };
+    b.onMove = function(e) {
+      if( pix == null ) return;
+      pix.x = e.relX;
+      pix.y = e.relY;
+    }
+    b.onOut = function(e) {
+      pix.remove();
+      pix = null;
+    };
 
-    // // var base:BaseRole = new BaseRole(hxd.Res.cat);
-    // onResize();
-    // var c = new h3d.scene.CameraController(s3d);
-    // c.loadFromCamera();
-    // s3d.camera.zFar = 0;
-    // s3d.camera.zNear = 0;
+    // var base:BaseRole = new BaseRole(hxd.Res.cat);
+    onResize();
+    var c = new h3d.scene.CameraController(s3d);
+    c.loadFromCamera();
+    s3d.camera.zFar = 0;
+    s3d.camera.zNear = 0;
 
-    var img = new zygame.display.ImageBitmap(hxd.Res.PolygonWestern_Texture_01.toTile());
-    this.s2d.add(img);
-    img.scale(0.3);
     
   }
 

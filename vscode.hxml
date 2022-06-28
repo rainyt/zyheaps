@@ -3,7 +3,8 @@
 -lib heaps
 -js bin/wechat/hello.js
 # -main Test3DMain
--main LabelTest
+# -main LabelTest
+-main GraphicsTest
 -debug
 -D wechat
 
