@@ -15,8 +15,10 @@ class Start extends App {
 	 * @param c 
 	 */
 	public static function initApp(c:Class<Dynamic>, hdwidth:Float, hdheight:Float, debug:Bool = false):Void {
+		trace("Start.initApp");
 		#if android
 		// 先不要那么着急初始化
+		current = Type.createInstance(c, [hdwidth, hdheight, debug]);
 		#elseif wechat
 		untyped window.start = function() {
 			current = Type.createInstance(c, [hdwidth, hdheight, debug]);

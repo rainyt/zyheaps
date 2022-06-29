@@ -7,7 +7,6 @@
 /captures
 .externalNativeBuild
 .cxx
-local.properties
 app/build
 /app/src/main/cpp/out
 !app/src/main/cpp/out/readme.md
