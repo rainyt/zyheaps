@@ -44,6 +44,10 @@ When you need to test HTML5 goals:
 ```shell
 haxelib run zyheaps test html5
 ```
+压缩HTML5目标时：When compressing HTML5 targets:
+```shell
+haxelib run zyheaps test html5 -final
+```
 
 ## 安卓目标（Android）
 编译安卓时，需要配置好对应的NDK版本号：
