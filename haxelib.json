@@ -10,7 +10,8 @@
 	],
 	"dependencies": {
 		"heaps": "",
-		"hxp": ""
+		"hxp": "",
+		"http-server": ""
 	},
 	"classPath": "src"
 }
