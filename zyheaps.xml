@@ -1,0 +1,4 @@
+<project>
+    <template path="platform" />
+    <assets path="res" rename="assets"/>
+</project>

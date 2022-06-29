@@ -20,7 +20,7 @@ class ImageTest extends Start {
 		// 构造一个加载器
 		var assets:Assets = new Assets();
 		AssetsBuilder.bindAssets(assets);
-		assets.loadFile("img.png");
+		assets.loadFile("assets/img.png");
 		assets.start(function(f) {
 			if (f == 1) {
 				var tile = AssetsBuilder.getBitmapDataTile("img");

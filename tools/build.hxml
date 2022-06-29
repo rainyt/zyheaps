@@ -1,0 +1,4 @@
+--class-path src
+--library hxp
+--main Tools
+--neko ../run.n

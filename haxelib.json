@@ -1,11 +1,16 @@
 {
-	"name" : "zyheaps",
-	"url" : "http://heaps.io",
-	"license" : "BSD",
-    "description" : "在Heaps基础上的框架",
-    "version" : "0.0.1",
-	"releasenote" : "See CHANGELOG.md",
-	"contributors" : ["rainyt"],
-	"dependencies" : { "heaps" : "" },
-    "classPath": "src"
+	"name": "zyheaps",
+	"url": "http://heaps.io",
+	"license": "BSD",
+	"description": "在Heaps基础上的框架",
+	"version": "0.0.1",
+	"releasenote": "See CHANGELOG.md",
+	"contributors": [
+		"rainyt"
+	],
+	"dependencies": {
+		"heaps": "",
+		"hxp": ""
+	},
+	"classPath": "src"
 }
