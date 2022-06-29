@@ -55,7 +55,7 @@ class Android extends BasePlatform {
 			}
 		}
 		// 需要对openal-nativetools的bin2h/bsincgen提供权限
-		if (Sys.systemName() != "Window") {
+		if (Sys.systemName() != "Windows") {
 			System.runCommand("", "chmod", ["755", cppDir + "openal-nativetools/bin2h"]);
 			System.runCommand("", "chmod", ["755", cppDir + "openal-nativetools/bsincgen"]);
 		}
@@ -71,7 +71,7 @@ class Android extends BasePlatform {
 		// 从android studio编译
 		Sys.setCwd(project.app.path + "/" + platform);
 		var cmd = project.app.path + "/" + platform + "/gradlew";
-		if (Sys.systemName() != "Window") {
+		if (Sys.systemName() != "Windows") {
 			System.runCommand("", "chmod", ["755", cmd]);
 		}
 		// gradlew assembleDebug assembleRelease
