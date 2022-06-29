@@ -4,6 +4,11 @@
 ## 记录问题
 当前状态是开放中，会存在大量问题需要解决。
 
+## 开发安装
+```shell
+haxelib git zyheaps https://github.com/rainyt/zyheaps.git
+```
+
 ## HTML5目标
 使用HTML5目标时，编译可使用：
 ```shell
