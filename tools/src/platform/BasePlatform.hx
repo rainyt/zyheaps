@@ -17,12 +17,19 @@ class BasePlatform {
 		project = new ProjectXMLParser(Tools.projectDirPath + "zyheaps.xml");
 	}
 
-	/** 开始构造 **/
-	public function onBuild():Void {
+	/**
+		拷贝资源
+	**/
+	public function onCopyAssets():Void {
 		for (asset in project.assets) {
 			AssetHelper.copyAsset(asset, project.app.path + "/" + platform + "/" + asset.targetPath);
 		}
+	}
+
+	/** 开始构造 **/
+	public function onBuild():Void {
 		ProjectHelper.recursiveSmartCopyTemplate(project, platform, project.app.path + "/" + platform, project.templateContext);
+		this.onCopyAssets();
 	}
 
 	/** 初始化HXML **/
@@ -34,6 +41,9 @@ class BasePlatform {
 		}
 		for (haxelib in project.haxelibs) {
 			hxml.lib(haxelib.name, (haxelib.version != null && haxelib.version != "") ? haxelib.version : null);
+		}
+		for (key => value in project.defines) {
+			hxml.define(key, value);
 		}
 		Log.info(hxml);
 		return hxml;
