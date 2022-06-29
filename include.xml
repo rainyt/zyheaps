@@ -1,3 +1,3 @@
 <project>
-    <template path="platform" />
+    <template path="tools/templates" />
 </project>

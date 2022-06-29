@@ -1,0 +1,52 @@
+{
+    "networkTimeout":{
+        "request":6000,
+        "downloadFile":6000
+    },
+    "deviceOrientation": "::if SET_ORIENTATION::::SET_ORIENTATION::::else::::SET_DEVICE_ORIENTATION::::end::"
+    ::if SET_BILI_APPID::,"appId": "::SET_BILI_APPID::"::end::
+    ::if DEFINE_BILI::,"version": "::APP_VERSION::"::end::
+    ::if DEFINE_MGC::,"mgcVersion": "::APP_VERSION::"::end::
+    ::if SET_WORKERS::,"workers": "::SET_WORKERS::"::end::
+    ::if SET_OPENDATA::,"openDataContext": "::SET_OPENDATA::"::end::
+    ::if SET_APP_ID_LIST::,"navigateToMiniProgramAppIdList": [::SET_APP_ID_LIST::]::end::
+    ::if DEFINE_TT_APP_ID_LIST::,"ttNavigateToMiniGameAppIdList": [::DEFINE_TT_APP_ID_LIST::]::end::
+    ::if SET_SUBPACKAGES::,"subpackages":[{
+        "name":"::SET_SUBPACKAGES::",
+        "root":"::SET_SUBPACKAGES::"
+    }
+    ::if SET_SUBPACKAGES2::
+    ,{
+        "name":"::SET_SUBPACKAGES2::",
+        "root":"::SET_SUBPACKAGES2::"
+    }
+    ::end::
+    ::if SET_SUBPACKAGES3::
+    ,{
+        "name":"::SET_SUBPACKAGES3::",
+        "root":"::SET_SUBPACKAGES3::"
+    }
+    ::end::
+    ::if SET_SUBPACKAGES4::
+    ,{
+        "name":"::SET_SUBPACKAGES4::",
+        "root":"::SET_SUBPACKAGES4::"
+    }
+    ::end::
+    ]::end::
+    ::if DEFINE_STARTAD::
+    ,"startExtInfo": {
+        "deviceOrientation": "portrait"
+    }
+    ::end::
+    ::if SET_QQGROUPID::
+    ,"groupIdList":[::SET_QQGROUPID::]
+    ::end::
+    ::if SET_PERMISSION_USER_LOCATION::
+    ,"permission": {
+        "scope.userLocation": {
+          "desc":"::SET_PERMISSION_USER_LOCATION::"
+        }
+    }
+    ::end::
+}

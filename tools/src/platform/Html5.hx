@@ -18,7 +18,7 @@ class Html5 extends BasePlatform {
 
 	override function initHxml() {
 		var hxml = super.initHxml();
-		hxml.js = project.app.path + "/html5/" + project.app.file + ".js";
+		hxml.js = project.app.path + "/" + platform + "/" + project.app.file + ".js";
 		return hxml;
 	}
 

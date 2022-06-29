@@ -1,0 +1,34 @@
+{
+    "description": "项目配置文件。",
+    ::if SET_KS_APPID::"appid": "::SET_KS_APPID::",::end::
+    ::if SET_WX_APPID::"appid": "::SET_WX_APPID::",::end::
+    "packOptions": {
+      "ignore": []
+    },
+    "setting": {
+      "urlCheck": false,
+      "es6": true,
+      "postcss": true,
+      "minified": true,
+      "newFeature": true
+    },
+    "compileType": "game",
+    "libVersion": "1.9.98",
+    "projectname": "::SET_PROJECT_NAME::",
+    "isGameTourist": true,
+    "condition": {
+      "search": {
+        "list": []
+      },
+      "conversation": {
+        "list": []
+      },
+      "game": {
+        "currentL": -1,
+        "list": []
+      },
+      "miniprogram": {
+        "list": []
+      }
+    }
+  }
