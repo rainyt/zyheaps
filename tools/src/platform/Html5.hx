@@ -1,5 +1,6 @@
 package platform;
 
+import hxp.PlatformTools;
 import hxp.System;
 
 /** HTML5目标 **/
@@ -19,5 +20,9 @@ class Html5 extends BasePlatform {
 		var hxml = super.initHxml();
 		hxml.js = project.app.path + "/html5/" + project.app.file + ".js";
 		return hxml;
+	}
+
+	override function onTest() {
+		PlatformTools.launchWebServer(project.app.path + "/html5", 8888);
 	}
 }

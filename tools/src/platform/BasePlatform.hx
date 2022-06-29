@@ -41,4 +41,9 @@ class BasePlatform {
 
 	/** 构造结束 **/
 	public function onBuilded():Void {}
+
+	/** 启动测试 **/
+	public function onTest():Void {
+		Log.warn("This platform test is unavailable.");
+	}
 }

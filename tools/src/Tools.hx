@@ -22,7 +22,7 @@ class Tools {
 		buildPlatform = args[1];
 		Log.info('working ${projectDirPath}');
 		switch (args[0]) {
-			case "build":
+			case "build", "test":
 				Log.info("build platform " + buildPlatform);
 				var c = "platform." + buildPlatform.charAt(0).toUpperCase() + buildPlatform.substr(1).toLowerCase();
 				var tc = Type.resolveClass(c);
@@ -30,12 +30,16 @@ class Tools {
 					var base:BasePlatform = Type.createInstance(tc, []);
 					base.onBuild();
 					base.onBuilded();
+					if(args[0] == "test"){
+						base.onTest();
+					}
 				} else {
 					Log.error('Target ${buildPlatform} is unavailable.');
 				}
 			default:
 				Log.info("Use:");
 				Log.info("haxelib run zyhepas build ${platform}");
+				Log.info("haxelib run zyhepas test ${platform}");
 				Log.info("platform optional:");
 				for (c in AllPlatform.platforms) {
 					var n = Type.getClassName(c);
