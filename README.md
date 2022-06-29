@@ -9,6 +9,27 @@
 haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 ```
 
+## 项目基础配置
+需要在项目根目录下，建立一个`zyheaps.xml`文件，它跟openfl的`project.xml`功能相似。但功能还未完全实现。它基于[https://github.com/jgranick/lime-tools](https://github.com/jgranick/lime-tools)实现。一个基础的配置：
+```xml
+<project>
+    <meta title="ILandes" package="com.sample.ilandes" version="1.0.0" company="Company Name" />
+    <!-- 指定类型 -->
+    <app main="Main" path="Export" file="ILandes"/>
+    <!-- 指定资源目录 -->
+    <assets path="Assets" rename="assets" />
+    <!-- 指定库 -->
+    <haxelib name="zyheaps" />
+    <haxelib name="heaps" />
+    <!-- 指定源码位置 -->
+    <source name="src" />
+    <!-- 安卓配置 -->
+    <define name="NDK_DIR" value="/Users/rainy/Documents/SDK/android-ndk-r18b" />
+    <define name="ANDROID_SDK_DIR" value="/Users/rainy/Library/Android/sdk" />
+    <define name="NDK_VERSION" value="18.1.5063045" />
+</project>
+```
+
 ## HTML5目标
 使用HTML5目标时，编译可使用：
 ```shell
