@@ -1,0 +1,6 @@
+-lib heaps
+-lib hlsdl
+-lib zyheaps
+-main Main
+-hl ../cpp/out/main.c
+-debug
