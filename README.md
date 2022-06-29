@@ -61,3 +61,9 @@ Then quickly compile with the following commands:
 ```shell
 haxelib run zyheaps build android
 ```
+
+## 微信小游戏
+它支持微信小游戏，编译时使用：
+```shell
+haxelib run zyheaps build wechat
+```
