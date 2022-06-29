@@ -13,3 +13,18 @@ haxelib run zyheaps build html5
 ```shell
 haxelib run zyheaps test html5
 ```
+
+## 安卓目标
+编译安卓时，需要配置好对应的NDK版本号：
+```xml
+<!-- NDK目录 -->
+<define name="NDK_DIR" value=""/>
+<!-- Android SDK目录 -->
+<define name="ANDROID_SDK_DIR" value=""/>
+<!-- NDK版本 -->
+<define name="NDK_VERSION" value=""/>
+```
+再通过以下命令进行快速编译：
+```shell
+haxelib run zyheaps build android
+```

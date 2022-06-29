@@ -4,7 +4,7 @@ plugins {
 
 android {
     compileSdk 31
-    ndkVersion "18.1.5063045"
+    ndkVersion "::DEFINE_NDK_VERSION::"
 
     defaultConfig {
         applicationId "com.example.heapsandroid.helloworld"
