@@ -71,6 +71,9 @@ class Android extends BasePlatform {
 		var cmd = project.app.path + "/" + platform + "/gradlew";
 		System.runCommand("", "chmod", ["755", cmd]);
 		// gradlew assembleDebug assembleRelease
-		Sys.command(cmd + " assembleDebug");
+		if (Sys.args().indexOf("-final") != -1) {
+			Sys.command(cmd + " assembleRelease");
+		} else
+			Sys.command(cmd + " assembleDebug");
 	}
 }
