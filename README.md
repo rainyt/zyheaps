@@ -24,8 +24,8 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
     <!-- 指定源码位置 -->
     <source name="src" />
     <!-- 安卓配置 -->
-    <define name="NDK_DIR" value="/Users/rainy/Documents/SDK/android-ndk-r18b" />
-    <define name="ANDROID_SDK_DIR" value="/Users/rainy/Library/Android/sdk" />
+    <define name="NDK_DIR" value="/Users/xxxxxx/Documents/SDK/android-ndk-r18b" />
+    <define name="ANDROID_SDK_DIR" value="/Users/xxxxxx/Library/Android/sdk" />
     <define name="NDK_VERSION" value="18.1.5063045" />
 </project>
 ```
