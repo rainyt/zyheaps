@@ -33,7 +33,7 @@ You need to create a `zyheaps.xml` file, which is similar to openfl's `project.x
 </project>
 ```
 
-## HTML5目标
+## HTML5目标（HTML5）
 使用HTML5目标时，编译可使用：
 When using HTML5 targets, the compilation can use:
 ```shell
@@ -45,7 +45,7 @@ When you need to test HTML5 goals:
 haxelib run zyheaps test html5
 ```
 
-## 安卓目标
+## 安卓目标（Android）
 编译安卓时，需要配置好对应的NDK版本号：
 When compiling Android, you need to configure the corresponding NDK version number:
 ```xml
