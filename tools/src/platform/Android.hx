@@ -42,21 +42,25 @@ class Android extends BasePlatform {
 								FileSystem.createDirectory(dir);
 						}
 						try {
+							if (item.dataSize == 0)
+								continue;
 							if (item.compressed) {
 								var newBytes = Reader.unzip(item);
 								File.saveBytes(cppDir + item.fileName, newBytes);
 							} else
 								File.saveBytes(cppDir + item.fileName, item.data);
 						} catch (e:Exception) {
-							trace("Error:", e.message);
+							trace("Error:", cppDir + item.fileName, item.dataSize);
 						}
 					}
 				}
 			}
 		}
 		// 需要对openal-nativetools的bin2h/bsincgen提供权限
-		System.runCommand("", "chmod", ["755", cppDir + "openal-nativetools/bin2h"]);
-		System.runCommand("", "chmod", ["755", cppDir + "openal-nativetools/bsincgen"]);
+		if (Sys.systemName() != "Window") {
+			System.runCommand("", "chmod", ["755", cppDir + "openal-nativetools/bin2h"]);
+			System.runCommand("", "chmod", ["755", cppDir + "openal-nativetools/bsincgen"]);
+		}
 	}
 
 	override function onBuild() {
@@ -69,7 +73,9 @@ class Android extends BasePlatform {
 		// 从android studio编译
 		Sys.setCwd(project.app.path + "/" + platform);
 		var cmd = project.app.path + "/" + platform + "/gradlew";
-		System.runCommand("", "chmod", ["755", cmd]);
+		if (Sys.systemName() != "Window") {
+			System.runCommand("", "chmod", ["755", cmd]);
+		}
 		// gradlew assembleDebug assembleRelease
 		if (Sys.args().indexOf("-final") != -1) {
 			Sys.command(cmd + " assembleRelease");
