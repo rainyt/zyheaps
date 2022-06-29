@@ -42,9 +42,9 @@ class BasePlatform {
 		for (haxelib in project.haxelibs) {
 			hxml.lib(haxelib.name, (haxelib.version != null && haxelib.version != "") ? haxelib.version : null);
 		}
-		for (key => value in project.defines) {
-			hxml.define(key, value);
-		}
+		// for (key => value in project.defines) {
+		// 	hxml.define(key, value);
+		// }
 		Log.info(hxml);
 		return hxml;
 	}
