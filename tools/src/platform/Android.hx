@@ -42,15 +42,13 @@ class Android extends BasePlatform {
 								FileSystem.createDirectory(dir);
 						}
 						try {
-							if (item.dataSize == 0)
-								continue;
 							if (item.compressed) {
 								var newBytes = Reader.unzip(item);
 								File.saveBytes(cppDir + item.fileName, newBytes);
 							} else
 								File.saveBytes(cppDir + item.fileName, item.data);
 						} catch (e:Exception) {
-							trace("Error:", cppDir + item.fileName, item.dataSize);
+							// trace("Error:", cppDir + item.fileName, item.dataSize);
 						}
 					}
 				}
