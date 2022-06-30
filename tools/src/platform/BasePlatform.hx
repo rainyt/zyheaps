@@ -30,6 +30,8 @@ class BasePlatform {
 	public function onBuild():Void {
 		ProjectHelper.recursiveSmartCopyTemplate(project, platform, project.app.path + "/" + platform, project.templateContext);
 		this.onCopyAssets();
+		var args = Sys.args();
+		Sys.setCwd(args[args.length - 1]);
 	}
 
 	/** 初始化HXML **/
@@ -45,9 +47,11 @@ class BasePlatform {
 		if (Sys.args().indexOf("-final") == -1)
 			hxml.debug = true;
 		hxml.define(platform);
-		// for (key => value in project.defines) {
-		// 	hxml.define(key, value);
-		// }
+		for (key => value in project.defines) {
+			if (key == "cpp")
+				continue;
+			hxml.define(key, '"${value}"');
+		}
 		Log.info(hxml);
 		return hxml;
 	}
