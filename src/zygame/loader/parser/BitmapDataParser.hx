@@ -1,5 +1,6 @@
 package zygame.loader.parser;
 
+import hxd.res.Loader;
 import hxd.res.Image;
 import hxd.fs.BytesFileSystem;
 import hxd.net.BinaryLoader;
@@ -13,6 +14,9 @@ class BitmapDataParser extends BaseParser {
 	}
 
 	override function process() {
+		#if hl
+		trace("CPP Platform is unavailable.");
+		#else
 		var loader = new BinaryLoader(getData());
 		loader.onProgress = function(a, b) {
 			trace("加载进度：", a, b);
@@ -26,5 +30,6 @@ class BitmapDataParser extends BaseParser {
 			trace("加载失败：", err);
 		}
 		loader.load();
+		#end
 	}
 }

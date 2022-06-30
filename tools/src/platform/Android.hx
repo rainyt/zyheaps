@@ -1,5 +1,6 @@
 package platform;
 
+import haxe.Json;
 import hxp.Haxelib;
 import hxp.Log;
 import haxe.Exception;
@@ -68,6 +69,7 @@ class Android extends BasePlatform {
 		hxml.lib("hlsdl");
 		hxml.hl = project.app.path + "/" + platform + "/app/src/main/cpp/out/main.c";
 		hxml.build();
+		System.writeText(hxml, project.app.path + "/" + platform + "/app/src/main/build.hxml");
 		// 从android studio编译
 		Sys.setCwd(project.app.path + "/" + platform);
 		var cmd = project.app.path + "/" + platform + "/gradlew";
