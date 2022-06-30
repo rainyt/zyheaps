@@ -4,3 +4,4 @@
 - 新增：新增html5目标编译支持。
 - 新增：新增android目标编译支持。
 - 新增：新增html5压缩`-final`标识支持。
+- 修改：使用`hashlink1.11`版本。（用于解决android的crash）
