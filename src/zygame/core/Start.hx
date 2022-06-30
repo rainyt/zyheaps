@@ -1,5 +1,6 @@
 package zygame.core;
 
+import zygame.display.FPSDebug;
 import h2d.Scene.ScaleMode;
 import zygame.utils.ScaleUtils;
 import hxd.App;
@@ -33,6 +34,9 @@ class Start extends App {
 		height: 0
 	}
 
+	private var _debug:Bool = false;
+	private var _debugDisplay:FPSDebug;
+
 	/**
 	 * 构造一个启动类
 	 * @param width 适配宽度
@@ -41,12 +45,16 @@ class Start extends App {
 	 */
 	public function new(width:Int = 1920, height:Int = 1080, debug:Bool = false) {
 		super();
+		_debug = debug;
 		_hdsize.width = width;
 		_hdsize.height = height;
 	}
 
 	override function init() {
 		super.init();
+		if (_debug) {
+			_debugDisplay = new FPSDebug();
+		}
 		this.onResize();
 	}
 
@@ -92,5 +100,11 @@ class Start extends App {
 
 	function get_stageHeight():Float {
 		return __stateSize.height;
+	}
+
+	override function update(dt:Float) {
+		super.update(dt);
+		s2d.add(_debugDisplay);
+		_debugDisplay.update();
 	}
 }
