@@ -162,4 +162,9 @@ class Assets {
 		}
 		return getTypeAssets(BITMAP_TILE, id);
 	}
+
+	/** 获取JSON **/
+	public function getJson(id:String):Dynamic {
+		return getTypeAssets(JSON, id);
+	}
 }

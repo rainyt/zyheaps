@@ -2,6 +2,7 @@ package zygame.loader.parser;
 
 import zygame.loader.parser.AssetsType;
 import zygame.utils.Assets;
+
 // import zygame.utils.Lib;
 
 /**
@@ -114,9 +115,7 @@ import zygame.utils.Assets;
 	/**
 	 * 解析处理，一般由ZAssets调用，不主动调用
 	 */
-	public function process():Void {
-		throw "请实现process解析资源方法";
-	}
+	public function process():Void {}
 
 	/**
 	 * 下一个解析处理
