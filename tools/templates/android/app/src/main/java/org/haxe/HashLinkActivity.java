@@ -3,11 +3,13 @@ package org.haxe;
 import org.libsdl.app.SDLActivity;
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 
 public class HashLinkActivity extends SDLActivity {
     private static HashLinkActivity instance;
     public static native int startHL();
+    public native static void initAssets(AssetManager assetManager, String strDir);
 
     // Used to load the native libraries on application startup.
     static {
@@ -25,6 +27,8 @@ public class HashLinkActivity extends SDLActivity {
     protected void onCreate(Bundle state) {
         super.onCreate(state);
         instance = this;
+        // 初始化Assets对象
+        initAssets(getAssets(),"");
     }
 
     @Override
@@ -40,6 +44,7 @@ public class HashLinkActivity extends SDLActivity {
         super.run();
         this.startHL();
     }
+
 
 
     public static Context getContext() {

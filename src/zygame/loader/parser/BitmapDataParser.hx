@@ -4,7 +4,7 @@ import hxd.File;
 import hxd.res.Image;
 import hxd.fs.BytesFileSystem;
 #if hl
-import hxd.File;
+import zygame.utils.hl.AssetsTools;
 #else
 import hxd.res.Loader;
 import hxd.net.BinaryLoader;
@@ -20,15 +20,10 @@ class BitmapDataParser extends BaseParser {
 
 	override function process() {
 		#if hl
-		trace("hl load", getData());
-		File.load(getData(), function(data) {
-			trace("load success");
-			var fs = new BytesFileEntry(getData(), data);
-			var image:Image = new Image(fs);
-			this.out(this, BITMAP, image, 1);
-		}, function(err) {
-			trace("load fail:", err);
-		});
+		var data = AssetsTools.getBytes(getData());
+		var fs = new BytesFileEntry(getData(), data);
+		var image:Image = new Image(fs);
+		this.out(this, BITMAP, image, 1);
 		#else
 		var loader = new BinaryLoader(getData());
 		loader.onProgress = function(a, b) {
