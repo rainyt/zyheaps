@@ -3,6 +3,7 @@ package zygame.loader.parser;
 enum abstract AssetsType(Int) to Int from Int {
 	public var BITMAP; // 位图：png/jpg/jpeg
 	public var BITMAP_TILE; // 位图tile，一般由BITMAP自动生成
+	public var BYTES;
 	// public var CUSTOM = 1; // 自定义：一般用于扩展解析器功能使用
 	// public var SOUND = 2; // 音频：ogg/mp3
 	// public var TEXTUREATLAS = 3; // 精灵图表：xml/png

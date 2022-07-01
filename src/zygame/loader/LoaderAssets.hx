@@ -1,5 +1,6 @@
 package zygame.loader;
 
+import zygame.loader.parser.BytesDataParser;
 import zygame.loader.parser.XMLDataParser;
 import zygame.loader.parser.JSONDataParser;
 import zygame.loader.parser.BitmapDataParser;
@@ -15,7 +16,8 @@ class LoaderAssets {
 	public static var fileparser:Array<Class<BaseParser>> = [
 		BitmapDataParser,
 		XMLDataParser,
-		JSONDataParser // SparticleParser,
+		JSONDataParser,
+		BytesDataParser // SparticleParser,
 		// MP3Parser,
 		// TextParser,
 		// #if castle

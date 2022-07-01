@@ -1,5 +1,6 @@
 package zygame.utils;
 
+import haxe.io.Bytes;
 import hxd.res.Image;
 import h3d.mat.Texture;
 import hxd.fs.LoadedBitmap;
@@ -171,5 +172,9 @@ class Assets {
 	/** 获取XML **/
 	public function getXml(id:String):Xml {
 		return getTypeAssets(XML, id);
+	}
+
+	public function getBytes(id:String):Bytes {
+		return getTypeAssets(BYTES, id);
 	}
 }
