@@ -6,3 +6,4 @@
 - 新增：新增html5压缩`-final`标识支持。
 - 修改：使用`hashlink1.11`版本。（用于解决android的crash）
 - 新增：新增`zygame.utils.Assets`加载器初步实现，在android上可以直接加载assets资源。
+- 新增：新增资源管理的基础文件加载支持。

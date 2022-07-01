@@ -14,6 +14,7 @@ class BitmapDataParser extends BaseParser {
 
 	override function process() {
 		AssetsUtils.loadBytes(getData(), function(data) {
+			trace("bitmapsize", getData(), data.length);
 			var fs = new BytesFileEntry(getData(), data);
 			var image:Image = new Image(fs);
 			this.out(this, BITMAP, image, 1);

@@ -1,10 +1,11 @@
 package zygame.utils;
 
+import haxe.Exception;
+import hxd.res.Sound;
 import zygame.res.XMLAtlas;
 import zygame.loader.parser.AtlasParser;
 import haxe.io.Bytes;
 import hxd.res.Image;
-import h3d.mat.Texture;
 import hxd.fs.LoadedBitmap;
 import hxd.BitmapData;
 import zygame.loader.parser.AssetsType;
@@ -108,6 +109,7 @@ class Assets {
 	 */
 	private function onAssetsOut(parser:BaseParser, type:AssetsType, assetsData:Dynamic, pro:Float):Void {
 		if (assetsData != null) {
+			trace("assets out ", parser.getName(), type);
 			setTypeAssets(type, parser.getName(), assetsData);
 		}
 		if (pro == 1) {
@@ -174,14 +176,19 @@ class Assets {
 	 * @return Tile
 	 */
 	public function getBitmapDataTile(id:String):Tile {
-		if (id.indexOf(":") != -1) {
-			// 精灵图格式
-			var arr = id.split(":");
-			return getBitmapDataAtlasTile(arr[0], arr[1]);
-		}
-		if (!hasTypeAssets(BITMAP_TILE, id)) {
-			var bitmap:Image = getTypeAssets(BITMAP, id);
-			setTypeAssets(BITMAP_TILE, id, Tile.fromTexture(bitmap.toTexture()));
+		try {
+			if (id.indexOf(":") != -1) {
+				// 精灵图格式
+				var arr = id.split(":");
+				return getBitmapDataAtlasTile(arr[0], arr[1]);
+			}
+			if (!hasTypeAssets(BITMAP_TILE, id)) {
+				var bitmap:Image = getTypeAssets(BITMAP, id);
+				setTypeAssets(BITMAP_TILE, id, bitmap.toTile());
+				// setTypeAssets(BITMAP_TILE, id, Tile.fromTexture(bitmap.toTexture()));
+			}
+		} catch (e:Exception) {
+			trace("getBitmapDataTile error:", e.message);
 		}
 		return getTypeAssets(BITMAP_TILE, id);
 	}
@@ -206,5 +213,12 @@ class Assets {
 
 	public function getBytes(id:String):Bytes {
 		return getTypeAssets(BYTES, id);
+	}
+
+	/**
+		获取音频
+	**/
+	public function getSound(id:String):Sound {
+		return getTypeAssets(SOUND, id);
 	}
 }

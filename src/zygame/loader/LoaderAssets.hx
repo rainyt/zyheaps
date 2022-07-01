@@ -1,5 +1,6 @@
 package zygame.loader;
 
+import zygame.loader.parser.SoundParser;
 import zygame.loader.parser.BytesDataParser;
 import zygame.loader.parser.XMLDataParser;
 import zygame.loader.parser.JSONDataParser;
@@ -17,6 +18,7 @@ class LoaderAssets {
 		BitmapDataParser,
 		XMLDataParser,
 		JSONDataParser,
+		SoundParser,
 		BytesDataParser // SparticleParser,
 		// MP3Parser,
 		// TextParser,
