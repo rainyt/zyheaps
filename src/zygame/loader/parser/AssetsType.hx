@@ -10,7 +10,7 @@ enum abstract AssetsType(Int) to Int from Int {
 	// public var ZIP = 5; // 压缩资源载入：zip
 	public var JSON; // JSON动态数据：json
 	// public var CDB = 7; // CDBData动态数据：cdb
-	// public var XML = 8; // XML动态数据：xml
+	public var XML; // XML动态数据：xml
 	// public var MUSIC = 9; // 背景音乐：ogg/mp3
 	// public var SWF = 10; // SWFLITE：zip/bundle
 	// public var TEXT = 11; // 字符串数据：txt

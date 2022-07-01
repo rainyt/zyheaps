@@ -167,4 +167,9 @@ class Assets {
 	public function getJson(id:String):Dynamic {
 		return getTypeAssets(JSON, id);
 	}
+
+	/** 获取XML **/
+	public function getXml(id:String):Xml {
+		return getTypeAssets(XML, id);
+	}
 }
