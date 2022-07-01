@@ -1,5 +1,7 @@
 package zygame.utils;
 
+import zygame.res.XMLAtlas;
+import zygame.loader.parser.AtlasParser;
 import haxe.io.Bytes;
 import hxd.res.Image;
 import h3d.mat.Texture;
@@ -47,6 +49,16 @@ class Assets {
 		}
 	}
 
+	/** 
+		加载精灵图
+	**/
+	public function loadAtlas(png:String, xml:String):Void {
+		_loadlist.push(new AtlasParser({
+			png: png,
+			xml: xml
+		}));
+	}
+
 	/**
 	 * 用于重写解析路径名称
 	 * @param path
@@ -79,7 +91,12 @@ class Assets {
 		}
 		var parser = _loadlist[_currentLoadIndex];
 		parser.out = onAssetsOut;
+		parser.error = onError;
 		parser.load(this);
+	}
+
+	public function onError(msg:String):Void {
+		trace("load fail:", msg);
 	}
 
 	/**
@@ -157,11 +174,24 @@ class Assets {
 	 * @return Tile
 	 */
 	public function getBitmapDataTile(id:String):Tile {
+		if (id.indexOf(":") != -1) {
+			// 精灵图格式
+			var arr = id.split(":");
+			return getBitmapDataAtlasTile(arr[0], arr[1]);
+		}
 		if (!hasTypeAssets(BITMAP_TILE, id)) {
 			var bitmap:Image = getTypeAssets(BITMAP, id);
 			setTypeAssets(BITMAP_TILE, id, Tile.fromTexture(bitmap.toTexture()));
 		}
 		return getTypeAssets(BITMAP_TILE, id);
+	}
+
+	/**
+		获取瓦片精灵图
+	**/
+	public function getBitmapDataAtlasTile(id:String, sprid:String):Tile {
+		var atlas:XMLAtlas = getTypeAssets(ATLAS, id);
+		return atlas.get(sprid);
 	}
 
 	/** 获取JSON **/
