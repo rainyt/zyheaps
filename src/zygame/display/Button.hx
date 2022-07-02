@@ -13,7 +13,7 @@ class Button extends Flow {
 	/**
 		快捷创建一个按钮
 	**/
-	public static function create(up:Tile, ?down:Tile, ?parent:Object):Button {
+	public static function create(up:Dynamic, ?down:Dynamic, ?parent:Object):Button {
 		return new Button(new ButtonSkin(up, down), parent);
 	}
 

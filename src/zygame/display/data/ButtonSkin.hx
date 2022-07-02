@@ -1,5 +1,6 @@
 package zygame.display.data;
 
+import zygame.res.AssetsBuilder;
 import h2d.Tile;
 
 /**
@@ -10,7 +11,13 @@ class ButtonSkin {
 
 	public var down:Tile;
 
-	public function new(up:Tile, ?down:Tile) {
+	public function new(up:Dynamic, ?down:Dynamic) {
+		if (up is String) {
+			up = AssetsBuilder.getBitmapDataTile(up);
+		}
+		if (down is String) {
+			down = AssetsBuilder.getBitmapDataTile(down);
+		}
 		this.up = up;
 		this.down = down;
 	}
