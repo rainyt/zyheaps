@@ -1,5 +1,6 @@
 package zygame.display;
 
+import h2d.Tile;
 import hxd.Event;
 import h2d.RenderContext;
 import zygame.display.data.ButtonSkin;
@@ -9,6 +10,13 @@ import h2d.Object;
 	简易按钮，一般无需通过interactive重写onClick，可直接使用`onClick`访问点击事件。当只有up纹理时，按钮则启动缩放计算，存在up/down两种纹理时，则会切换呈现。
 **/
 class Button extends Flow {
+	/**
+		快捷创建一个按钮
+	**/
+	public static function create(up:Tile, ?down:Tile, ?parent:Object):Button {
+		return new Button(new ButtonSkin(up, down), parent);
+	}
+
 	/**
 		按钮皮肤
 	**/
