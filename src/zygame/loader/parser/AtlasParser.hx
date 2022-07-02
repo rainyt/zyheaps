@@ -2,9 +2,7 @@ package zygame.loader.parser;
 
 import zygame.utils.StringUtils;
 import hxd.res.Image;
-import zygame.utils.AssetsUtils;
 import zygame.res.XMLAtlas;
-import hxd.res.Atlas;
 
 /**
 	精灵图解析

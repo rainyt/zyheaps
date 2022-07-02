@@ -53,7 +53,8 @@ JNIEXPORT jbyteArray JNICALL Java_org_haxe_HashLinkActivity_getAssetBytes(String
     if (NULL != asset)
     {
         off_t bufSize = AAsset_getLength(asset);
-        vbyte *pBuf = (vbyte *) malloc(bufSize + 1);
+        // vbyte *pBuf = (vbyte *) malloc(bufSize + 1);
+        vbyte *pBuf = (vbyte *) hl_gc_alloc_noptr(bufSize + 1);
 //        memset(pBuf, 0, bufSize + 1);
         _tmpSize = AAsset_read(asset, pBuf, bufSize);
 //        free(pBuf);
