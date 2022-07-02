@@ -1,0 +1,9 @@
+Base2D.hx
+-lib heaps
+-lib hlsdl
+-lib hxbit
+-lib format
+-lib hashlink
+
+-D resourcesPath=res
+-main Base2D

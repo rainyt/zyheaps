@@ -1,0 +1,5 @@
+#include "Pathes.xcconfig"
+
+PRODUCT_NAME=HeapsApp
+DEVELOPMENT_TEAM=1234567890
+PRODUCT_BUNDLE_IDENTIFIER=io.heaps.app

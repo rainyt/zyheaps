@@ -87,7 +87,6 @@ class ImageBitmap extends Bitmap implements IDisplayObject {
 					__scaleGrid.width = this.width;
 					__scaleGrid.height = this.height;
 				} else {
-					trace("移除九宫格");
 					if (this.__scaleGrid != null) {
 						this.__scaleGrid.tile = null;
 						this.__scaleGrid.remove();
