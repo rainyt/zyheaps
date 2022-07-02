@@ -1,5 +1,6 @@
 package zygame.display;
 
+import h2d.RenderContext;
 import zygame.core.Start;
 import zygame.display.base.IDisplayObject;
 import h2d.Object;
@@ -15,6 +16,8 @@ class Label extends Text implements IDisplayObject {
 	 * 默认字体
 	 */
 	public static var defaultFont:String = "黑体";
+
+	public var dirt:Bool = false;
 
 	/**
 	 * 构造一个Label文本
@@ -48,10 +51,11 @@ class Label extends Text implements IDisplayObject {
 				chars: t
 			});
 		}
+		this.dirt = true;
 		return super.set_text(t);
 	}
 
-	private var _size:Int = 24;
+	private var _size:Int = 40;
 
 	/**
 	 * 设置文本大小
@@ -86,4 +90,9 @@ class Label extends Text implements IDisplayObject {
 	}
 
 	public var stageHeight(get, never):Float;
+
+	override function draw(ctx:RenderContext) {
+		dirt = false;
+		super.draw(ctx);
+	}
 }

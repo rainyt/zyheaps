@@ -1,5 +1,6 @@
 package zygame.display.text.glyphme;
 
+#if hl
 import zygame.utils.hl.AssetsTools;
 import hl.Bytes;
 
@@ -68,3 +69,4 @@ enum TrueTypeFontFileType {
 	TTC;
 	OTF;
 }
+#end

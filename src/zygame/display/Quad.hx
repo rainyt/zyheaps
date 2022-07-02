@@ -10,6 +10,8 @@ import h2d.Object;
  * 一个矩形对象，可以对它设置高宽设置大小
  */
 class Quad extends BaseGraphics implements IDisplayObject {
+	public var dirt:Bool = false;
+
 	public var quadColor(get, set):UInt;
 
 	private var __quadColor:UInt = 0;
