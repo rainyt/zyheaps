@@ -17,6 +17,7 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 
 ## UI Component
 - [x] 按钮(Button) zygame.display.Button
+- [x] 图片/九宫格图片(ImageBitmap) zygame.display.ImageBitmap
 
 ## Document description
 - [使用文档](https://github.com/rainyt/zyheaps/wiki/%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3%EF%BC%88%E4%B8%AD%E6%96%87%EF%BC%89)

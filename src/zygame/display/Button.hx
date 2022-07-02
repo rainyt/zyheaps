@@ -78,8 +78,8 @@ class Button extends Flow {
 	}
 
 	private function updateLabelContext():Void {
-		label.x = img.tile.width / 2 + labelOffest.x;
-		label.y = img.tile.height / 2 - label.textHeight / 2 - 6;
+		label.x = img.width / 2 + labelOffest.x;
+		label.y = img.height / 2 - label.textHeight / 2 - 6;
 	}
 
 	override function draw(ctx:RenderContext) {
