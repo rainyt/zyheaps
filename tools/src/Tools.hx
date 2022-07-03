@@ -1,3 +1,6 @@
+import sys.FileSystem;
+import lime.tools.AssetHelper;
+import hxp.System;
 import platform.BasePlatform;
 import platform.AllPlatform;
 import hxp.Log;
@@ -16,12 +19,24 @@ class Tools {
 	public static var buildPlatform:String;
 
 	static function main() {
-		Log.info("Welcome to zyheaps");
 		var args = Sys.args();
 		projectDirPath = args[args.length - 1];
 		buildPlatform = args[1];
-		Log.info('working ${projectDirPath}');
 		switch (args[0]) {
+			case "hxml":
+				var c = "platform." + buildPlatform.charAt(0).toUpperCase() + buildPlatform.substr(1).toLowerCase();
+				var tc = Type.resolveClass(c);
+				if (tc != null) {
+					var base:BasePlatform = Type.createInstance(tc, []);
+					base.initHxml();
+					var content:String = base.hxml;
+					content = StringTools.replace(content, projectDirPath, "");
+					var dir = projectDirPath + "Export/.hxml/";
+					if (!FileSystem.exists(dir))
+						FileSystem.createDirectory(dir);
+					System.writeText(content, dir + "target.hxml");
+					Log.info(content);
+				}
 			case "build", "test":
 				Log.info("build platform " + buildPlatform);
 				var c = "platform." + buildPlatform.charAt(0).toUpperCase() + buildPlatform.substr(1).toLowerCase();
@@ -30,13 +45,15 @@ class Tools {
 					var base:BasePlatform = Type.createInstance(tc, []);
 					base.onBuild();
 					base.onBuilded();
-					if(args[0] == "test"){
+					if (args[0] == "test") {
 						base.onTest();
 					}
 				} else {
 					Log.error('Target ${buildPlatform} is unavailable.');
 				}
 			default:
+				Log.info("Welcome to zyheaps");
+				Log.info('working ${projectDirPath}');
 				Log.info("Use:");
 				Log.info("haxelib run zyhepas build ${platform}");
 				Log.info("haxelib run zyhepas test ${platform}");

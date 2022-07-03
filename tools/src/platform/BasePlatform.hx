@@ -11,9 +11,10 @@ class BasePlatform {
 
 	public var platform:String;
 
+	public var hxml:HXML;
+
 	public function new(platform:String) {
 		this.platform = platform;
-		Log.info("parser xml " + Tools.projectDirPath + "zyheaps.xml");
 		project = new ProjectXMLParser(Tools.projectDirPath + "zyheaps.xml");
 	}
 
@@ -36,7 +37,7 @@ class BasePlatform {
 
 	/** 初始化HXML **/
 	public function initHxml():HXML {
-		var hxml = new HXML();
+		hxml = new HXML();
 		hxml.main = project.app.main;
 		for (s in project.sources) {
 			hxml.cp(s);
@@ -50,9 +51,8 @@ class BasePlatform {
 		for (key => value in project.defines) {
 			if (key == "cpp")
 				continue;
-			hxml.define(key, '"${value}"');
+			hxml.define(key, '${value}');
 		}
-		Log.info(hxml);
 		return hxml;
 	}
 
