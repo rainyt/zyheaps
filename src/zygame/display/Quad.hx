@@ -12,6 +12,9 @@ import h2d.Object;
 class Quad extends BaseGraphics implements IDisplayObject {
 	public var dirt:Bool = false;
 
+	/**
+	 * 矩形的颜色
+	 */
 	public var quadColor(get, set):UInt;
 
 	private var __quadColor:UInt = 0;

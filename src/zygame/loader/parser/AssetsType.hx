@@ -1,5 +1,8 @@
 package zygame.loader.parser;
 
+/**
+ * 资源所支持的格式
+ */
 enum abstract AssetsType(Int) to Int from Int {
 	public var BITMAP; // 位图：png/jpg/jpeg
 	public var BITMAP_TILE; // 位图tile，一般由BITMAP自动生成

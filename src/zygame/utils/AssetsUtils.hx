@@ -6,12 +6,15 @@ import hxd.net.BinaryLoader;
 #end
 
 /**
-	资源工具
-**/
+ * 资源工具
+ */
 class AssetsUtils {
 	/**
-		加载二进制数据
-	**/
+	 * 载入二进制数据，兼容hashlink，html5
+	 * @param path 载入路径
+	 * @param success 载入完成事件
+	 * @param fail 载入失败事件
+	 */
 	public static function loadBytes(path:String, success:Bytes->Void, fail:String->Void):Void {
 		#if hl
 		var data = zygame.utils.hl.AssetsTools.getBytes(path);

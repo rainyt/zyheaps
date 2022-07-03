@@ -159,7 +159,7 @@ class Assets {
 	}
 
 	/**
-	 * 获取纹理数据，请注意，ImageBitmap使用的是`Tile`数据，可直接通过`getBitmapDataTile`获取。
+	 * 获取纹理对象，请注意，ImageBitmap使用的是`Tile`数据，可直接通过`getBitmapDataTile`获取。
 	 * @param id 
 	 * @return BitmapData
 	 */
@@ -172,7 +172,7 @@ class Assets {
 	}
 
 	/**
-	 * 获取位图瓦片数据
+	 * 获取位图瓦片对象
 	 * @return Tile
 	 */
 	public function getBitmapDataTile(id:String):Tile {
@@ -194,30 +194,48 @@ class Assets {
 	}
 
 	/**
-		获取瓦片精灵图
-	**/
+	 * 获取精灵图对象
+	 * @param id 精灵图名称
+	 * @param sprid 精灵名称
+	 * @return Tile
+	 */
 	public function getBitmapDataAtlasTile(id:String, sprid:String):Tile {
 		var atlas:XMLAtlas = getTypeAssets(ATLAS, id);
 		return atlas.get(sprid);
 	}
 
-	/** 获取JSON **/
+	/**
+	 * 获取JSON对象
+	 * @param id 
+	 * @return Dynamic
+	 */
 	public function getJson(id:String):Dynamic {
 		return getTypeAssets(JSON, id);
 	}
 
-	/** 获取XML **/
+	/**
+	 * 获取XML对象
+	 * @param id 
+	 * @return Xml
+	 */
 	public function getXml(id:String):Xml {
 		return getTypeAssets(XML, id);
 	}
 
+	/**
+	 * 获取二进制对象
+	 * @param id 
+	 * @return Bytes
+	 */
 	public function getBytes(id:String):Bytes {
 		return getTypeAssets(BYTES, id);
 	}
 
 	/**
-		获取音频
-	**/
+	 * 获取音频对象
+	 * @param id 
+	 * @return Sound
+	 */
 	public function getSound(id:String):Sound {
 		return getTypeAssets(SOUND, id);
 	}

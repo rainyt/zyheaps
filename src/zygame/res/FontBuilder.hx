@@ -13,22 +13,29 @@ import haxe.Exception;
 using StringTools;
 
 /**
- * 字体建造，兼容小游戏
+ * 字体建造，兼容小游戏，Hashlink
  */
 @:access(h2d.Font)
 @:access(h2d.Tile)
 class FontBuilder extends hxd.res.FontBuilder {
 	#if hl
 	/**
-		hlttf字体
-	**/
+	 * ttf字体二进制缓存
+	 */
 	private static var hlfontBytes:Map<String, Bytes> = [];
 	#end
 
+	/**
+	 * 获取一个字体
+	 * @param name 字体名称，如果要呈现中文，请提供支持SDF的ttf字体路径
+	 * @param size 字体大小
+	 * @param options 可选参数
+	 * @return h2d.Font
+	 */
 	public static function getFont(name:String, size:Int, ?options:hxd.res.FontBuilder.FontBuildOptions):h2d.Font {
 		try {
 			#if hl
-			// 中文支持，IOS未验证
+			// 中文支持，请使用支持SDF的字体
 			if (name.endsWith("ttf")) {
 				if (!hlfontBytes.exists(name)) {
 					final bytes = AssetsTools.getBytes(name);

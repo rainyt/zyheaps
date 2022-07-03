@@ -3,6 +3,9 @@ package zygame.loader.parser;
 import zygame.utils.AssetsUtils;
 import haxe.Json;
 
+/**
+ * JSON数据解析器
+ */
 class JSONDataParser extends BaseParser {
 	public static function support(type:String):Bool {
 		return type == "json";

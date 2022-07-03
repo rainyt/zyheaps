@@ -11,26 +11,42 @@ import h2d.Object;
 **/
 class Button extends Flow {
 	/**
-		快捷创建一个按钮
-	**/
+	 * 快捷创建一个按钮
+	 * @param up 
+	 * @param down 
+	 * @param parent 
+	 * @return Button
+	 */
 	public static function create(up:Dynamic, ?down:Dynamic, ?parent:Object):Button {
 		return new Button(new ButtonSkin(up, down), parent);
 	}
 
 	/**
-		按钮皮肤
-	**/
+	 * 按钮皮肤
+	 */
 	public var skin:ButtonSkin;
 
+	/**
+	 * 按钮的皮肤显示对象
+	 */
 	public var img:ImageBitmap;
 
+	/**
+	 * 按钮的文本显示对象
+	 */
 	public var label:Label;
 
+	/**
+	 * 设置按钮的文本显示内容
+	 */
 	public var text(get, set):String;
 
+	/**
+	 * 设置文本的偏移值
+	 */
 	public var labelOffest = {
 		x: 0.,
-		y: 0.
+		y: -6.
 	}
 
 	function get_text():String {
@@ -79,7 +95,7 @@ class Button extends Flow {
 
 	private function updateLabelContext():Void {
 		label.x = img.width / 2 + labelOffest.x;
-		label.y = img.height / 2 - label.textHeight / 2 - 6;
+		label.y = img.height / 2 - label.textHeight / 2 + labelOffest.y;
 	}
 
 	override function draw(ctx:RenderContext) {
@@ -90,5 +106,9 @@ class Button extends Flow {
 		super.draw(ctx);
 	}
 
+	/**
+	 * 按钮的点击事件，请勿直接访问`interactive.onClick`
+	 * @param e 
+	 */
 	dynamic public function onClick(e:Event):Void {}
 }

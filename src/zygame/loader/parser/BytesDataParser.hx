@@ -2,6 +2,9 @@ package zygame.loader.parser;
 
 import zygame.utils.AssetsUtils;
 
+/**
+ * 二进制载入解析器
+ */
 class BytesDataParser extends BaseParser {
 
 	public static function support(type:String):Bool {

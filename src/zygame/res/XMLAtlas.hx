@@ -4,16 +4,18 @@ import h2d.Tile;
 import hxd.res.Atlas;
 
 /**
-	使用XML格式的精灵图集支持
-**/
+ * 使用XML格式的精灵图集支持
+ */
 class XMLAtlas extends Atlas {
 	public var rootTile:Tile;
 
 	public var xml:Xml;
 
 	/**
-		构造一个XML格式的精灵图
-	**/
+	 * 构造一个XML格式的精灵图数据
+	 * @param png 
+	 * @param xml 
+	 */
 	public function new(png:Tile, xml:Xml) {
 		super(null);
 		rootTile = png;

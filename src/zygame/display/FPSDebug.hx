@@ -4,6 +4,9 @@ import h3d.Engine;
 import hxd.res.DefaultFont;
 import h2d.Text;
 
+/**
+ * 调试信息窗口
+ */
 class FPSDebug extends Text {
 	public function new() {
 		super(DefaultFont.get());

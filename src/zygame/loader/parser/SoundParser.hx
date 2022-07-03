@@ -4,6 +4,9 @@ import hxd.fs.BytesFileSystem.BytesFileEntry;
 import hxd.res.Sound;
 import zygame.utils.AssetsUtils;
 
+/**
+ * 音频载入器
+ */
 class SoundParser extends BaseParser {
 	public static function support(type:String):Bool {
 		return type == "mp3";

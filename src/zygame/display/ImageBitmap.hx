@@ -14,6 +14,10 @@ import h2d.Bitmap;
  * 图片显示对象
  */
 class ImageBitmap extends Bitmap implements IDisplayObject {
+
+	/**
+	 * 是否有变更，当存在变更时，draw接口会对该图形进行重绘
+	 */
 	public var dirt:Bool = false;
 
 	private var __scaleGrid:ScaleGrid;
@@ -24,8 +28,16 @@ class ImageBitmap extends Bitmap implements IDisplayObject {
 
 	private var __setHeight:Bool = false;
 
+	/**
+	 * 设置九宫格数据
+	 */
 	public var scale9Grid(get, set):Rect;
-
+	
+	/**
+	 * 构造一个图片显示对象
+	 * @param tile 
+	 * @param parent 
+	 */
 	public function new(?tile:Dynamic, ?parent:Object) {
 		if (tile is String) {
 			tile = AssetsBuilder.getBitmapDataTile(tile);
@@ -102,6 +114,11 @@ class ImageBitmap extends Bitmap implements IDisplayObject {
 		this.dirt = false;
 	}
 
+	/**
+	 * 当处于存在九宫格数据时，则不会将当前对象tile上传到渲染缓存数据中
+	 * @param ctx 
+	 * @param tile 
+	 */
 	override function emitTile(ctx:RenderContext, tile:Tile) {
 		if (__scale9Grid == null)
 			super.emitTile(ctx, tile);

@@ -1,0 +1,30 @@
+{
+	"codedox": {
+		"autoInsert": true,
+		"autoInsertHeader": true,
+		"autoPrefixOnEnter": true,
+		"paramFormat": "@param ${name} ",
+		"returnFormat": "@return ${type}",
+		"allowOptionalArgs": false,
+		"commentprefix": " * ",
+		"commentbegin": "/**",
+		"commentend": " */",
+		"commentdescription": "[Description]",
+		"alwaysMultiline": true,
+		"headerprefix": " *",
+		"headerbegin": "/*",
+		"headerend": " */",
+		"fileheader": {
+			"params": {
+				"*": {
+					"company": "My Company"
+				}
+			},
+			"templates": {
+				"*": [
+					"${license_mit}"
+				]
+			}
+		}
+	}
+}

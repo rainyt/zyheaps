@@ -2,6 +2,9 @@ package zygame.loader.parser;
 
 import zygame.utils.AssetsUtils;
 
+/**
+ * XML数据解析器
+ */
 class XMLDataParser extends BaseParser {
 	public static function support(type:String):Bool {
 		return type == "xml";

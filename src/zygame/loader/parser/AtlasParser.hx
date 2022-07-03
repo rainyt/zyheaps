@@ -5,8 +5,8 @@ import hxd.res.Image;
 import zygame.res.XMLAtlas;
 
 /**
-	精灵图解析
-**/
+ * 精灵图解析器，该读取XML格式的精灵图
+ */
 class AtlasParser extends BaseParser {
 	override function process() {
 		super.process();

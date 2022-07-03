@@ -12,8 +12,11 @@ class Start extends App {
 	public static var current:Start;
 
 	/**
-	 * 初始化入口
-	 * @param c 
+	 * 启动类入口
+	 * @param c 启动类
+	 * @param hdwidth 适配宽度
+	 * @param hdheight 适配高度
+	 * @param debug 是否开启调试，如果开启调试，左上角会显示`zygame.display.FPSDebug`对象
 	 */
 	public static function initApp(c:Class<Dynamic>, hdwidth:Float, hdheight:Float, debug:Bool = false):Void {
 		trace("Start.initApp");
