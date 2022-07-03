@@ -51,7 +51,10 @@ class BasePlatform {
 		for (key => value in project.defines) {
 			if (key == "cpp")
 				continue;
-			hxml.define(key, '${value}');
+			if (value != null && value.indexOf(" ") != -1) {
+				hxml.define(key, '"${value}"');
+			} else
+				hxml.define(key, '${value}');
 		}
 		return hxml;
 	}
