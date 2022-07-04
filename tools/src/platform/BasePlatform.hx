@@ -1,5 +1,8 @@
 package platform;
 
+import project.ProjectHXMLParser;
+import lime.tools.HXProject;
+import sys.FileSystem;
 import lime.tools.ProjectHelper;
 import lime.tools.AssetHelper;
 import hxp.Log;
@@ -7,7 +10,7 @@ import lime.tools.ProjectXMLParser;
 import hxp.HXML;
 
 class BasePlatform {
-	public var project:ProjectXMLParser;
+	public var project:HXProject;
 
 	public var platform:String;
 
@@ -15,7 +18,13 @@ class BasePlatform {
 
 	public function new(platform:String) {
 		this.platform = platform;
-		project = new ProjectXMLParser(Tools.projectDirPath + "zyheaps.xml");
+		if (FileSystem.exists(Tools.projectDirPath + "zyheaps.xml")) {
+			project = new ProjectXMLParser(Tools.projectDirPath + "zyheaps.xml");
+		} else if (FileSystem.exists(Tools.projectDirPath + "zyheaps.hxml")) {
+			// 将HXML配置解析为xml读取
+			project = new ProjectHXMLParser(Tools.projectDirPath + "zyheaps.hxml");
+		} else
+			throw "You need file zyheaps.xml or zyheaps.hxml.";
 	}
 
 	/**
@@ -33,11 +42,13 @@ class BasePlatform {
 		this.onCopyAssets();
 		var args = Sys.args();
 		Sys.setCwd(args[args.length - 1]);
+		trace("build hxml:" + hxml);
 	}
 
 	/** 初始化HXML **/
 	public function initHxml():HXML {
-		hxml = new HXML();
+		if (hxml == null)
+			hxml = new HXML();
 		hxml.main = project.app.main;
 		for (s in project.sources) {
 			hxml.cp(s);
