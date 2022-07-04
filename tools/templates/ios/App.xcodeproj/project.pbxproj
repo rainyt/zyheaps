@@ -79,10 +79,11 @@
 		2C2D31B123E7C3F000BCC355 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 2C2D31B023E7C3F000BCC355 /* main.c */; };
 		2C7A24A923F4BCB400692AFC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7A24A823F4BCB400692AFC /* Images.xcassets */; };
 		2CB4650A241A15D5002A2554 /* dxt.c in Sources */ = {isa = PBXBuildFile; fileRef = 2CB46501241A15D5002A2554 /* dxt.c */; };
-		365BE4A128709CA500EF99FD /* glyphme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 365BE4A028709CA500EF99FD /* glyphme.cpp */; };
 		365BE4A328709DBA00EF99FD /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 365BE4A228709DBA00EF99FD /* assets */; };
 		3672EE4528707B4100AF0AD2 /* Vorbis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3672EE4428707B4100AF0AD2 /* Vorbis.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		3672EE472870872500AF0AD2 /* Ogg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3672EE462870872500AF0AD2 /* Ogg.framework */; };
+		36E68DC32873498700567D79 /* glyphme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36E68DC22873498700567D79 /* glyphme.cpp */; };
+		36E68DD12873A00100567D79 /* iosheaps.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36E68DD02873A00100567D79 /* iosheaps.mm */; };
 		945C4F53195AF17F00DBBF61 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 945C4F52195AF17F00DBBF61 /* Default-568h@2x.png */; };
 		E31A8D3C2257B8A20027E88B /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0038D8A7209FBB73007FA539 /* libSDL2.a */; };
 		E3F6F88C2250132F0020340A /* mikktspace.c in Sources */ = {isa = PBXBuildFile; fileRef = E3F6F88B2250132F0020340A /* mikktspace.c */; };
@@ -229,10 +230,11 @@
 		2C7A24A823F4BCB400692AFC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = App/Images.xcassets; sourceTree = "<group>"; };
 		2C84A5FB241995270015B07F /* Configuration/Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Configuration/Config.xcconfig; sourceTree = "<group>"; };
 		2CB46501241A15D5002A2554 /* dxt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = dxt.c; path = deps/hashlink/libs/fmt/dxt.c; sourceTree = SOURCE_ROOT; };
-		365BE4A028709CA500EF99FD /* glyphme.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = glyphme.cpp; path = deps/stb/glyphme.cpp; sourceTree = SOURCE_ROOT; };
 		365BE4A228709DBA00EF99FD /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		3672EE4428707B4100AF0AD2 /* Vorbis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vorbis.framework; path = deps/IDZPrecompiledVorbis/Vorbis.framework; sourceTree = "<group>"; };
 		3672EE462870872500AF0AD2 /* Ogg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ogg.framework; path = deps/IDZPrecompiledOgg/Ogg.framework; sourceTree = "<group>"; };
+		36E68DC22873498700567D79 /* glyphme.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = glyphme.cpp; path = deps/stb/glyphme.cpp; sourceTree = SOURCE_ROOT; };
+		36E68DD02873A00100567D79 /* iosheaps.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = iosheaps.mm; path = native/iosheaps.mm; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		945C4F52195AF17F00DBBF61 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E3F6F88B2250132F0020340A /* mikktspace.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mikktspace.c; path = deps/hashlink/include/mikktspace/mikktspace.c; sourceTree = SOURCE_ROOT; };
@@ -369,7 +371,8 @@
 		003EF9D3209E0098005D85AA /* src */ = {
 			isa = PBXGroup;
 			children = (
-				365BE4A028709CA500EF99FD /* glyphme.cpp */,
+				36E68DD02873A00100567D79 /* iosheaps.mm */,
+				36E68DC22873498700567D79 /* glyphme.cpp */,
 				2C2D31B023E7C3F000BCC355 /* main.c */,
 			);
 			path = src;
@@ -591,6 +594,7 @@
 				00CC4BAF20A74C250038CABB /* random.c in Sources */,
 				0038D8F1209FBD3B007FA539 /* pcre_string_utils.c in Sources */,
 				00352BA720A1EF6800D31A9B /* pngget.c in Sources */,
+				36E68DD12873A00100567D79 /* iosheaps.mm in Sources */,
 				00352BA320A1EF6800D31A9B /* pngwrite.c in Sources */,
 				0038D900209FC126007FA539 /* openal.c in Sources */,
 				0038D8FE209FC0DC007FA539 /* gl.c in Sources */,
@@ -643,7 +647,7 @@
 				00CC4BA920A74C250038CABB /* types.c in Sources */,
 				E3F6F89822501B3E0020340A /* efx.c in Sources */,
 				00CC4BB020A74C250038CABB /* regexp.c in Sources */,
-				365BE4A128709CA500EF99FD /* glyphme.cpp in Sources */,
+				36E68DC32873498700567D79 /* glyphme.cpp in Sources */,
 				00CC4B8820A74BAE0038CABB /* gc.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -663,7 +667,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2C84A5FB241995270015B07F /* Configuration/Config.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = P8KRLXEB7S;
@@ -678,6 +682,7 @@
 					"$(PROJECT_DIR)/deps/IDZPrecompiledVorbis",
 					"$(PROJECT_DIR)/deps/IDZPrecompiledOgg",
 				);
+				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					GLES_SILENCE_DEPRECATION,
 					PNG_NO_H,
@@ -707,7 +712,10 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(PRODUCT_NAME)";
-				SYSTEM_HEADER_SEARCH_PATHS = "$(inherited) $(TARGET_SYSTEM_HEADER_SEARCH_PATHS)";
+				PROJECT_SYSTEM_HEADER_SEARCH_PATHS = "$(BUILD_SRC_PATH)/main.c $(SRC_PATH) /Users/rainy/Documents/project/ZYHeapsDemo/Export/ios/native/native.m";
+				REZ_SEARCH_PATHS = "";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(inherited) $(TARGET_SYSTEM_HEADER_SEARCH_PATHS) \"$(SRCROOT)/native\"";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/native\" \"$(SRCROOT)/native/native.m\"";
 				WARNING_CFLAGS = "-Wno-shorten-64-to-32";
 			};
 			name = Debug;
@@ -716,7 +724,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2C84A5FB241995270015B07F /* Configuration/Config.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = P8KRLXEB7S;
@@ -731,6 +739,7 @@
 					"$(PROJECT_DIR)/deps/IDZPrecompiledVorbis",
 					"$(PROJECT_DIR)/deps/IDZPrecompiledOgg",
 				);
+				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					GLES_SILENCE_DEPRECATION,
 					PNG_NO_H,
@@ -760,7 +769,10 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(PRODUCT_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(PRODUCT_NAME)";
-				SYSTEM_HEADER_SEARCH_PATHS = "$(inherited) $(TARGET_SYSTEM_HEADER_SEARCH_PATHS)";
+				PROJECT_SYSTEM_HEADER_SEARCH_PATHS = "$(BUILD_SRC_PATH)/main.c $(SRC_PATH) /Users/rainy/Documents/project/ZYHeapsDemo/Export/ios/native/native.m";
+				REZ_SEARCH_PATHS = "";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(inherited) $(TARGET_SYSTEM_HEADER_SEARCH_PATHS) \"$(SRCROOT)/native\"";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/native\" \"$(SRCROOT)/native/native.m\"";
 				WARNING_CFLAGS = "-Wno-shorten-64-to-32";
 			};
 			name = Release;
@@ -776,11 +788,13 @@
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/native\"";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_SYSTEM_HEADER_SEARCH_PATHS)";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_SYSTEM_HEADER_SEARCH_PATHS) \"$(SRCROOT)/native\"";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/native\"";
 			};
 			name = Debug;
 		};
@@ -794,11 +808,13 @@
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/native\"";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_SYSTEM_HEADER_SEARCH_PATHS)";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(inherited) $(PROJECT_SYSTEM_HEADER_SEARCH_PATHS) \"$(SRCROOT)/native\"";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/native\"";
 			};
 			name = Release;
 		};

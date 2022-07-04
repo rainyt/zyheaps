@@ -1,5 +1,6 @@
 package zygame.core;
 
+import haxe.macro.Compiler;
 import zygame.display.FPSDebug;
 import h2d.Scene.ScaleMode;
 import zygame.utils.ScaleUtils;
@@ -55,6 +56,7 @@ class Start extends App {
 
 	override function init() {
 		super.init();
+		trace("Hashlink version:", Compiler.getDefine("hl_ver"));
 		if (_debug) {
 			_debugDisplay = new FPSDebug();
 		}
