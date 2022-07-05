@@ -15,11 +15,11 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 
 |  Support   | IOS  | Android |
 |  ----  | ----  | --- |
-| 默认的高DPI  | √ | √ |
-| 正常触摸  | √ | √ |
-| 中文渲染TTF  | √ | √ |
-| XML格式精灵图  | √ | √ |
-| 动态加载资源  | √ | √ |
+| 默认的高DPI  | yes | yes |
+| 正常触摸  | yes | yes |
+| 中文渲染TTF  | yes | yes |
+| XML格式精灵图  | yes | yes |
+| 动态加载资源  | yes | yes |
 
 ## UI Component
 - [x] 色块(Quad) zygame.display.Quad
