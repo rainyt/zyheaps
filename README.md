@@ -10,6 +10,9 @@ The current status is open, and there will be a lot of problems to be solved.
 haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 ```
 
+## Heaps版本
+建议使用rainyt分叉的heaps版本：[https://github.com/rainyt/zyheaps](https://github.com/rainyt/zyheaps)，它兼容了IOS高DPI，触摸等问题。当`HeapsIo/heaps`正式修正了这些问题后，将合并版本。
+
 ## Android support
 - [x] 中文渲染TTF
 - [x] XML格式的精灵图
