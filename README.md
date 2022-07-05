@@ -13,10 +13,13 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 ## Heaps版本
 建议使用rainyt分叉的heaps版本：[https://github.com/rainyt/heaps](https://github.com/rainyt/heaps)，它兼容了IOS高DPI，触摸等问题。当`HeapsIo/heaps`正式修正了这些问题后，将合并版本。
 
-## Android support
-- [x] 中文渲染TTF
-- [x] XML格式的精灵图
-- [x] 在Android动态加载资源
+|  Support   | IOS  | Android |
+|  ----  | ----  | --- |
+| 默认的高DPI  | √ | √ |
+| 正常触摸  | √ | √ |
+| 中文渲染TTF  | √ | √ |
+| XML格式精灵图  | √ | √ |
+| 动态加载资源  | √ | √ |
 
 ## UI Component
 - [x] 色块(Quad) zygame.display.Quad
