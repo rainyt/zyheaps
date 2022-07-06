@@ -41,3 +41,4 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 - Android:[https://github.com/altef/heaps-android](https://github.com/altef/heaps-android)
 - LimeTools:[https://github.com/jgranick/lime-tools](https://github.com/jgranick/lime-tools)
 - Gylyphme:[https://github.com/micomuko/glyphme](https://github.com/micomuko/glyphme)
+- Mac:[https://gist.github.com/ZwodahS/1f5836f0686e856ad1ca70dfcb7ecfdb](https://gist.github.com/ZwodahS/1f5836f0686e856ad1ca70dfcb7ecfdb)
