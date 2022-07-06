@@ -34,6 +34,11 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 - [ ] 场景管理
 - [ ] UI自动构造器
 
+## VSCode Heaps
+- 你可以在VSCode的插件商店中搜索`Heaps`，进行安装插件，该插件会检测`zyheaps.xml`配置文件进行编译。
+- [https://github.com/rainyt/heaps-vscode-extension](https://github.com/rainyt/heaps-vscode-extension)
+- You can search 'Heaps' in the vscode plug-in store to install the plug-in, which will detect 'zyheaps.XML' configuration file.
+
 ## Document description
 - [使用文档](https://github.com/rainyt/zyheaps/wiki/%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3%EF%BC%88%E4%B8%AD%E6%96%87%EF%BC%89)
 - [Use Document](https://github.com/rainyt/zyheaps/wiki/Use-(EN))
