@@ -13,7 +13,7 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 ```
 
 ## Heaps版本
-- 建议使用rainyt分叉的heaps版本：[https://github.com/rainyt/heaps](https://github.com/rainyt/heaps)，它兼容了IOS高DPI，触摸等问题。当`HeapsIo/heaps`正式修正了这些问题后，将合并版本。
+- 建议使用rainyt分叉的heaps版本：[https://github.com/rainyt/heaps](https://github.com/rainyt/heaps)，它兼容了IOS高DPI，触摸等问题。当[HeapsIo/heaps](https://github.com/HeapsIO/heaps)正式修正了这些问题后，将合并版本。
 - It is recommended to use the rainyt forked heaps version, which is compatible with IOS, high DPI, touch and other issues. When heapsio/heaps formally fixes these problems, the version will be merged.
 
 |  Support   | IOS  | Android | Mac | HTML5 | Window |
