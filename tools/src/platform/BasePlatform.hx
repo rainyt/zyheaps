@@ -42,7 +42,6 @@ class BasePlatform {
 		this.onCopyAssets();
 		var args = Sys.args();
 		Sys.setCwd(args[args.length - 1]);
-		trace("build hxml:" + hxml);
 	}
 
 	/** 初始化HXML **/
@@ -71,7 +70,9 @@ class BasePlatform {
 	}
 
 	/** 构造结束 **/
-	public function onBuilded():Void {}
+	public function onBuilded():Void {
+		trace("build hxml:" + hxml);
+	}
 
 	/** 启动测试 **/
 	public function onTest():Void {

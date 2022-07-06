@@ -2,6 +2,8 @@
 - 这是一个基于heaps引擎之上的简化版api。旨意让它拥有可用的Android/IOS/Mac/Window/HTML5/小游戏等平台开箱即用的能力。
 - This is a simplified API based on the heaps engine. The purpose is to make it have the out of the box ability of available android/ios/mac/window/html5/ games and other platforms.
 
+![Example](example.png)
+
 ## Record problems
 The current status is open, and there will be a lot of problems to be solved.
 
