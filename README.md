@@ -24,6 +24,7 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 | XML格式精灵图(Sprite XML format)  | yes | yes | yes | yes | no |
 | 动态加载资源(Dynamic load assets)  | yes | yes | yes | yes | no |
 | 编译支持(Build stats)  | yes | yes | yes | yes | no |
+| 异步加载(Async load) | no | no | no | yes | no |
 
 ## UI Component
 - [x] 色块(Quad) zygame.display.Quad
