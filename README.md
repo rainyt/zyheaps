@@ -18,13 +18,14 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 
 |  Support   | IOS  | Android | Mac | HTML5 | Window |
 |  ----  | ----  | --- | --- | --- | --- |
-| 默认的高DPI(High DPI)  | yes | yes | yes | yes | no |
-| 正常触摸(Touch)  | yes | yes | yes | yes | no |
-| 中文渲染TTF(Font TTF)  | yes | yes | yes | yes | no |
-| XML格式精灵图(Sprite XML format)  | yes | yes | yes | yes | no |
-| 动态加载资源(Dynamic load assets)  | yes | yes | yes | yes | no |
-| 编译支持(Build stats)  | yes | yes | yes | yes | no |
-| 异步加载(Async load) | no | no | no | yes | no |
+| 默认的高DPI(High DPI)  | ✅ | ✅ | ✅ | ✅ | ❌ |
+| 正常触摸(Touch)  | ✅ | ✅ | ✅ | ✅ | ❌ |
+| 中文渲染TTF(Font TTF)  | ✅ | ✅ | ✅ | ✅ | ❌ |
+| XML格式精灵图(Sprite XML format)  | ✅ | ✅ | ✅ | ✅ | ❌ |
+| 动态加载资源(Dynamic load assets)  | ✅ | ✅ | ✅ | ✅ | ❌ |
+| 编译支持(Build stats)  | ✅ | ✅ | ✅ | ✅ | ❌ |
+| 异步加载(Async load) | ❌ | ❌ | ❌ | ✅ | ❌ |
+
 
 ## UI Component
 - [x] 色块(Quad) zygame.display.Quad
