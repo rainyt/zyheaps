@@ -14,14 +14,14 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 - 建议使用rainyt分叉的heaps版本：[https://github.com/rainyt/heaps](https://github.com/rainyt/heaps)，它兼容了IOS高DPI，触摸等问题。当`HeapsIo/heaps`正式修正了这些问题后，将合并版本。
 - It is recommended to use the rainyt forked heaps version, which is compatible with IOS, high DPI, touch and other issues. When heapsio/heaps formally fixes these problems, the version will be merged.
 
-|  Support   | IOS  | Android | Mac | HTML5 |
-|  ----  | ----  | --- | --- | --- |
-| 默认的高DPI(High DPI)  | yes | yes | yes | yes |
-| 正常触摸(Touch)  | yes | yes | yes | yes |
-| 中文渲染TTF(Font TTF)  | yes | yes | yes | yes |
-| XML格式精灵图(Sprite XML format)  | yes | yes | yes | yes |
-| 动态加载资源(Dynamic load assets)  | yes | yes | yes | yes |
-| 编译支持(Build stats)  | yes | yes | yes | yes |
+|  Support   | IOS  | Android | Mac | HTML5 | Window |
+|  ----  | ----  | --- | --- | --- | --- |
+| 默认的高DPI(High DPI)  | yes | yes | yes | yes | no |
+| 正常触摸(Touch)  | yes | yes | yes | yes | no |
+| 中文渲染TTF(Font TTF)  | yes | yes | yes | yes | no |
+| XML格式精灵图(Sprite XML format)  | yes | yes | yes | yes | no |
+| 动态加载资源(Dynamic load assets)  | yes | yes | yes | yes | no |
+| 编译支持(Build stats)  | yes | yes | yes | yes | no |
 
 ## UI Component
 - [x] 色块(Quad) zygame.display.Quad
