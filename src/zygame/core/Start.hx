@@ -109,7 +109,9 @@ class Start extends App {
 
 	override function update(dt:Float) {
 		super.update(dt);
-		s2d.add(_debugDisplay);
-		_debugDisplay.update();
+		if (_debugDisplay != null) {
+			s2d.add(_debugDisplay);
+			_debugDisplay.update();
+		}
 	}
 }

@@ -1,4 +1,4 @@
 <project>
     <template path="tools/templates" />
-    <define name="highdpi"/>
+    <!-- <define name="highdpi"/> -->
 </project>

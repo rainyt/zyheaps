@@ -19,7 +19,11 @@ class AssetsTools {
 	}
 	#end
 
-	/** 根据路径获取字符串 **/
+	/**
+	 * 通过路径获取二进制数据
+	 * @param path 
+	 * @return Bytes
+	 */
 	static public function getBytes(path:String):Bytes {
 		#if android
 		var bytes = getAssetBytes(path);
@@ -30,6 +34,12 @@ class AssetsTools {
 		#elseif ios
 		trace("ios load file:", path);
 		return File.getBytes("assets/" + path);
+		#elseif mac
+		var root = Sys.programPath();
+		root = root.substr(0, root.lastIndexOf("/"));
+		return File.getBytes(root + "/../Resources/" + path);
+		#elseif hl
+		return File.getBytes(path);
 		#else
 		return null;
 		#end
