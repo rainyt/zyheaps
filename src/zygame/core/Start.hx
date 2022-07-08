@@ -22,7 +22,7 @@ class Start extends App {
 	 */
 	public static function initApp(c:Class<Dynamic>, hdwidth:Float, hdheight:Float, debug:Bool = false):Void {
 		trace("Start.initApp");
-		Window.getInstance().vsync = true;
+		// Window.getInstance().vsync = true;
 		#if android
 		// 先不要那么着急初始化
 		current = Type.createInstance(c, [hdwidth, hdheight, debug]);
