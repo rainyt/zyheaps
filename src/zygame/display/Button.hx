@@ -72,11 +72,12 @@ class Button extends Flow {
 				img.tile = skin.down;
 			} else {
 				// 缩放计算
-				img.scaleX = 0.94;
-				img.scaleY = 0.94;
 				var rect = img.getBounds();
 				img.x = rect.width * 0.03;
 				img.y = rect.height * 0.03;
+				img.scaleX = 0.94;
+				img.scaleY = 0.94;
+				trace(img.x, rect, img.getBounds());
 			}
 		}
 		this.interactive.onRelease = function(e) {
@@ -111,4 +112,14 @@ class Button extends Flow {
 	 * @param e 
 	 */
 	dynamic public function onClick(e:Event):Void {}
+
+	override function set_width(width:Float):Float {
+		this.img.width = width;
+		return super.set_width(width);
+	}
+
+	override function set_height(height:Float):Float {
+		this.img.height = height;
+		return super.set_height(height);
+	}
 }
