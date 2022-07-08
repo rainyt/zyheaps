@@ -38,6 +38,14 @@ class AssetsTools {
 		var root = Sys.programPath();
 		root = root.substr(0, root.lastIndexOf("/"));
 		return File.getBytes(root + "/../Resources/" + path);
+		#elseif window
+		var root = Sys.programPath();
+		root = root.substr(0, root.lastIndexOf("\\")) + "/res/" + path;
+		try {
+			return File.getBytes(root);
+		} catch (e:Dynamic) {
+			throw ("load fail:" + root);
+		}
 		#elseif hl
 		return File.getBytes(path);
 		#else

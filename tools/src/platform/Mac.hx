@@ -15,9 +15,6 @@ class Mac extends BasePlatform {
 
 	public function new() {
 		super("mac");
-		if (System.hostPlatform != MAC) {
-			throw "This targt support mac system.";
-		}
 	}
 
 	override function onCopyAssets() {

@@ -59,7 +59,7 @@ class BasePlatform {
 			hxml.debug = true;
 		hxml.define(platform);
 		for (key => value in project.defines) {
-			if (key == "cpp")
+			if (key == "cpp" || key == "mac")
 				continue;
 			if (value != null && value.indexOf(" ") != -1) {
 				hxml.define(key, '"${value}"');
