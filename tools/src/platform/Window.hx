@@ -21,11 +21,12 @@ class Window extends BasePlatform {
 		super.onBuild();
 		// 编译hl
 		var hxml = initHxml();
-		hxml.lib("hlsdl");
+		if (project.defines.exists("dx")) {
+			hxml.lib("hldx");
+		} else {
+			hxml.lib("hlsdl");
+		}
 		hxml.hl = osPath + "/main.hl";
 		hxml.build();
-		// 改名
-		// FileSystem.deleteFile(osPath + "/hlboot.dat");
-		// FileSystem.rename(osPath + "/main.hl", osPath + "/hlboot.dat");
 	}
 }
