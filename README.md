@@ -19,11 +19,11 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 |  Support   | IOS  | Android | Mac | HTML5 | Window |
 |  ----  | ----  | --- | --- | --- | --- |
 | 默认的高DPI(High DPI)  | ✅ | ✅ | ✅ | ✅ | ❌ |
-| 正常触摸(Touch)  | ✅ | ✅ | ✅ | ✅ | ❌ |
+| 正常触摸(Touch)  | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 中文渲染TTF(Font TTF)  | ✅ | ✅ | ✅ | ✅ | ✅ |
 | XML格式精灵图(Sprite XML format)  | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 动态加载资源(Dynamic load assets)  | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 编译支持(Build stats)  | ✅ | ✅ | ✅ | ✅ | bate |
+| 编译支持(Build stats)  | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 异步加载(Async load) | ❌ | ❌ | ❌ | ✅ | ❌ |
 | 网络请求(Network) | unchecked | unchecked | unchecked | unchecked| unchecked|
 
