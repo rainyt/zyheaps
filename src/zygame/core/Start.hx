@@ -1,7 +1,7 @@
 package zygame.core;
 
 #if hl
-import zygame.utils.hl.BytesLoader;
+import zygame.utils.hl.Thread;
 #end
 import hxd.Window;
 import haxe.macro.Compiler;
@@ -116,7 +116,7 @@ class Start extends App {
 		super.update(dt);
 		// 更新载入线程
 		#if hl
-		BytesLoader.loop();
+		Thread.loop();
 		#end
 		if (_debugDisplay != null) {
 			s2d.add(_debugDisplay);

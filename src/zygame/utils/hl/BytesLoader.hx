@@ -1,35 +1,12 @@
 package zygame.utils.hl;
 
+import zygame.utils.hl.Thread.ThreadMessage;
 import haxe.io.Bytes;
-import sys.thread.Thread;
 
 /**
  * 异步加载器
  */
 class BytesLoader implements ILoader {
-	/**
-	 * 线程管理
-	 */
-	private static var threads:Map<Int, BytesLoader> = [];
-
-	/**
-	 * 异步线程数量
-	 */
-	private static var count:Int = 0;
-
-	public static function loop():Void {
-		if (count == 0) {
-			return;
-		}
-		var data = Thread.readMessage(true);
-		if (data != null) {
-			var l = threads.get(data.uid);
-			l.onSuccess(data.bytes);
-			threads.remove(data.uid);
-			count--;
-		}
-	}
-
 	/**
 	 * 线程唯一UID
 	 */
@@ -38,17 +15,23 @@ class BytesLoader implements ILoader {
 	private var _t:Thread;
 
 	public function new(path:String) {
-		count++;
-		threads.set(++uid, this);
+		// 使用线程时，要保留一个主线程进行获取
 		var mainThread = Thread.current();
 		// 创建一个线程
 		_t = Thread.create(function() {
 			var bytes = AssetsTools.getBytes(path);
 			// 载入完毕后，直接返回
-			mainThread.sendMessage({
-				uid: uid,
-				bytes: bytes
-			});
+			var data:ThreadMessage = {
+				uid: _t.uid,
+				data: bytes,
+				code: 0
+			};
+			mainThread.sendMessage(data);
+		}, function(data) {
+			if (data.data == null)
+				onError("load fail");
+			else
+				onSuccess(data.data);
 		});
 	}
 
