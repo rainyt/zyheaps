@@ -3,6 +3,8 @@ package zygame.utils;
 import haxe.io.Bytes;
 #if !hl
 import hxd.net.BinaryLoader;
+#else
+import zygame.utils.hl.BytesLoader;
 #end
 
 /**
@@ -17,12 +19,17 @@ class AssetsUtils {
 	 */
 	public static function loadBytes(path:String, success:Bytes->Void, fail:String->Void):Void {
 		#if hl
-		var data = zygame.utils.hl.AssetsTools.getBytes(path);
-		if (data != null) {
-			success(data);
-		} else {
-			fail("load fail:" + path);
-		}
+		// 异步接口
+		var loader = new BytesLoader(path);
+		loader.onSuccess = success;
+		loader.onError = fail;
+		// 同步接口
+		// var data = zygame.utils.hl.AssetsTools.getBytes(path);
+		// if (data != null) {
+		// 	success(data);
+		// } else {
+		// 	fail("load fail:" + path);
+		// }
 		#else
 		var loader = new BinaryLoader(path);
 		loader.onProgress = function(a, b) {}

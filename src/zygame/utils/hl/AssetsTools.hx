@@ -1,5 +1,6 @@
 package zygame.utils.hl;
 
+import sys.thread.Thread;
 import hxd.File;
 import haxe.io.Bytes;
 
@@ -44,12 +45,16 @@ class AssetsTools {
 		try {
 			return File.getBytes(root);
 		} catch (e:Dynamic) {
-			throw ("load fail:" + root);
+			throw("load fail:" + root);
 		}
 		#elseif hl
 		return File.getBytes(path);
 		#else
 		return null;
 		#end
+	}
+
+	public static function loadBytes(path:String):ILoader {
+		return new BytesLoader(path);
 	}
 }

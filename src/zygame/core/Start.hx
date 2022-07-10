@@ -1,5 +1,8 @@
 package zygame.core;
 
+#if hl
+import zygame.utils.hl.BytesLoader;
+#end
 import hxd.Window;
 import haxe.macro.Compiler;
 import zygame.display.FPSDebug;
@@ -111,6 +114,10 @@ class Start extends App {
 
 	override function update(dt:Float) {
 		super.update(dt);
+		// 更新载入线程
+		#if hl
+		BytesLoader.loop();
+		#end
 		if (_debugDisplay != null) {
 			s2d.add(_debugDisplay);
 			_debugDisplay.update();

@@ -40,4 +40,8 @@ class Mac extends BasePlatform {
 		FileSystem.deleteFile(macOsPath + "/hlboot.dat");
 		FileSystem.rename(macOsPath + "/main.hl", macOsPath + "/hlboot.dat");
 	}
+
+	override function onTest() {
+		Sys.command(macOsPath + "/main.command");
+	}
 }
