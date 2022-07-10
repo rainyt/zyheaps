@@ -24,7 +24,7 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 | XML格式精灵图(Sprite XML format)  | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 动态加载资源(Dynamic load assets)  | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 编译支持(Build stats)  | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 异步加载(Async load) | ❌ | ❌ | ❌ | ✅ | ❌ |
+| 异步加载(Async load) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 网络请求(Network) | unchecked | unchecked | unchecked | unchecked| unchecked|
 
 ## UI Component
