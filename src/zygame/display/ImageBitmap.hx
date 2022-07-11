@@ -14,7 +14,6 @@ import h2d.Bitmap;
  * 图片显示对象
  */
 class ImageBitmap extends Bitmap implements IDisplayObject {
-
 	/**
 	 * 是否有变更，当存在变更时，draw接口会对该图形进行重绘
 	 */
@@ -32,7 +31,7 @@ class ImageBitmap extends Bitmap implements IDisplayObject {
 	 * 设置九宫格数据
 	 */
 	public var scale9Grid(get, set):Rect;
-	
+
 	/**
 	 * 构造一个图片显示对象
 	 * @param tile 
@@ -94,7 +93,8 @@ class ImageBitmap extends Bitmap implements IDisplayObject {
 				// 九宫格兼容
 				if (__scale9Grid != null) {
 					if (this.__scaleGrid == null) {
-						this.__scaleGrid = new ScaleGrid(tile, __scale9Grid.left, __scale9Grid.top, __scale9Grid.right, __scale9Grid.bottom, this);
+						this.__scaleGrid = new ScaleGrid(tile, __scale9Grid.left, __scale9Grid.top, __scale9Grid.right, __scale9Grid.bottom);
+						this.addChildAt(__scaleGrid, 0);
 					}
 					__scaleGrid.width = this.width;
 					__scaleGrid.height = this.height;
