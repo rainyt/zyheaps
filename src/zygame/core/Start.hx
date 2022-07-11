@@ -1,5 +1,8 @@
 package zygame.core;
 
+#if actuate
+import motion.actuators.SimpleActuator;
+#end
 #if hl
 import zygame.utils.hl.Thread;
 #end
@@ -114,6 +117,13 @@ class Start extends App {
 
 	override function update(dt:Float) {
 		super.update(dt);
+		#if actuate
+		#if hl
+		@:privateAccess SimpleActuator.stage_onEnterFrame();
+		#else
+		@:privateAccess SimpleActuator.stage_onEnterFrame(dt);
+		#end
+		#end
 		// 更新载入线程
 		#if hl
 		Thread.loop();

@@ -1,4 +1,6 @@
 <project>
     <template path="tools/templates" />
     <define name="highdpi"/>
+    <!-- Actuate 自主计算 -->
+    <define name="actuate_manual_update"/>
 </project>
