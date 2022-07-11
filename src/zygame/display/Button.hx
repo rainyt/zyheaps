@@ -62,7 +62,6 @@ class Button extends Flow {
 		super(parent);
 		this.dirt = true;
 		this.skin = skin;
-		trace(this.skin.up);
 		img = new ImageBitmap(this.skin.up, this);
 		this.enableInteractive = true;
 		this.interactive.onPush = function(e) {
@@ -72,12 +71,11 @@ class Button extends Flow {
 				img.tile = skin.down;
 			} else {
 				// 缩放计算
-				var rect = img.getBounds();
+				var rect = img.getSize();
 				img.x = rect.width * 0.03;
 				img.y = rect.height * 0.03;
 				img.scaleX = 0.94;
 				img.scaleY = 0.94;
-				trace(img.x, rect, img.getBounds());
 			}
 		}
 		this.interactive.onRelease = function(e) {
