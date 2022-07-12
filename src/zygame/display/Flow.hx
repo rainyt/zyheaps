@@ -20,9 +20,11 @@ class Flow extends h2d.Flow implements IDisplayObject {
 
 	public var width(get, set):Float;
 
-	private var _width:Float;
+	private var _width:Null<Float>;
 
 	function get_width():Float {
+		if (_width == null)
+			return getSize().width;
 		return _width;
 	}
 
@@ -34,9 +36,11 @@ class Flow extends h2d.Flow implements IDisplayObject {
 
 	public var height(get, set):Float;
 
-	private var _height:Float;
+	private var _height:Null<Float>;
 
 	function get_height():Float {
+		if (_height == null)
+			return getSize().height;
 		return _height;
 	}
 

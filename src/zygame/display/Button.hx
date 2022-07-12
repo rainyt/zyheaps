@@ -86,7 +86,7 @@ class Button extends Flow {
 			dirt = true;
 		}
 		this.interactive.onClick = function(e) {
-			this.onClick(e);
+			this.onClick(this, e);
 		}
 		label = new Label(null, img);
 		label.textAlign = Center;
@@ -109,7 +109,7 @@ class Button extends Flow {
 	 * 按钮的点击事件，请勿直接访问`interactive.onClick`
 	 * @param e 
 	 */
-	dynamic public function onClick(e:Event):Void {}
+	dynamic public function onClick(btn:Button, e:Event):Void {}
 
 	override function set_width(width:Float):Float {
 		this.img.width = width;
