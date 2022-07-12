@@ -93,7 +93,6 @@ class TrueTypeFont extends h2d.Font {
 					g = generateGlyph(code, info, parameters);
 					if (g != null) {
 						// HELP: will defaultChar.t cause a new drawcall since it's not on the atlas?
-						trace("draw ready:", string.charAt(stringIndex), ratio);
 						final char = new TrueTypeFontChar(this, g.fontInfo, g.index, defaultChar.t, g.advanceX * ratio);
 						glyphs[g.codePoint] = char;
 
@@ -172,7 +171,6 @@ class TrueTypeFont extends h2d.Font {
 						brush.bytes = g.rgba.toBytes(width * height * 4);
 					}
 					atlas.blit(x, y, brush, 0, 0, width, height);
-					trace("draw ", char, x, y, width, height);
 
 					element.packed = true;
 
