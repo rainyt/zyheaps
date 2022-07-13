@@ -90,6 +90,8 @@ class Button extends Box {
 		}
 		label = new Label(null, img);
 		label.textAlign = Center;
+		this.width = img.width;
+		this.height = img.height;
 	}
 
 	private function updateLabelContext():Void {
@@ -110,12 +112,12 @@ class Button extends Box {
 	 */
 	dynamic public function onClick(btn:Button, e:Event):Void {}
 
-	override function set_width(width:Float):Float {
+	override function set_width(width:Null<Float>):Null<Float> {
 		this.img.width = width;
 		return super.set_width(width);
 	}
 
-	override function set_height(height:Float):Float {
+	override function set_height(height:Null<Float>):Null<Float> {
 		this.img.height = height;
 		return super.set_height(height);
 	}

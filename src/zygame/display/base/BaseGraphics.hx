@@ -21,34 +21,22 @@ class BaseGraphics extends Graphics {
 	/**
 	 * 获取图形宽度
 	 */
-	public var width(get, set):Float;
+	public var width(default, set):Null<Float>;
 
-	private var __width:Float = 0;
-
-	function get_width():Float {
-		return __width;
-	}
-
-	function set_width(width:Float):Float {
-		__width = width;
+	function set_width(width:Null<Float>):Null<Float> {
+		this.width = width;
 		this.setDirty();
-		return __width;
+		return width;
 	}
 
 	/**
 	 * 获取图形高度
 	 */
-	public var height(get, set):Float;
+	public var height(default, set):Null<Float>;
 
-	private var __height:Float = 0;
-
-	function get_height():Float {
-		return __height;
-	}
-
-	function set_height(height:Float):Float {
-		__height = height;
+	function set_height(height:Null<Float>):Null<Float> {
+		this.height = height;
 		this.setDirty();
-		return __height;
+		return height;
 	}
 }

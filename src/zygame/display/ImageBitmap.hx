@@ -33,6 +33,41 @@ class ImageBitmap extends Bitmap implements IDisplayObject {
 	public var scale9Grid(get, set):Rect;
 
 	/**
+	 * 距离左边
+	 */
+	public var left:Null<Float>;
+
+	/**
+	 * 距离右边
+	 */
+	public var right:Null<Float>;
+
+	/**
+	 * 距离顶部
+	 */
+	public var top:Null<Float>;
+
+	/**
+	 * 距离底部
+	 */
+	public var bottom:Null<Float>;
+
+	/**
+	 * 居中X
+	 */
+	public var centerX:Null<Float>;
+
+	/**
+	 * 居中Y
+	 */
+	public var centerY:Null<Float>;
+
+	/**
+	 * 布局自身
+	 */
+	public function layout():Void {}
+
+	/**
 	 * 构造一个图片显示对象
 	 * @param tile 
 	 * @param parent 

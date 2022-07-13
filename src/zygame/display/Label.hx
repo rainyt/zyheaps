@@ -19,6 +19,57 @@ class Label extends Text implements IDisplayObject {
 
 	public var dirt:Bool = false;
 
+	public var width(default, set):Null<Float>;
+
+	function set_width(width:Null<Float>):Null<Float> {
+		this.width = width;
+		dirt = true;
+		return width;
+	}
+
+	public var height(default, set):Null<Float>;
+
+	function set_height(height:Null<Float>):Null<Float> {
+		this.height = height;
+		dirt = true;
+		return height;
+	}
+
+	/**
+	 * 距离左边
+	 */
+	public var left:Null<Float>;
+
+	/**
+	 * 距离右边
+	 */
+	public var right:Null<Float>;
+
+	/**
+	 * 距离顶部
+	 */
+	public var top:Null<Float>;
+
+	/**
+	 * 距离底部
+	 */
+	public var bottom:Null<Float>;
+
+	/**
+	 * 居中X
+	 */
+	public var centerX:Null<Float>;
+
+	/**
+	 * 居中Y
+	 */
+	public var centerY:Null<Float>;
+
+	/**
+	 * 布局自身
+	 */
+	public function layout():Void {}
+
 	/**
 	 * 构造一个Label文本
 	 * @param text 

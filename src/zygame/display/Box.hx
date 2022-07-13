@@ -56,44 +56,63 @@ class Box extends h2d.Object implements IDisplayObject {
 
 	public var stageHeight(get, never):Float;
 
-	public var width(get, set):Float;
+	public var width(default, set):Null<Float>;
 
-	private var _width:Null<Float>;
-
-	function get_width():Float {
-		if (_width == null)
-			return getSize().width;
-		return _width;
-	}
-
-	function set_width(width:Float):Float {
-		_width = width;
+	function set_width(width:Null<Float>):Null<Float> {
+		this.width = width;
 		dirt = true;
-		return _width;
+		return width;
 	}
 
-	public var height(get, set):Float;
+	public var height(default, set):Null<Float>;
 
-	private var _height:Null<Float>;
-
-	function get_height():Float {
-		if (_height == null)
-			return getSize().height;
-		return _height;
-	}
-
-	function set_height(height:Float):Float {
-		_height = height;
+	function set_height(height:Null<Float>):Null<Float> {
+		this.height = height;
 		dirt = true;
-		return _height;
+		return height;
 	}
 
 	override function draw(ctx:RenderContext) {
 		if (dirt) {
-			interactive.width = this.width;
-			interactive.height = this.height;
+			interactive.width = this.width == null ? 1 : this.width;
+			interactive.height = this.height == null ? 1 : this.height;
 			dirt = false;
 		}
 		super.draw(ctx);
 	}
+
+	/**
+	 * 距离左边
+	 */
+	public var left:Null<Float>;
+
+	/**
+	 * 距离右边
+	 */
+	public var right:Null<Float>;
+
+	/**
+	 * 距离顶部
+	 */
+	public var top:Null<Float>;
+
+	/**
+	 * 距离底部
+	 */
+	public var bottom:Null<Float>;
+
+	/**
+	 * 居中X
+	 */
+	public var centerX:Null<Float>;
+
+	/**
+	 * 居中Y
+	 */
+	public var centerY:Null<Float>;
+
+	/**
+	 * 布局自身
+	 */
+	public function layout():Void {}
 }

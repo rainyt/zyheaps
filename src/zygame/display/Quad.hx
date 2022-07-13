@@ -13,6 +13,41 @@ class Quad extends BaseGraphics implements IDisplayObject {
 	public var dirt:Bool = false;
 
 	/**
+	 * 距离左边
+	 */
+	public var left:Null<Float>;
+
+	/**
+	 * 距离右边
+	 */
+	public var right:Null<Float>;
+
+	/**
+	 * 距离顶部
+	 */
+	public var top:Null<Float>;
+
+	/**
+	 * 距离底部
+	 */
+	public var bottom:Null<Float>;
+
+	/**
+	 * 居中X
+	 */
+	public var centerX:Null<Float>;
+
+	/**
+	 * 居中Y
+	 */
+	public var centerY:Null<Float>;
+
+	/**
+	 * 布局自身
+	 */
+	public function layout():Void {}
+
+	/**
 	 * 矩形的颜色
 	 */
 	public var quadColor(get, set):UInt;
