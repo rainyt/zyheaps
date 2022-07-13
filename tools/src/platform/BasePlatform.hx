@@ -55,7 +55,7 @@ class BasePlatform {
 		for (haxelib in project.haxelibs) {
 			hxml.lib(haxelib.name, (haxelib.version != null && haxelib.version != "") ? haxelib.version : null);
 		}
-		if (Sys.args().indexOf("-final") == -1)
+		if (Sys.args().indexOf("-debug") != -1)
 			hxml.debug = true;
 		hxml.define(platform);
 		for (key => value in project.defines) {

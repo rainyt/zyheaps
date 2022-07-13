@@ -1,5 +1,6 @@
 package zygame.core;
 
+import haxe.Timer;
 #if actuate
 import motion.actuators.SimpleActuator;
 #end
@@ -39,6 +40,13 @@ class Start extends App {
 		#else
 		current = Type.createInstance(c, [hdwidth, hdheight, debug]);
 		#end
+		#if actuate
+		@:privateAccess SimpleActuator.getTime = getTime;
+		#end
+	}
+
+	public static function getTime():Float {
+		return Timer.stamp();
 	}
 
 	private var _hdsize = {

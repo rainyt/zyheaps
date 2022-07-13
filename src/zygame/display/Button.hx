@@ -95,8 +95,9 @@ class Button extends Box {
 	}
 
 	private function updateLabelContext():Void {
+		var size = label.getSize();
 		label.x = img.width / 2 + labelOffest.x;
-		label.y = img.height / 2 - label.textHeight / 2 + labelOffest.y;
+		label.y = img.height / 2 - size.height / 2 + labelOffest.y;
 	}
 
 	override function draw(ctx:RenderContext) {
