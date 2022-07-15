@@ -1,5 +1,6 @@
 package platform;
 
+import sys.io.File;
 import project.ProjectHXMLParser;
 import lime.tools.HXProject;
 import sys.FileSystem;
@@ -49,6 +50,12 @@ class BasePlatform {
 		if (hxml == null)
 			hxml = new HXML();
 		hxml.main = project.app.main;
+		for (s in project.haxeflags) {
+			// hxml.addMacro("keep(\"h2d.Object\")");
+			// hxml.addMacro("\"keep('IntIterator')\"");
+			// if (s.indexOf("--macro") != -1)
+			hxml.addMacro("\"" + s.substr(s.indexOf(" ") + 1) + "\"");
+		}
 		for (s in project.sources) {
 			hxml.cp(s);
 		}
@@ -66,6 +73,7 @@ class BasePlatform {
 			} else
 				hxml.define(key, '${value}');
 		}
+
 		return hxml;
 	}
 
