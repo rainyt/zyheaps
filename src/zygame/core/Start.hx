@@ -1,5 +1,6 @@
 package zygame.core;
 
+import zygame.utils.SceneManager;
 import haxe.Timer;
 #if actuate
 import motion.actuators.SimpleActuator;
@@ -81,12 +82,14 @@ class Start extends App {
 
 	override function onResize() {
 		super.onResize();
-		trace("stage size:", this.s2d.width, this.s2d.height);
 		__currentScale = ScaleUtils.mathScale(this.s2d.width, this.s2d.height, _hdsize.width, _hdsize.height);
 		this.s2d.setScale(__currentScale);
 		this.__stateSize.width = Math.round(s2d.width / __currentScale);
 		this.__stateSize.height = Math.round(s2d.height / __currentScale);
+		trace("stage size:", this.s2d.width, this.s2d.height);
 		trace("changed scale:", __currentScale, "size:", this.stageWidth, this.stageHeight);
+		// 控制场景的尺寸变化
+		@:privateAccess SceneManager.onResize();
 	}
 
 	/**

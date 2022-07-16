@@ -145,4 +145,9 @@ interface IDisplayObject {
 	 * 布局自身
 	 */
 	public function layout():Void;
+
+	/**
+	 * 初始化入口
+	 */
+	public function onInit():Void;
 }

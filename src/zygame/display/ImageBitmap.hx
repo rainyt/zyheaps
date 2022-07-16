@@ -1,5 +1,6 @@
 package zygame.display;
 
+import zygame.utils.SceneManager;
 import zygame.res.AssetsBuilder;
 import h2d.Object;
 import hxd.clipper.Rect;
@@ -69,6 +70,11 @@ class ImageBitmap extends Bitmap implements IDisplayObject {
 		layoutIDisplayObject(this);
 	}
 
+	override function addChildAt(s:Object, pos:Int) {
+		@:privateAccess SceneManager.setDirt();
+		super.addChildAt(s, pos);
+	}
+
 	/**
 	 * 构造一个图片显示对象
 	 * @param tile 
@@ -83,7 +89,10 @@ class ImageBitmap extends Bitmap implements IDisplayObject {
 			this.width = tile.width;
 			this.height = tile.height;
 		}
+		onInit();
 	}
+
+	public function onInit():Void {}
 
 	function get_scale9Grid():Rect {
 		return __scale9Grid;

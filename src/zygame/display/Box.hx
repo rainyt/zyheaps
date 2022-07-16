@@ -1,5 +1,7 @@
 package zygame.display;
 
+import zygame.utils.SceneManager;
+import h2d.Object;
 import h2d.RenderContext;
 import h2d.Interactive;
 import zygame.core.Start;
@@ -15,8 +17,20 @@ class Box extends h2d.Object implements IDisplayObject {
 
 	private var _enableInteractive:Bool;
 
+	public function new(?parent:Object) {
+		super(parent);
+		this.onInit();
+	}
+
+	public function onInit():Void {}
+
 	function get_enableInteractive():Bool {
 		return _enableInteractive;
+	}
+
+	override function addChildAt(s:Object, pos:Int) {
+		@:privateAccess SceneManager.setDirt();
+		super.addChildAt(s, pos);
 	}
 
 	function set_enableInteractive(enableInteractive:Bool):Bool {

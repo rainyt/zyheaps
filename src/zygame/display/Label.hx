@@ -1,5 +1,6 @@
 package zygame.display;
 
+import zygame.utils.SceneManager;
 import h2d.RenderContext;
 import zygame.core.Start;
 import zygame.display.base.IDisplayObject;
@@ -80,6 +81,14 @@ class Label extends Text implements IDisplayObject {
 		super(null, parent);
 		if (text != null)
 			this.text = text;
+		onInit();
+	}
+
+	public function onInit():Void {}
+
+	override function addChildAt(s:Object, pos:Int) {
+		@:privateAccess SceneManager.setDirt();
+		super.addChildAt(s, pos);
 	}
 
 	/**
