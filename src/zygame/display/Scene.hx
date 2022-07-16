@@ -65,4 +65,6 @@ class Scene extends Box {
 		this.height = stageHeight;
 		super.layout();
 	}
+
+	public function update(dt:Float):Void {}
 }

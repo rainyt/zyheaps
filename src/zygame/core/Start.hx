@@ -143,7 +143,7 @@ class Start extends #if js zygame.core.platform.JsStart #else App #end {
 			s2d.add(_debugDisplay);
 			_debugDisplay.update();
 		}
-		// if (SceneManager.currentScene != null)
-		// SceneManager.currentScene.layout();
+		if (SceneManager.currentScene != null)
+			SceneManager.currentScene.update(dt);
 	}
 }
