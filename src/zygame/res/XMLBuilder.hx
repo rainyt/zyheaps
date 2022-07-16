@@ -62,8 +62,11 @@ class XMLBuilder extends Builder<Xml> {
 
 	public function new() {
 		super();
+		// 场景
 		addClass(Scene);
+		// 容器
 		addClass(Box);
+		// 按钮
 		addClass(Button, function(xml:Xml) {
 			return Button.create(xml.get("src"));
 		}, function(object, key, xml) {
@@ -79,8 +82,11 @@ class XMLBuilder extends Builder<Xml> {
 			}
 			return true;
 		});
+		// 竖向容器
 		addClass(HBox);
+		// 横向容器
 		addClass(VBox);
+		// 文本
 		addClass(Label, null, function(object, key, xml) {
 			switch (key) {
 				case "size":
@@ -94,8 +100,11 @@ class XMLBuilder extends Builder<Xml> {
 			}
 			return true;
 		});
+		// 色块
 		addClass(Quad);
+		// 图片
 		addClass(Image);
+		// Scroll
 		addClass(Scroll);
 	}
 }
