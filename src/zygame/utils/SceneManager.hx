@@ -50,7 +50,7 @@ class SceneManager {
 		var scene = createScene(cName);
 		currentScene = scene;
 		Start.current.s2d.add(scene);
-		if (currentScene.width != currentScene.stageWidth && currentScene.height != currentScene.stageHeight)
+		if (currentScene.width != currentScene.stageWidth || currentScene.height != currentScene.stageHeight)
 			currentScene.onResize();
 		return scene;
 	}
