@@ -90,13 +90,14 @@ class Button extends Box {
 		}
 		label = new Label(null, img);
 		label.textAlign = Center;
+		label.maxWidth = img.width;
 		this.width = img.width;
 		this.height = img.height;
 	}
 
 	private function updateLabelContext():Void {
 		var size = label.getSize();
-		label.x = img.width / 2 + labelOffest.x;
+		label.x = labelOffest.x;
 		label.y = img.height / 2 - size.height / 2 + labelOffest.y;
 	}
 
@@ -115,6 +116,7 @@ class Button extends Box {
 
 	override function set_width(width:Null<Float>):Null<Float> {
 		this.img.width = width;
+		label.maxWidth = img.width;
 		return super.set_width(width);
 	}
 

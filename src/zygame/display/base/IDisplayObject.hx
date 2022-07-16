@@ -2,14 +2,32 @@ package zygame.display.base;
 
 import h2d.Object;
 
+inline private function getWidth(display:IDisplayObject):Float {
+	if (display.width == null) {
+		return cast(display, Object).getSize().width;
+	} else {
+		return display.width;
+	}
+}
+
+inline private function getHeight(display:IDisplayObject):Float {
+	if (display.height == null) {
+		return cast(display, Object).getSize().height;
+	} else {
+		return display.height;
+	}
+}
+
 function layoutIDisplayObject(display:IDisplayObject):Void {
 	if (display.parent != null) {
 		var w = 0.;
 		var h = 0.;
+		var dw = getWidth(display);
+		var dh = getHeight(display);
 		if (display.parent is IDisplayObject) {
 			var display:IDisplayObject = cast display.parent;
-			w = display.width;
-			h = display.height;
+			w = getWidth(display);
+			h = getHeight(display);
 		}
 		if (display.left != null) {
 			display.x = display.left;
@@ -23,7 +41,7 @@ function layoutIDisplayObject(display:IDisplayObject):Void {
 				display.width = w - display.right - display.left;
 			} else {
 				// 改变位置
-				display.x = w - display.right - display.width;
+				display.x = w - display.right - dw;
 			}
 		} else if (display.centerX != null) {
 			if (display.left != null) {
@@ -31,7 +49,7 @@ function layoutIDisplayObject(display:IDisplayObject):Void {
 				display.width = w / 2 - display.centerX - display.left;
 			} else {
 				// 改变位置
-				display.x = w / 2 - display.centerX - display.width / 2;
+				display.x = w / 2 - display.centerX - dw / 2;
 			}
 		}
 		if (display.bottom != null) {
@@ -40,7 +58,7 @@ function layoutIDisplayObject(display:IDisplayObject):Void {
 				display.height = h - display.bottom - display.top;
 			} else {
 				// 改变位置
-				display.y = h - display.bottom - display.height;
+				display.y = h - display.bottom - dh;
 			}
 		} else if (display.centerY != null) {
 			if (display.top != null) {
@@ -48,7 +66,7 @@ function layoutIDisplayObject(display:IDisplayObject):Void {
 				display.height = h / 2 - display.centerY - display.top;
 			} else {
 				// 改变位置
-				display.y = h / 2 - display.centerY - display.height / 2;
+				display.y = h / 2 - display.centerY - dh / 2;
 			}
 		}
 		var obj:Object = cast display;
