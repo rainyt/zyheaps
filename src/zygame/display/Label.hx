@@ -157,4 +157,12 @@ class Label extends Text implements IDisplayObject {
 		dirt = false;
 		super.draw(ctx);
 	}
+
+	public var ids:Map<String, Object>;
+
+	public function get<T:Object>(id:String, c:Class<T>):T {
+		if (ids != null)
+			return cast ids.get(id);
+		return null;
+	}
 }

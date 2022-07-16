@@ -152,4 +152,17 @@ interface IDisplayObject {
 	 * 初始化入口
 	 */
 	public function onInit():Void;
+
+	/**
+	 * 映射ID
+	 */
+	public var ids:Map<String, Object>;
+
+	/**
+	 * 获取对应ID的组件
+	 * @param id 
+	 * @param T 
+	 * @return T
+	 */
+	public function get<T:Object>(id:String, c:Class<T>):T;
 }

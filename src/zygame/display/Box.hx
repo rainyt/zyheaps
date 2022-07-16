@@ -133,4 +133,12 @@ class Box extends h2d.Object implements IDisplayObject {
 	public function layout():Void {
 		layoutIDisplayObject(this);
 	}
+
+	public var ids:Map<String, Object>;
+
+	public function get<T:Object>(id:String, c:Class<T>):T {
+		if (ids != null)
+			return cast ids.get(id);
+		return null;
+	}
 }

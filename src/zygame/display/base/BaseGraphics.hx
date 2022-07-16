@@ -45,7 +45,7 @@ class BaseGraphics extends Graphics implements IDisplayObject {
 	public function get_stageWidth():Float {
 		return Start.current.stageWidth;
 	}
-	
+
 	override function addChildAt(s:Object, pos:Int) {
 		@:privateAccess SceneManager.setDirt();
 		super.addChildAt(s, pos);
@@ -102,5 +102,13 @@ class BaseGraphics extends Graphics implements IDisplayObject {
 		this.height = height;
 		this.setDirty();
 		return height;
+	}
+
+	public var ids:Map<String, Object>;
+
+	public function get<T:Object>(id:String, c:Class<T>):T {
+		if (ids != null)
+			return cast ids.get(id);
+		return null;
 	}
 }
