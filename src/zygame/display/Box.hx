@@ -74,8 +74,10 @@ class Box extends h2d.Object implements IDisplayObject {
 
 	override function draw(ctx:RenderContext) {
 		if (dirt) {
-			interactive.width = this.width == null ? 1 : this.width;
-			interactive.height = this.height == null ? 1 : this.height;
+			if (interactive != null) {
+				interactive.width = this.width == null ? 1 : this.width;
+				interactive.height = this.height == null ? 1 : this.height;
+			}
 			dirt = false;
 		}
 		super.draw(ctx);
@@ -114,5 +116,7 @@ class Box extends h2d.Object implements IDisplayObject {
 	/**
 	 * 布局自身
 	 */
-	public function layout():Void {}
+	public function layout():Void {
+		layoutIDisplayObject(this);
+	}
 }

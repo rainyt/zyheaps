@@ -68,7 +68,9 @@ class Label extends Text implements IDisplayObject {
 	/**
 	 * 布局自身
 	 */
-	public function layout():Void {}
+	public function layout():Void {
+		layoutIDisplayObject(this);
+	}
 
 	/**
 	 * 构造一个Label文本

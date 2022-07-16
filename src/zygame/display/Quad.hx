@@ -45,7 +45,10 @@ class Quad extends BaseGraphics implements IDisplayObject {
 	/**
 	 * 布局自身
 	 */
-	public function layout():Void {}
+	public function layout():Void {
+		layoutIDisplayObject(this);
+		this.x;
+	}
 
 	/**
 	 * 矩形的颜色

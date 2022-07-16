@@ -65,7 +65,9 @@ class ImageBitmap extends Bitmap implements IDisplayObject {
 	/**
 	 * 布局自身
 	 */
-	public function layout():Void {}
+	public function layout():Void {
+		layoutIDisplayObject(this);
+	}
 
 	/**
 	 * 构造一个图片显示对象
