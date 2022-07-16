@@ -40,9 +40,9 @@ class AssetsBuilder {
 	 */
 	public static function getBitmapDataTile(id:String):Tile {
 		for (assets in assetsList) {
-			if (assets.hasTypeAssets(BITMAP, id)) {
-				return assets.getBitmapDataTile(id);
-			}
+			var tile = assets.getBitmapDataTile(id);
+			if(tile != null)
+				return tile;
 		}
 		return null;
 	}

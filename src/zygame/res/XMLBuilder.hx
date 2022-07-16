@@ -101,9 +101,25 @@ class XMLBuilder extends Builder<Xml> {
 			return true;
 		});
 		// 色块
-		addClass(Quad);
+		addClass(Quad, null, function(object, key, xml) {
+			switch (key) {
+				case "color":
+					object.quadColor = Std.parseInt(xml.get(key));
+				default:
+					return false;
+			}
+			return true;
+		});
 		// 图片
-		addClass(Image);
+		addClass(Image, null, function(object, key, xml) {
+			switch (key) {
+				case "src":
+					object.tile = AssetsBuilder.getBitmapDataTile(xml.get(key));
+				default:
+					return false;
+			}
+			return true;
+		});
 		// Scroll
 		addClass(Scroll);
 	}
