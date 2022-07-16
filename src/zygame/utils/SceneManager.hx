@@ -45,7 +45,10 @@ class SceneManager {
 	 */
 	public static function replaceScene<T:Scene>(cName:Class<T>, isReleaseScene:Bool = false):T {
 		if (currentScene != null) {
-			currentScene.remove();
+			if (isReleaseScene)
+				releaseScene(currentScene);
+			else
+				currentScene.remove();
 		}
 		var scene = createScene(cName);
 		currentScene = scene;
@@ -53,6 +56,19 @@ class SceneManager {
 		if (currentScene.width != currentScene.stageWidth || currentScene.height != currentScene.stageHeight)
 			currentScene.onResize();
 		return scene;
+	}
+
+	/**
+	 * 释放场景
+	 * @param scene 
+	 */
+	public static function releaseScene(scene:Scene):Void {
+		scene.remove();
+		scene.onRelease();
+		var c = Type.getClass(scene);
+		var name = Type.getClassName(c);
+		_sceneMap.remove(name);
+		_scenes.remove(scene);
 	}
 
 	private static function onResize():Void {

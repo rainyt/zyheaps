@@ -20,6 +20,15 @@ inline private function getHeight(display:IDisplayObject):Float {
 
 function layoutIDisplayObject(display:IDisplayObject):Void {
 	if (display.parent != null) {
+		// 先处理子布局
+		var obj:Object = cast display;
+		for (i in 0...obj.numChildren) {
+			var c = obj.getChildAt(i);
+			if (c is IDisplayObject) {
+				cast(c, IDisplayObject).layout();
+			}
+		}
+		// 后布局
 		var w = 0.;
 		var h = 0.;
 		var dw = getWidth(display);
@@ -67,13 +76,6 @@ function layoutIDisplayObject(display:IDisplayObject):Void {
 			} else {
 				// 改变位置
 				display.y = h / 2 - display.centerY - dh / 2;
-			}
-		}
-		var obj:Object = cast display;
-		for (i in 0...obj.numChildren) {
-			var c = obj.getChildAt(i);
-			if (c is IDisplayObject) {
-				cast(c, IDisplayObject).layout();
 			}
 		}
 	}

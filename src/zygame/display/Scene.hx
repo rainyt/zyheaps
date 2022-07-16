@@ -34,6 +34,18 @@ class Scene extends Box {
 		this.dirt = true;
 	}
 
+	/**
+	 * 当场景被释放时
+	 */
+	public function onRelease():Void {}
+
+	/**
+	 * 释放当前场景
+	 */
+	public function releaseScene():Void {
+		SceneManager.releaseScene(this);
+	}
+
 	override function onAdd() {
 		super.onAdd();
 	}
