@@ -81,7 +81,19 @@ class XMLBuilder extends Builder<Xml> {
 		});
 		addClass(HBox);
 		addClass(VBox);
-		addClass(Label);
+		addClass(Label, null, function(object, key, xml) {
+			switch (key) {
+				case "size":
+					object.setSize(Std.parseInt(xml.get(key)));
+				case "color":
+					object.setColor(Std.parseInt(xml.get(key)));
+				case "text":
+					object.text = xml.get(key);
+				default:
+					return false;
+			}
+			return true;
+		});
 		addClass(Quad);
 		addClass(Image);
 		addClass(Scroll);
