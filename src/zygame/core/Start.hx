@@ -18,7 +18,8 @@ import hxd.App;
 /**
  * 启动类
  */
-class Start extends App {
+class Start extends #if js zygame.core.platform.JsStart #else App #end {
+	
 	public static var current:Start;
 
 	/**

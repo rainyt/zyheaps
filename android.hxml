@@ -1,7 +1,0 @@
--cp src
--cp test
--lib heaps
--lib hlsdl
--lib actuate
---hl bin/c/main.c
--debug
