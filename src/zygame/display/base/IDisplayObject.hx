@@ -47,35 +47,35 @@ function layoutIDisplayObject(display:IDisplayObject):Void {
 		if (display.right != null) {
 			if (display.left != null) {
 				// 改变宽度
-				display.width = w - display.right - display.left;
+				display.width = w - display.right - display.left - 1;
 			} else {
 				// 改变位置
-				display.x = w - display.right - dw;
+				display.x = w - display.right - dw - 1;
 			}
 		} else if (display.centerX != null) {
 			if (display.left != null) {
 				// 改变宽度
-				display.width = w / 2 - display.centerX - display.left;
+				display.width = w / 2 - display.centerX - display.left - 1;
 			} else {
 				// 改变位置
-				display.x = w / 2 - display.centerX - dw / 2;
+				display.x = w / 2 - display.centerX - dw / 2 - 1;
 			}
 		}
 		if (display.bottom != null) {
 			if (display.top != null) {
 				// 改变宽度
-				display.height = h - display.bottom - display.top;
+				display.height = h - display.bottom - display.top - 1;
 			} else {
 				// 改变位置
-				display.y = h - display.bottom - dh;
+				display.y = h - display.bottom - dh - 1;
 			}
 		} else if (display.centerY != null) {
 			if (display.top != null) {
 				// 改变宽度
-				display.height = h / 2 - display.centerY - display.top;
+				display.height = h / 2 - display.centerY - display.top - 1;
 			} else {
 				// 改变位置
-				display.y = h / 2 - display.centerY - dh / 2;
+				display.y = h / 2 - display.centerY - dh / 2 - 1;
 			}
 		}
 	}

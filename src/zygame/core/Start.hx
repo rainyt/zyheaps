@@ -19,7 +19,6 @@ import hxd.App;
  * 启动类
  */
 class Start extends #if js zygame.core.platform.JsStart #else App #end {
-	
 	public static var current:Start;
 
 	/**
@@ -144,5 +143,7 @@ class Start extends #if js zygame.core.platform.JsStart #else App #end {
 			s2d.add(_debugDisplay);
 			_debugDisplay.update();
 		}
+		// if (SceneManager.currentScene != null)
+		// SceneManager.currentScene.layout();
 	}
 }
