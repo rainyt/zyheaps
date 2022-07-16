@@ -86,8 +86,8 @@ class Start extends #if js zygame.core.platform.JsStart #else App #end {
 		this.s2d.setScale(__currentScale);
 		this.__stateSize.width = Math.round(s2d.width / __currentScale);
 		this.__stateSize.height = Math.round(s2d.height / __currentScale);
-		trace("stage size:", this.s2d.width, this.s2d.height);
-		trace("changed scale:", __currentScale, "size:", this.stageWidth, this.stageHeight);
+		// trace("stage size:", this.s2d.width, this.s2d.height);
+		// trace("changed scale:", __currentScale, "size:", this.stageWidth, this.stageHeight);
 		// 控制场景的尺寸变化
 		@:privateAccess SceneManager.onResize();
 	}

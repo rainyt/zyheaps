@@ -10,7 +10,7 @@ class AssetsBuilder {
 	/**
 	 * UI构造器
 	 */
-	public static var builder:Builder = new Builder();
+	public static var builder:Builder<Dynamic> = new XMLBuilder();
 
 	/**
 	 * 资源列表
