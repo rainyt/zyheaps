@@ -14,7 +14,7 @@ import h2d.Bitmap;
 /**
  * 图片显示对象
  */
-class ImageBitmap extends Bitmap implements IDisplayObject {
+class Image extends Bitmap implements IDisplayObject {
 	/**
 	 * 是否有变更，当存在变更时，draw接口会对该图形进行重绘
 	 */

@@ -29,7 +29,7 @@ class Button extends Box {
 	/**
 	 * 按钮的皮肤显示对象
 	 */
-	public var img:ImageBitmap;
+	public var img:Image;
 
 	/**
 	 * 按钮的文本显示对象
@@ -62,7 +62,7 @@ class Button extends Box {
 		super(parent);
 		this.dirt = true;
 		this.skin = skin;
-		img = new ImageBitmap(this.skin.up, this);
+		img = new Image(this.skin.up, this);
 		this.enableInteractive = true;
 		this.interactive.onPush = function(e) {
 			img.scale(1);

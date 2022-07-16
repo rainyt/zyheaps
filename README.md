@@ -32,7 +32,7 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 - [x] 色块(Quad) zygame.display.Quad
 - [x] 文本(Label) zygame.display.Label （支持中文的文本组件）
 - [x] 按钮(Button) zygame.display.Button
-- [x] 图片/九宫格图片(ImageBitmap) zygame.display.ImageBitmap
+- [x] 图片/九宫格图片(Image) zygame.display.Image
 - [ ] 列表/列表Item
 - [x] 场景管理(SceneManager) zygame.utils.SceneManager
 - [ ] UI自动构造器

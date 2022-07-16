@@ -7,6 +7,12 @@ import h2d.Tile;
  * 资源管理器，通过`AssetsBuilder.bindAssets`绑定的资源，可以通过`AssetsBuilder`进行全局获取，例如`AssetsBuilder.getBitmapDataTile("id")`
  */
 class AssetsBuilder {
+
+	/**
+	 * UI构造器
+	 */
+	public static var builder:Builder = new Builder();
+
 	/**
 	 * 资源列表
 	 */
