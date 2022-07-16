@@ -1,5 +1,7 @@
 package zygame.res;
 
+import zygame.display.Scene;
+import zygame.utils.StringUtils;
 import zygame.display.Scroll;
 import zygame.display.Image;
 import zygame.display.Quad;
@@ -20,6 +22,7 @@ class Builder {
 
 	public function new() {
 		// 这是基础类型
+		addClass(Scene);
 		addClass(Box);
 		addClass(Button);
 		addClass(HBox);
@@ -36,6 +39,21 @@ class Builder {
 	 */
 	public function addClass(c:Class<Dynamic>):Void {
 		var name = Type.getClassName(c);
-		classDefine.set(name, c);
+		var array = name.split(".");
+		classDefine.set(array[array.length - 1], c);
+	}
+
+	/**
+	 * 创建类型的单例，可以通过Box这种简写获取正确的类型对象
+	 * @param type 
+	 * @param array 
+	 * @return Dynamic
+	 */
+	public function createInstance(type:String, array:Array<Dynamic> = null):Dynamic {
+		var c = classDefine.get(type);
+		if (c == null) {
+			c = Type.resolveClass(type);
+		}
+		return Type.createInstance(c, array == null ? [] : array);
 	}
 }

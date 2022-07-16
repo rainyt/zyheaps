@@ -7,7 +7,6 @@ import h2d.Tile;
  * 资源管理器，通过`AssetsBuilder.bindAssets`绑定的资源，可以通过`AssetsBuilder`进行全局获取，例如`AssetsBuilder.getBitmapDataTile("id")`
  */
 class AssetsBuilder {
-
 	/**
 	 * UI构造器
 	 */
@@ -43,6 +42,20 @@ class AssetsBuilder {
 		for (assets in assetsList) {
 			if (assets.hasTypeAssets(BITMAP, id)) {
 				return assets.getBitmapDataTile(id);
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * 获取XML数据
+	 * @param id 
+	 * @return Xml
+	 */
+	public static function getXml(id:String):Xml {
+		for (assets in assetsList) {
+			if (assets.hasTypeAssets(XML, id)) {
+				return assets.getXml(id);
 			}
 		}
 		return null;

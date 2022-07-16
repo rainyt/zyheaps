@@ -29,8 +29,6 @@ class Scene extends Box {
 	 * 当舞台发生了尺寸变化时，会触发此事件
 	 */
 	public function onResize():Void {
-		this.width = stageWidth;
-		this.height = stageHeight;
 		this.dirt = true;
 	}
 
@@ -60,5 +58,11 @@ class Scene extends Box {
 			this.layout();
 		}
 		super.draw(ctx);
+	}
+
+	override function layout() {
+		this.width = stageWidth;
+		this.height = stageHeight;
+		super.layout();
 	}
 }
