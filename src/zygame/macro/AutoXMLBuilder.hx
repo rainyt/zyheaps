@@ -23,7 +23,8 @@ class AutoXMLBuilder {
 		var fields = Context.getBuildFields();
 		var xml:Xml = Xml.parse(File.getContent(firstProjectData.assetsPath.get(xmlid + ".xml")));
 		var ids:Map<String, String> = [];
-		parserIds(xml, ids);
+		var assets:Array<FileType> = [];
+		parserIds(xml, ids, assets);
 		var className = Context.getLocalClass().get().superClass.t.toString();
 		if (className == "zygame.display.LoaderXMLScene") {
 			// 支持载入的场景
@@ -66,6 +67,55 @@ class AutoXMLBuilder {
 				}
 				fields.push(new_func);
 			}
+			// todo 这里要实现资源载入支持
+			var textures:Array<{png:String, xml:String}> = [];
+			var files:Array<String> = [];
+			for (type in assets) {
+				switch type {
+					case FILE(file):
+						// 普通文件
+						var p = firstProjectData.assetsRenamePath.get(file);
+						if (files.indexOf(p) == -1)
+							files.push(p);
+					case ATLAS(png, xml):
+						// 精灵图
+						var f = textures.filter((data) -> data.png == png && data.xml == xml);
+						if (f.length == 0)
+							textures.push({
+								png: firstProjectData.assetsRenamePath.get(png),
+								xml: firstProjectData.assetsRenamePath.get(xml)
+							});
+				}
+			}
+			// var spines:Array<
+			var on_load:Function = {
+				expr: macro {
+					var textures:Array<{png:String, xml:String}> = $v{textures};
+					var files:Array<String> = $v{files};
+					// var spines:Array<{png:String, atlas:String}> = $v{spines};
+					for (f in files) {
+						this.assets.loadFile(f);
+					}
+					// for (s in spines) {
+					// 	if (zygame.components.ZBuilder.getBaseTextureAtlas(zygame.utils.StringUtils.getName(s.png)) == null) {
+					// 		this.$bindBuilder.loadSpine([s.png], s.atlas);
+					// 		// this.$bindBuilder.loadFiles([s.json]);
+					// 	}
+					// }
+					for (item in textures) {
+						this.assets.loadAtlas(item.png, item.xml);
+					}
+				},
+				ret: macro:Void,
+				args: []
+			}
+			var load_func = {
+				name: "_onLoad",
+				access: [AOverride],
+				kind: FieldType.FFun(on_load),
+				pos: Context.currentPos()
+			}
+			fields.push(load_func);
 		} else {
 			// 普通对象
 			var onInit = fields.filter((f) -> f.name == "onInit")[0];
@@ -128,14 +178,38 @@ class AutoXMLBuilder {
 	 * @param xml 
 	 * @param ids 
 	 */
-	public static function parserIds(xml:Xml, ids:Map<String, String>):Void {
+	public static function parserIds(xml:Xml, ids:Map<String, String>, array:Array<FileType>):Void {
 		xml = xml.nodeType == Document ? xml.firstElement() : xml;
-		if (xml.get("id") != null) {
-			ids.set(xml.get("id"), xml.nodeName);
+		var id:String = xml.get("id");
+		var src:String = xml.get("src");
+		if (id != null) {
+			ids.set(id, xml.nodeName);
+		}
+		if (src != null) {
+			switch (xml.nodeName) {
+				default:
+					if (src.indexOf(":") != -1) {
+						// 精灵图
+						var arr = src.split(":");
+						array.push(ATLAS(arr[0] + ".png", arr[0] + ".xml"));
+					} else {
+						// 单个图片
+						if (firstProjectData.assetsRenamePath.exists(src + ".png"))
+							array.push(FILE(src + ".png"));
+						else {
+							array.push(FILE(src + ".jpg"));
+						}
+					}
+			}
 		}
 		for (item in xml.elements()) {
-			parserIds(item, ids);
+			parserIds(item, ids, array);
 		}
 	}
+}
+
+enum FileType {
+	FILE(file:String);
+	ATLAS(png:String, xml:String);
 }
 #end

@@ -30,10 +30,10 @@ class LoaderXMLScene extends Scene {
 		super(parent);
 		loadPath = path;
 		assets = new Assets();
+		AssetsBuilder.bindAssets(assets);
 		_onLoad();
 		onLoad();
 		loadXml(function(data) {
-			trace(data);
 			assets.start(function(f) {
 				if (f == 1) {
 					// 开始构造
@@ -85,4 +85,9 @@ class LoaderXMLScene extends Scene {
 	 * @param msg 
 	 */
 	public function onError(msg):Void {}
+
+	override function onRelease() {
+		super.onRelease();
+		AssetsBuilder.unbindAssets(assets);
+	}
 }
