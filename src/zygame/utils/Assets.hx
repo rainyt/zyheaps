@@ -1,5 +1,6 @@
 package zygame.utils;
 
+import hxd.res.Atlas;
 import haxe.Exception;
 import hxd.res.Sound;
 import zygame.res.XMLAtlas;
@@ -237,5 +238,14 @@ class Assets {
 	 */
 	public function getSound(id:String):Sound {
 		return getTypeAssets(SOUND, id);
+	}
+
+	/**
+	 * 获取精灵图
+	 * @param id 
+	 * @return Atlas
+	 */
+	public function getAtlas(id:String):Atlas {
+		return getTypeAssets(ATLAS, id);
 	}
 }

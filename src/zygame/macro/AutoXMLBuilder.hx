@@ -94,7 +94,8 @@ class AutoXMLBuilder {
 					var files:Array<String> = $v{files};
 					// var spines:Array<{png:String, atlas:String}> = $v{spines};
 					for (f in files) {
-						this.assets.loadFile(f);
+						if (zygame.res.AssetsBuilder.getBitmapDataTile(zygame.utils.StringUtils.getName(f)) == null)
+							this.assets.loadFile(f);
 					}
 					// for (s in spines) {
 					// 	if (zygame.components.ZBuilder.getBaseTextureAtlas(zygame.utils.StringUtils.getName(s.png)) == null) {
@@ -103,7 +104,8 @@ class AutoXMLBuilder {
 					// 	}
 					// }
 					for (item in textures) {
-						this.assets.loadAtlas(item.png, item.xml);
+						if (zygame.res.AssetsBuilder.getAtlas(zygame.utils.StringUtils.getName(item.png)) == null)
+							this.assets.loadAtlas(item.png, item.xml);
 					}
 				},
 				ret: macro:Void,

@@ -1,5 +1,6 @@
 package zygame.res;
 
+import hxd.res.Atlas;
 import zygame.utils.Assets;
 import h2d.Tile;
 
@@ -41,8 +42,22 @@ class AssetsBuilder {
 	public static function getBitmapDataTile(id:String):Tile {
 		for (assets in assetsList) {
 			var tile = assets.getBitmapDataTile(id);
-			if(tile != null)
+			if (tile != null)
 				return tile;
+		}
+		return null;
+	}
+
+	/**
+	 * 获取精灵图
+	 * @param id 
+	 * @return Atlas
+	 */
+	public static function getAtlas(id:String):Atlas {
+		for (assets in assetsList) {
+			var atlas = assets.getAtlas(id);
+			if (atlas != null)
+				return atlas;
 		}
 		return null;
 	}
