@@ -1,5 +1,0 @@
---main Main
---class-path src
---library heaps
---library zyheaps
---cmd haxelib run zyheaps build html5

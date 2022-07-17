@@ -1,6 +1,5 @@
 package zygame.res;
 
-import zygame.utils.Assets;
 import haxe.Exception;
 import h2d.Object;
 import zygame.display.Scene;

@@ -2,15 +2,28 @@
     <meta title="ILandes" package="com.sample.ilandes" version="1.0.0" company="Company Name" />
     <!-- 指定类型 -->
     <app main="Main" path="Export" file="ILandes" hdwidth="1080" hdheight="1920" />
+    <!-- <app main="World" path="Export" file="ILandes" hdwidth="1080" hdheight="1920" /> -->
     <!-- 指定资源目录 -->
     <assets path="Assets" rename="assets" />
     <!-- 指定库 -->
     <haxelib name="zyheaps" />
+    <!-- <undefine name="highdpi"/> -->
     <haxelib name="heaps" />
+    <haxelib name="actuate"/>
+    <!-- 使用hldx -->
+    <define name="dx"/>
     <!-- 指定源码位置 -->
     <source name="src" />
     <!-- 安卓配置 -->
     <define name="NDK_DIR" value="/Users/rainy/Documents/SDK/android-ndk-r18b" />
     <define name="ANDROID_SDK_DIR" value="/Users/rainy/Library/Android/sdk" />
     <define name="NDK_VERSION" value="18.1.5063045" />
+    <!-- 定义res -->
+    <!-- <define name="resourcesPath" value="res"/> -->
+
+    <!-- 取消Object.x内联 -->
+    <haxeflag name="--macro" value="addGlobalMetadata('h2d.Object', '@:build(zygame.macro.Uninline.build([\'set_x\',\'set_y\']))')"/>
+    
+
+    <!-- <define name="hl_ver" value="1.12.0"/> -->
 </project>
