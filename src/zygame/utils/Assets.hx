@@ -109,7 +109,6 @@ class Assets {
 	 */
 	private function onAssetsOut(parser:BaseParser, type:AssetsType, assetsData:Dynamic, pro:Float):Void {
 		if (assetsData != null) {
-			trace("assets out ", parser.getName(), type);
 			setTypeAssets(type, parser.getName(), assetsData);
 		}
 		if (pro == 1) {

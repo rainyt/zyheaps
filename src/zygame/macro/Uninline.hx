@@ -3,6 +3,7 @@ package zygame.macro;
 import haxe.macro.Context;
 import haxe.macro.Expr;
 
+#if macro
 /**
  * 取消内联
  */
@@ -17,3 +18,4 @@ class Uninline {
 		return array;
 	}
 }
+#end
