@@ -25,7 +25,7 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 | 动态加载资源(Dynamic load assets)  | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 编译支持(Build stats)  | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 异步加载(Async load) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 网络请求(Network) | ✅ | ❌ | ✅ | ✅ | ✅ |
+| 网络请求(Network) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 过渡动画(Actuate) | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 ## UI Component

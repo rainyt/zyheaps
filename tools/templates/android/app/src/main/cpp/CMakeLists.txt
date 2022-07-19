@@ -15,13 +15,18 @@ list(REMOVE_ITEM libhl ${CMAKE_CURRENT_SOURCE_DIR}/hashlink/src/std/debug.c)
 
 file(GLOB pcre hashlink/include/pcre/pcre*.c)
 
+file(GLOB mbedtls hashlink/include/mbedtls/library/*.c)
+
 add_library(hl STATIC
 		${pcre}
 		${libhl}
+		${mbedtls}
 		hashlink/src/std/sys_android.c
+		hashlink/libs/ssl/ssl.c
 		)
 
 target_include_directories(hl PRIVATE hashlink/include/pcre)
+target_include_directories(hl PRIVATE hashlink/include/mbedtls/include)
 target_link_libraries(hl log)
 
 # FMT
