@@ -21,6 +21,9 @@ class HttpRequest {
 	private var _post:Bool = false;
 
 	public function new(url:String, post:Bool = false) {
+		#if hl
+		sys.ssl.Socket.DEFAULT_VERIFY_CERT = false;
+		#end
 		_url = url;
 		_post = post;
 	}
