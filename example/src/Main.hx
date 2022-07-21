@@ -1,6 +1,9 @@
 import zygame.utils.SceneManager;
 import h2d.SpriteBatch;
 import zygame.core.Start;
+#if hl
+import zygame.display.Label;
+#end
 
 class Main extends Start {
 	static function main() {
