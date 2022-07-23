@@ -1,5 +1,6 @@
 package zygame.utils;
 
+import zygame.res.SpineTextureAtlas;
 import hxd.res.Atlas;
 import haxe.Exception;
 import hxd.res.Sound;
@@ -58,6 +59,18 @@ class Assets {
 		_loadlist.push(new AtlasParser({
 			png: png,
 			xml: xml
+		}));
+	}
+
+	/**
+	 * 加载Spine精灵图
+	 * @param pngs 
+	 * @param atlas 
+	 */
+	public function loadSpineAtlas(pngs:Array<String>, atlas:String):Void {
+		_loadlist.push(new zygame.loader.parser.SpineAtlasParser({
+			pngs: pngs,
+			atlas: atlas
 		}));
 	}
 
@@ -247,5 +260,14 @@ class Assets {
 	 */
 	public function getAtlas(id:String):Atlas {
 		return getTypeAssets(ATLAS, id);
+	}
+
+	/**
+	 * 获取Spine的精灵图
+	 * @param id 
+	 * @return SpineTextureAtlas
+	 */
+	public function getSpineAtlas(id:String):SpineTextureAtlas {
+		return getTypeAssets(SPINE_ATLAS, id);
 	}
 }

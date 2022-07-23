@@ -2,6 +2,7 @@
 -cp src
 -cp test
 -lib heaps
+-lib spine-hx
 # -lib hlsdl
 -lib actuate
 -D actuate_manual_update

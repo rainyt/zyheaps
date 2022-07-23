@@ -72,10 +72,10 @@ function layoutIDisplayObject(display:IDisplayObject):Void {
 		} else if (display.centerY != null) {
 			if (display.top != null) {
 				// 改变宽度
-				display.height = h / 2 - display.centerY - display.top - 1;
+				display.height = h / 2 + display.centerY - display.top - 1;
 			} else {
 				// 改变位置
-				display.y = h / 2 - display.centerY - dh / 2 - 1;
+				display.y = h / 2 + display.centerY - dh / 2 - 1;
 			}
 		}
 	}
@@ -112,6 +112,16 @@ interface IDisplayObject {
 	 * 高度
 	 */
 	public var height(default, set):Null<Float>;
+
+	/**
+		The amount of horizontal scaling of this object.
+	**/
+	public var scaleX(default, set):Float;
+
+	/**
+		The amount of vertical scaling of this object.
+	**/
+	public var scaleY(default, set):Float;
 
 	/**
 	 * 距离左边

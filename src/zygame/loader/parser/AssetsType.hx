@@ -11,6 +11,7 @@ enum abstract AssetsType(Int) to Int from Int {
 	public var JSON; // JSON动态数据：json
 	public var XML; // XML动态数据：xml
 	public var SOUND; // 音频：ogg/mp3
+	public var SPINE_ATLAS;
 	// public var CUSTOM = 1; // 自定义：一般用于扩展解析器功能使用
 	// public var DYNAMICTEXTUREATLAS = 4; // 动态精灵图表：xml/png
 	// public var ZIP = 5; // 压缩资源载入：zip

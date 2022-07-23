@@ -1,7 +1,6 @@
 package lime.tools;
 
-enum AssetType
-{
+enum AssetType {
 	BINARY;
 	BUNDLE;
 	FONT;
@@ -12,4 +11,5 @@ enum AssetType
 	SOUND;
 	TEMPLATE;
 	TEXT;
+	SPINE_ATLAS;
 }
