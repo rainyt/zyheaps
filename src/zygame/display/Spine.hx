@@ -218,7 +218,8 @@ class Spine extends Box {
 					bitmapData = atlasRegion.page.rendererObject;
 					_sprite.beginTileFill(bitmapData);
 				}
-				_sprite.drawTriangles(_tempVerticesArray, triangles == null ? defalutTriangles : triangles, uvs);
+				_sprite.drawTriangles(_tempVerticesArray, triangles == null ? defalutTriangles : triangles, uvs, slot.color.r, slot.color.g, slot.color.b,
+					slot.color.a);
 				// drawGraphics(slot, bitmapData, false);
 				clipper.clipEndWithSlot(slot);
 			} else if (slot != null && clipper.isClipping()) {
@@ -236,12 +237,12 @@ class Spine extends Box {
 	 */
 	public var fps(get, set):Int;
 
-	private function set_fps(v:Float):Float {
+	private function set_fps(v:Int):Int {
 		_fps.fps = v;
 		return v;
 	}
 
-	private function get_fps():Float {
+	private function get_fps():Int {
 		return _fps.fps;
 	}
 

@@ -17,15 +17,15 @@ class Graphics extends BaseGraphics {
 	 * @param indices 顶点顺序
 	 * @param uvtData UV数据
 	 */
-	public function drawTriangles(vertices:Array<Float>, indices:Array<Int> = null, uvtData:Array<Float> = null, alphas:Array<Float> = null):Void {
+	public function drawTriangles(vertices:Array<Float>, indices:Array<Int> = null, uvtData:Array<Float> = null, r:Float = 1, g:Float = 1, b:Float = 1,
+			a:Float = 1):Void {
 		this.flush();
 		var counts:Int = indices.length;
 		var v = 0;
 		for (i in 0...counts) {
 			var pos = indices[i];
 			var index = pos * 2;
-			this.addVertex(vertices[index], vertices[index + 1], curR, curG, curB, alphas == null ? 1 : alphas[pos], uvtData == null ? 0 : uvtData[index],
-				uvtData == null ? 0 : uvtData[index + 1]);
+			this.addVertex(vertices[index], vertices[index + 1], r, g, b, a, uvtData == null ? 0 : uvtData[index], uvtData == null ? 0 : uvtData[index + 1]);
 			v++;
 			if (v == 3) {
 				this.flush();

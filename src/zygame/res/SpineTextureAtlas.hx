@@ -1,5 +1,6 @@
 package zygame.res;
 
+import haxe.Json;
 import zygame.utils.StringUtils;
 import spine.support.graphics.TextureLoader;
 import spine.attachments.AtlasAttachmentLoader;
@@ -47,14 +48,14 @@ class SpineTextureAtlas {
 	 * @param json 
 	 * @return SkeletonData
 	 */
-	public function buildSpriteSkeletonData(id:String, data:String):SkeletonData {
+	public function buildSpriteSkeletonData(id:String, data:Dynamic):SkeletonData {
 		if (_skeletonData.exists(id)) {
 			return _skeletonData.get(id);
 		}
 		#if spine4
-		var skeletonData:SkeletonData = getSpriteSkeletonManager().readSkeletonData(new JsonDynamic(haxe.Json.parse(data)));
+		var skeletonData:SkeletonData = getSpriteSkeletonManager().readSkeletonData(new JsonDynamic(data));
 		#else
-		var skeletonData:SkeletonData = getSpriteSkeletonManager().readSkeletonData(new SkeletonDataFileHandle(null, data));
+		var skeletonData:SkeletonData = getSpriteSkeletonManager().readSkeletonData(new SkeletonDataFileHandle(null, Json.stringify(data)));
 		#end
 		_skeletonData.set(id, skeletonData);
 		return skeletonData;
@@ -80,7 +81,7 @@ class SpineTextureAtlas {
 	 * 生成CPUSprite使用的骨骼动画
 	 * @return spine.openfl.SkeletonAnimation
 	 */
-	public function buildSpriteSkeleton(id:String, data:String):Spine {
+	public function buildSpriteSkeleton(id:String, data:Dynamic):Spine {
 		var skeletonData:SkeletonData = buildSpriteSkeletonData(id, data);
 		var skeleton:Spine = new Spine(skeletonData);
 		return skeleton;

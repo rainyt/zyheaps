@@ -1,5 +1,7 @@
 package zygame.utils;
 
+import haxe.Json;
+import zygame.display.Spine;
 import zygame.res.SpineTextureAtlas;
 import hxd.res.Atlas;
 import haxe.Exception;
@@ -269,5 +271,15 @@ class Assets {
 	 */
 	public function getSpineAtlas(id:String):SpineTextureAtlas {
 		return getTypeAssets(SPINE_ATLAS, id);
+	}
+
+	/**
+	 * 创建Spine对象
+	 * @param atlasName 
+	 * @param jsonName 
+	 * @return Spine
+	 */
+	public function createSpine(atlasName:String, jsonName:String):Spine {
+		return this.getSpineAtlas(atlasName).buildSpriteSkeleton(atlasName, this.getJson(jsonName));
 	}
 }
