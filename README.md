@@ -39,6 +39,7 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 - [x] 竖向排序容器(VBox) zygame.display.VBox
 - [x] 横向排序容器(HBox) zygame.display.HBox
 - [x] 场景(Scene) zygame.display.Scene
+- [x] Spine动画(Spine) zygame.display.Spine
 
 ## VSCode Heaps
 - 你可以在VSCode的插件商店中搜索`Heaps`，进行安装插件，该插件会检测`zyheaps.xml`配置文件进行编译。
