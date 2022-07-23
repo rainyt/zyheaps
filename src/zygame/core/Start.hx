@@ -1,5 +1,6 @@
 package zygame.core;
 
+import zygame.utils.FpsUtils;
 import zygame.utils.SceneManager;
 import haxe.Timer;
 #if actuate
@@ -126,8 +127,13 @@ class Start extends #if js zygame.core.platform.JsStart #else App #end {
 		return __stateSize.height;
 	}
 
+	private var _fpsUtils:FpsUtils = new FpsUtils(60);
+
 	override function update(dt:Float) {
 		super.update(dt);
+		if (!_fpsUtils.update())
+			return;
+
 		#if actuate
 		#if hl
 		@:privateAccess SimpleActuator.stage_onEnterFrame();

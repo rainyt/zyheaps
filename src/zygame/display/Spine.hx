@@ -1,5 +1,7 @@
 package zygame.display;
 
+import zygame.utils.FpsUtils;
+import haxe.Timer;
 import spine.AnimationStateData;
 import spine.BlendMode;
 import h2d.Tile;
@@ -229,8 +231,29 @@ class Spine extends Box {
 
 	private function drawGraphics(slot:Slot, bitmapData:Tile, isBlendMode:Bool = false):Void {}
 
+	/**
+	 * FPS，默认为60
+	 */
+	public var fps(get, set):Int;
+
+	private function set_fps(v:Float):Float {
+		_fps.fps = v;
+		return v;
+	}
+
+	private function get_fps():Float {
+		return _fps.fps;
+	}
+
+	private var _fps:FpsUtils = new FpsUtils(60);
+	private var _time:Float = Timer.stamp();
+
 	override function draw(ctx:RenderContext) {
-		advanceTime(1 / 60);
+		if (_fps.update()) {
+			var now = Timer.stamp();
+			advanceTime(now - _time);
+			_time = now;
+		}
 		super.draw(ctx);
 	}
 }
