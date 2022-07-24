@@ -28,8 +28,8 @@ class FpsUtils {
 		_fpsMath += now - _fpsStamp;
 		_fpsStamp = now;
 		if (_fpsMath > _fpsTime) {
-			// _fpsMath -= _fpsTime;
-			_fpsMath = 0;
+			_fpsMath %= _fpsTime;
+			// _fpsMath = 0;
 			return true;
 		}
 		return false;
