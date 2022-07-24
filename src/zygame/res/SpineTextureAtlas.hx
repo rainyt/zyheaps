@@ -1,5 +1,6 @@
 package zygame.res;
 
+#if spine_hx
 import haxe.Json;
 import zygame.utils.StringUtils;
 import spine.support.graphics.TextureLoader;
@@ -189,3 +190,5 @@ class SkeletonDataFileHandle implements spine.support.files.FileHandle {
 		return _data;
 	}
 }
+
+#end

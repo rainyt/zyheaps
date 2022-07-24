@@ -1,5 +1,7 @@
 package zygame.display;
 
+#if spine_hx
+
 import zygame.utils.FpsUtils;
 import haxe.Timer;
 import spine.AnimationStateData;
@@ -258,3 +260,5 @@ class Spine extends Box {
 		super.draw(ctx);
 	}
 }
+
+#end

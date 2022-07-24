@@ -2,7 +2,9 @@ package zygame.utils;
 
 import haxe.Json;
 import zygame.display.Spine;
+#if spine_hx
 import zygame.res.SpineTextureAtlas;
+#end
 import hxd.res.Atlas;
 import haxe.Exception;
 import hxd.res.Sound;
@@ -85,10 +87,12 @@ class Assets {
 	 * @param atlas 
 	 */
 	public function loadSpineAtlas(pngs:Array<String>, atlas:String):Void {
+		#if spine_hx
 		_loadlist.push(new zygame.loader.parser.SpineAtlasParser({
 			pngs: pngs,
 			atlas: atlas
 		}));
+		#end
 	}
 
 	/**
@@ -296,7 +300,7 @@ class Assets {
 	 * @param id 
 	 * @return SpineTextureAtlas
 	 */
-	public function getSpineAtlas(id:String):SpineTextureAtlas {
+	public function getSpineAtlas(id:String):#if spine_hx SpineTextureAtlas #else Dynamic #end {
 		return getTypeAssets(SPINE_ATLAS, id);
 	}
 
@@ -306,7 +310,7 @@ class Assets {
 	 * @param jsonName 
 	 * @return Spine
 	 */
-	public function createSpine(atlasName:String, jsonName:String):Spine {
+	public function createSpine(atlasName:String, jsonName:String):#if spine_hx Spine #else Dynamic #end {
 		return this.getSpineAtlas(atlasName).buildSpriteSkeleton(atlasName, this.getJson(jsonName));
 	}
 }

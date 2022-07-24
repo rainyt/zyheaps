@@ -1,5 +1,5 @@
 <project>
-    <haxelib name="spine-hx"/>
+    <!-- <haxelib name="spine-hx"/> -->
     <template path="tools/templates" />
     <define name="highdpi"/>
     <define name="actuate_manual_update"/>
