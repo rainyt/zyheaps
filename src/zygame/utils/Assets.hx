@@ -151,14 +151,12 @@ class Assets {
 	 */
 	private function onAssetsOut(parser:BaseParser, type:AssetsType, assetsData:Dynamic, pro:Float):Void {
 		if (assetsData != null) {
-			trace(type, parser.getName());
 			setTypeAssets(type, parser.getName(), assetsData);
 		}
 		if (pro == 1) {
 			// 下一个
 			_loadedCounts++;
 			_currentLoadCounts--;
-			trace("载入完成：", _loadedCounts, _loadlist.length);
 			this.loadNext();
 		}
 	}
