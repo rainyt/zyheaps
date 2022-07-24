@@ -23,6 +23,16 @@ using Reflect;
  * 资源管理器
  */
 class Assets {
+	/**
+	 * 加载最大线程
+	 */
+	public var maxLoadCounts:Int = #if hl 30 #else 10 #end;
+
+	/**
+	 * 当前已载入的线程
+	 */
+	private var _currentLoadCounts:Int = 0;
+
 	private var _loadlist:Array<BaseParser> = [];
 
 	private var _loadedData:Map<AssetsType, Map<String, Dynamic>> = [];
@@ -31,6 +41,11 @@ class Assets {
 	 * 当前载入进度
 	 */
 	private var _currentLoadIndex = 0;
+
+	/**
+	 * 已载入完成的数量
+	 */
+	private var _loadedCounts:Int = 0;
 
 	/**
 	 * 加载回调
@@ -92,6 +107,8 @@ class Assets {
 	public function start(cb:Float->Void):Void {
 		_onProgress = cb;
 		_currentLoadIndex = 0;
+		_currentLoadCounts = 0;
+		_loadedCounts = 0;
 		loadNext();
 	}
 
@@ -99,17 +116,27 @@ class Assets {
 	 * 开始加载下一个
 	 */
 	private function loadNext():Void {
-		if (_currentLoadIndex >= _loadlist.length) {
+		if (_currentLoadCounts >= maxLoadCounts)
+			return;
+		if (_loadedCounts + 1 >= _loadlist.length) {
 			// 加载完成
 			_onProgress(1);
 			return;
 		} else {
-			_onProgress(_currentLoadIndex / _loadlist.length);
+			_onProgress((_loadedCounts + 1) / _loadlist.length);
 		}
+		_currentLoadCounts++;
+		if (_loadlist.length > _currentLoadIndex)
+			_currentLoadIndex++;
 		var parser = _loadlist[_currentLoadIndex];
+		if (parser == null)
+			return;
 		parser.out = onAssetsOut;
 		parser.error = onError;
 		parser.load(this);
+		// 发起多个加载
+		if (_currentLoadCounts < maxLoadCounts)
+			loadNext();
 	}
 
 	public function onError(msg:String):Void {
@@ -129,7 +156,8 @@ class Assets {
 		}
 		if (pro == 1) {
 			// 下一个
-			_currentLoadIndex++;
+			_loadedCounts++;
+			_currentLoadCounts--;
 			this.loadNext();
 		}
 	}
