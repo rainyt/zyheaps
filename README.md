@@ -1,6 +1,6 @@
 ## zyheaps
-- 这是一个基于heaps引擎之上的简化版api。旨意让它拥有可用的Android/IOS/Mac/Window/HTML5/小游戏等平台开箱即用的能力。
-- This is a simplified API based on the heaps engine. The purpose is to make it have the out of the box ability of available android/ios/mac/window/html5/ games and other platforms.
+- 它拥有可用的Android/IOS/Mac/Window/HTML5/小游戏等平台开箱即用的能力，同时它自身带了一个易用API，例如一些常用的组件：按钮、Spine、ttf文本等。不使用该API，仍然可以使用该库进行编译。
+- It has the out of the box ability of available android/ios/mac/window/html5/ games and other platforms. At the same time, it comes with an easy-to-use API, such as some commonly used components: buttons, spine, TTF text, etc. Without using this API, you can still compile with this library.
 
 ![Example](example.png)
 

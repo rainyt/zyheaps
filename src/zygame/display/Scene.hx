@@ -49,7 +49,6 @@ class Scene extends Box {
 	}
 
 	override function addChildAt(s:Object, pos:Int) {
-		this.dirt = true;
 		super.addChildAt(s, pos);
 	}
 

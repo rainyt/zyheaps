@@ -6,11 +6,6 @@ import zygame.display.base.BaseGraphics;
  * 图形绘制
  */
 class Graphics extends BaseGraphics {
-	// private var _index = 0;
-	override function clear() {
-		super.clear();
-	}
-
 	/**
 	 * 绘制三角形
 	 * @param vertices 顶点坐标
