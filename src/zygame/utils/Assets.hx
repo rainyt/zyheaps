@@ -313,4 +313,34 @@ class Assets {
 	public function createSpine(atlasName:String, jsonName:String):#if spine_hx Spine #else Dynamic #end {
 		return this.getSpineAtlas(atlasName).buildSpriteSkeleton(atlasName, this.getJson(jsonName));
 	}
+
+	/**
+	 * 卸载所有资源
+	 */
+	public function unloadAll():Void {
+		unloadTypeAssets(AssetsType.ATLAS);
+		unloadTypeAssets(AssetsType.BITMAP);
+		unloadTypeAssets(AssetsType.BITMAP_TILE);
+		unloadTypeAssets(AssetsType.BYTES);
+		unloadTypeAssets(AssetsType.JSON);
+		unloadTypeAssets(AssetsType.SOUND);
+		unloadTypeAssets(AssetsType.SPINE_ATLAS);
+		unloadTypeAssets(AssetsType.XML);
+	}
+
+	/**
+	 * 卸载对应类型的资源
+	 * @param type 
+	 */
+	public function unloadTypeAssets(type:AssetsType):Void {
+		if (_loadedData.exists(type)) {
+			var m = _loadedData.get(type);
+			for (key => value in m) {
+				if (value is Tile) {
+					cast(value, Tile).dispose();
+				}
+			}
+			_loadedData.remove(type);
+		}
+	}
 }

@@ -29,7 +29,6 @@ class Box extends h2d.Object implements IDisplayObject {
 	}
 
 	override function addChildAt(s:Object, pos:Int) {
-		@:privateAccess SceneManager.setDirt();
 		super.addChildAt(s, pos);
 	}
 

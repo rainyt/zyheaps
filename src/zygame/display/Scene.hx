@@ -65,5 +65,9 @@ class Scene extends Box {
 		super.layout();
 	}
 
+	/**
+	 * 更新函数
+	 * @param dt 
+	 */
 	public function update(dt:Float):Void {}
 }
