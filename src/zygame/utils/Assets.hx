@@ -118,17 +118,16 @@ class Assets {
 	private function loadNext():Void {
 		if (_currentLoadCounts >= maxLoadCounts)
 			return;
-		if (_loadedCounts + 1 >= _loadlist.length) {
+		if (_loadedCounts >= _loadlist.length) {
 			// 加载完成
 			_onProgress(1);
 			return;
 		} else {
-			_onProgress((_loadedCounts + 1) / _loadlist.length);
+			_onProgress((_loadedCounts) / _loadlist.length);
 		}
 		_currentLoadCounts++;
-		if (_loadlist.length > _currentLoadIndex)
-			_currentLoadIndex++;
-		var parser = _loadlist[_currentLoadIndex];
+		_currentLoadIndex++;
+		var parser = _loadlist[_currentLoadIndex - 1];
 		if (parser == null)
 			return;
 		parser.out = onAssetsOut;
@@ -152,12 +151,14 @@ class Assets {
 	 */
 	private function onAssetsOut(parser:BaseParser, type:AssetsType, assetsData:Dynamic, pro:Float):Void {
 		if (assetsData != null) {
+			trace(type, parser.getName());
 			setTypeAssets(type, parser.getName(), assetsData);
 		}
 		if (pro == 1) {
 			// 下一个
 			_loadedCounts++;
 			_currentLoadCounts--;
+			trace("载入完成：", _loadedCounts, _loadlist.length);
 			this.loadNext();
 		}
 	}
