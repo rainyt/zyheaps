@@ -22,11 +22,13 @@ class Graphics extends BaseGraphics {
 		this.flush();
 		var counts:Int = indices.length;
 		var v = 0;
+		r = r == null ? curR : r;
+		g = g == null ? curG : g;
+		b = b == null ? curB : b;
 		for (i in 0...counts) {
 			var pos = indices[i];
 			var index = pos * 2;
-			this.addVertex(vertices[index], vertices[index + 1], r == null ? curR : r, g == null ? curG : g, b == null ? curB : b, a,
-				uvtData == null ? 0 : uvtData[index], uvtData == null ? 0 : uvtData[index + 1]);
+			this.addVertex(vertices[index], vertices[index + 1], r, g, b, a, uvtData == null ? 0 : uvtData[index], uvtData == null ? 0 : uvtData[index + 1]);
 			v++;
 			if (v == 3) {
 				this.flush();
