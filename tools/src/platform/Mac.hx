@@ -1,5 +1,6 @@
 package platform;
 
+import hxp.HXML;
 import sys.io.File;
 import lime.tools.IconHelper;
 import lime.tools.Icon;
@@ -29,12 +30,17 @@ class Mac extends BasePlatform {
 		}
 	}
 
+	override function initHxml():HXML {
+		super.initHxml();
+		hxml.lib("hlsdl");
+		hxml.hl = macOsPath + "/main.hl";
+		return hxml;
+	}
+
 	override function onBuild() {
 		super.onBuild();
 		// 编译hl
 		var hxml = initHxml();
-		hxml.lib("hlsdl");
-		hxml.hl = macOsPath + "/main.hl";
 		hxml.build();
 		// 改名
 		FileSystem.deleteFile(macOsPath + "/hlboot.dat");

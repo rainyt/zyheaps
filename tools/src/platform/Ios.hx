@@ -1,5 +1,6 @@
 package platform;
 
+import hxp.HXML;
 import haxe.Exception;
 import hxp.Log;
 import sys.io.File;
@@ -51,12 +52,17 @@ class Ios extends BasePlatform {
 		}
 	}
 
+	override function initHxml():HXML {
+		super.initHxml();
+		hxml.lib("hlsdl");
+		hxml.hl = project.app.path + "/" + platform + "/out/main.c";
+		return hxml;
+	}
+
 	override function onBuild() {
 		super.onBuild();
 		// 开始编译cpp目标
 		var hxml = initHxml();
-		hxml.lib("hlsdl");
-		hxml.hl = project.app.path + "/" + platform + "/out/main.c";
 		hxml.build();
 		// System.writeText(hxml, project.app.path + "/" + platform + "/app/src/main/build.hxml");
 	}

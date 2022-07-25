@@ -1,5 +1,6 @@
 package platform;
 
+import hxp.HXML;
 import sys.FileSystem;
 import lime.tools.AssetHelper;
 
@@ -17,16 +18,21 @@ class Window extends BasePlatform {
 		}
 	}
 
-	override function onBuild() {
-		super.onBuild();
-		// 编译hl
-		var hxml = initHxml();
+	override function initHxml():HXML {
+		super.initHxml();
 		if (project.defines.exists("dx")) {
 			hxml.lib("hldx");
 		} else {
 			hxml.lib("hlsdl");
 		}
 		hxml.hl = osPath + "/main.hl";
+		return hxml;
+	}
+
+	override function onBuild() {
+		super.onBuild();
+		// 编译hl
+		var hxml = initHxml();
 		hxml.build();
 	}
 }
