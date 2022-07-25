@@ -31,8 +31,10 @@ class Thread {
 				case 200:
 					_threads.remove(data.uid);
 					_counts--;
+					loop();
 				default:
 					_threads.get(data.uid).onMessage(data);
+					loop();
 			}
 		}
 	}
