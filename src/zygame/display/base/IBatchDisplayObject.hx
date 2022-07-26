@@ -35,6 +35,11 @@ interface IBatchDisplayObject {
 	public var height(default, set):Null<Float>;
 
 	/**
+	 * 角度
+	 */
+	public var rotation(default, set):Null<Float>;
+
+	/**
 		The amount of horizontal scaling of this object.
 	**/
 	public var scaleX(default, set):Float;

@@ -1,5 +1,6 @@
 package zygame.display.batch;
 
+import h2d.col.Matrix;
 import h2d.SpriteBatch.BasicElement;
 import zygame.core.Start;
 import zygame.display.base.IBatchDisplayObject;
@@ -8,9 +9,24 @@ import zygame.display.base.IBatchDisplayObject;
  * 批处理基础类
  */
 class BObject implements IBatchDisplayObject {
-	private var __worldX:Float = 0;
+	// private var __worldX:Float = 0;
+	// private var __worldY:Float = 0;
+	private var __transform:Matrix = new Matrix();
 
-	private var __worldY:Float = 0;
+	private var __worldTransform:Matrix = new Matrix();
+
+	private function __update():Void {
+		__transform.identity();
+		__transform.rotate(this.rotation * Math.PI / 180);
+		__transform.scale(this.scaleX, this.scaleY);
+		__transform.translate(this.x, this.y);
+		__worldTransform.identity();
+		if (this.parent == null) {
+			__worldTransform.multiply(__transform, __worldTransform);
+		} else {
+			__worldTransform.multiply(__transform, @:privateAccess parent.__worldTransform);
+		}
+	}
 
 	public var children:Array<BObject> = [];
 
@@ -22,19 +38,24 @@ class BObject implements IBatchDisplayObject {
 		if (child.parent != null) {
 			removeChild(child);
 		}
+		child.parent = this;
 		children[pos] = child;
 	}
 
 	public function removeChild(child:BObject):Void {
 		if (child.parent == this) {
 			children.remove(child);
+			child.parent = null;
 		}
 	}
 
 	public function new() {
-        this.x = 0;
-        this.y = 0;
-    }
+		this.x = 0;
+		this.y = 0;
+		this.scaleX = 1;
+		this.scaleY = 1;
+		this.rotation = 0;
+	}
 
 	public var dirt:Bool;
 
@@ -50,7 +71,7 @@ class BObject implements IBatchDisplayObject {
 
 	public var stageHeight(get, never):Float;
 
-	public var parent(default, null):BImage;
+	public var parent(default, null):BObject;
 
 	public function set_x(value:Float):Float {
 		this.x = value;
@@ -109,4 +130,11 @@ class BObject implements IBatchDisplayObject {
 	public function layout() {}
 
 	public function onInit() {}
+
+	public var rotation(default, set):Null<Float>;
+
+	public function set_rotation(value:Null<Float>):Null<Float> {
+		this.rotation = value;
+		return value;
+	}
 }

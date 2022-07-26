@@ -46,20 +46,25 @@ class SceneBatch extends Scene {
 	private function renderImage(img:BImage):Void {
 		var basic = @:privateAccess img._basic;
 		if (basic.t != null) {
-			basic.x = @:privateAccess img.__worldX + img.x;
-			basic.y = @:privateAccess img.__worldY + img.y;
-			trace(basic.x, basic.y);
+			var m = @:privateAccess img.__worldTransform;
+			var radians = Math.atan2(m.d, m.c);
+			var scale = m.getScale();
+			var __rotation = radians;
+			basic.x = m.x;
+			basic.y = m.y;
+			basic.rotation = __rotation;
+			basic.scaleX = scale.x;
+			basic.scaleY = scale.y;
 			_batch.add(basic);
 		}
 	}
 
 	private function renderObject(object:BObject):Void {
+		@:privateAccess object.__update();
 		if (object is BImage) {
 			renderImage(cast object);
 		}
 		for (child in object.children) {
-			@:privateAccess child.__worldX = object.__worldX + child.x;
-			@:privateAccess child.__worldY = object.__worldY + child.y;
 			renderObject(child);
 		}
 	}
