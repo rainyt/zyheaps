@@ -41,6 +41,13 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 - [x] 场景(Scene) zygame.display.Scene
 - [x] Spine动画(Spine) zygame.display.Spine
 
+## Batch Component
+- [x] 按钮(BButton) zygame.display.batch.BButton
+- [ ] 容器(BBox) zygame.display.batch.BBox
+- [x] 图片(BImage) zygame.display.batch.BImage
+- [ ] 位图文字(BLabel)
+- [ ] 九宫格图
+
 ## VSCode Heaps
 - 你可以在VSCode的插件商店中搜索`Heaps`，进行安装插件，该插件会检测`zyheaps.xml`配置文件进行编译。
 - [https://github.com/rainyt/heaps-vscode-extension](https://github.com/rainyt/heaps-vscode-extension)
