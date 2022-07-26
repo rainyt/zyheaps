@@ -49,12 +49,12 @@ class SceneBatch extends Scene {
 			var m = @:privateAccess img.__worldTransform;
 			var radians = Math.atan2(m.d, m.c);
 			var scale = m.getScale();
-			var __rotation = radians;
+			var __rotation = radians - 3.14 * 0.5;
 			basic.x = m.x;
 			basic.y = m.y;
 			basic.rotation = __rotation;
 			basic.scaleX = scale.x;
-			basic.scaleY = scale.y;
+			basic.scaleY = scale.y * (scale.x < 0 ? -1 : 1);
 			_batch.add(basic);
 		}
 	}
@@ -71,8 +71,10 @@ class SceneBatch extends Scene {
 
 	override function draw(ctx:RenderContext) {
 		// 渲染_batch
-		_batch.clear();
-		renderObject(group);
+		if (true) {
+			_batch.clear();
+			renderObject(group);
+		}
 		super.draw(ctx);
 	}
 }

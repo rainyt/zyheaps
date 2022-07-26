@@ -9,8 +9,7 @@ import zygame.display.base.IBatchDisplayObject;
  * 批处理基础类
  */
 class BObject implements IBatchDisplayObject {
-	// private var __worldX:Float = 0;
-	// private var __worldY:Float = 0;
+	
 	private var __transform:Matrix = new Matrix();
 
 	private var __worldTransform:Matrix = new Matrix();
