@@ -43,26 +43,43 @@ class SceneBatch extends Scene {
 		this.height = stageHeight;
 	}
 
-	private function renderImage(img:BImage):Void {
-		var basic = @:privateAccess img._basic;
-		if (basic.t != null) {
-			var m = @:privateAccess img.__worldTransform;
+	private function renderObject(object:BObject):Void {
+		@:privateAccess object.__update();
+		var isTransform = object.interactive != null || object is BImage;
+		if (isTransform) {
+			var m = @:privateAccess object.__worldTransform;
 			var radians = Math.atan2(m.d, m.c);
 			var scale = m.getScale();
 			var __rotation = radians - 3.14 * 0.5;
-			basic.x = m.x;
-			basic.y = m.y;
-			basic.rotation = __rotation;
-			basic.scaleX = scale.x;
-			basic.scaleY = scale.y * (scale.x < 0 ? -1 : 1);
-			_batch.add(basic);
-		}
-	}
 
-	private function renderObject(object:BObject):Void {
-		@:privateAccess object.__update();
-		if (object is BImage) {
-			renderImage(cast object);
+			if (object.interactive != null) {
+				// 渲染交互器
+				this.addChild(object.interactive);
+				object.interactive.x = m.x;
+				object.interactive.y = m.y;
+				object.interactive.rotation = __rotation;
+				object.interactive.scaleX = scale.x;
+				object.interactive.scaleY = scale.y * (scale.x < 0 ? -1 : 1);
+				object.interactive.width = object.width;
+				object.interactive.height = object.height;
+
+				// var q = new Quad(100, 100, 0xff0000, this);
+				// q.x = m.x;
+				// q.y = m.y;
+			}
+
+			if (object is BImage) {
+				var img:BImage = cast object;
+				var basic = @:privateAccess img._basic;
+				if (basic.t != null) {
+					basic.x = m.x;
+					basic.y = m.y;
+					basic.rotation = __rotation;
+					basic.scaleX = scale.x;
+					basic.scaleY = scale.y * (scale.x < 0 ? -1 : 1);
+					_batch.add(basic);
+				}
+			}
 		}
 		for (child in object.children) {
 			renderObject(child);
@@ -72,6 +89,8 @@ class SceneBatch extends Scene {
 	override function draw(ctx:RenderContext) {
 		// 渲染_batch
 		if (true) {
+			// this.removeChildren();
+			this.addChild(_batch);
 			_batch.clear();
 			renderObject(group);
 		}

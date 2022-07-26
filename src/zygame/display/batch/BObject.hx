@@ -1,5 +1,6 @@
 package zygame.display.batch;
 
+import h2d.Interactive;
 import h2d.col.Matrix;
 import h2d.SpriteBatch.BasicElement;
 import zygame.core.Start;
@@ -9,7 +10,6 @@ import zygame.display.base.IBatchDisplayObject;
  * 批处理基础类
  */
 class BObject implements IBatchDisplayObject {
-	
 	private var __transform:Matrix = new Matrix();
 
 	private var __worldTransform:Matrix = new Matrix();
@@ -48,12 +48,15 @@ class BObject implements IBatchDisplayObject {
 		}
 	}
 
-	public function new() {
+	public function new(?parent:BObject) {
 		this.x = 0;
 		this.y = 0;
 		this.scaleX = 1;
 		this.scaleY = 1;
 		this.rotation = 0;
+		if (parent != null)
+			parent.addChild(this);
+		onInit();
 	}
 
 	public var dirt:Bool;
@@ -136,4 +139,40 @@ class BObject implements IBatchDisplayObject {
 		this.rotation = value;
 		return value;
 	}
+
+	/**
+	 * 开启交互
+	 */
+	public var enableInteractive(get, set):Bool;
+
+	private var _enableInteractive:Bool;
+
+	function get_enableInteractive():Bool {
+		return _enableInteractive;
+	}
+
+	function set_enableInteractive(enableInteractive:Bool):Bool {
+		_enableInteractive = enableInteractive;
+		if (_enableInteractive) {
+			// 开启触摸
+			if (interactive == null) {
+				var interactive = new h2d.Interactive(0, 0);
+				// addChildAt(interactive, 0);
+				this.interactive = interactive;
+				interactive.cursor = Default;
+			}
+		} else {
+			// 关闭触摸
+			if (interactive != null) {
+				interactive.remove();
+				interactive = null;
+			}
+		}
+		return _enableInteractive;
+	}
+
+	/**
+	 * 交互器
+	 */
+	public var interactive:Interactive;
 }
