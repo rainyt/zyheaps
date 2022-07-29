@@ -1,5 +1,6 @@
 package zygame.display.batch;
 
+import h2d.col.Bounds;
 import h2d.Interactive;
 import h2d.col.Matrix;
 import h2d.SpriteBatch.BasicElement;
@@ -13,6 +14,16 @@ class BObject implements IBatchDisplayObject {
 	private var __transform:Matrix = new Matrix();
 
 	private var __worldTransform:Matrix = new Matrix();
+
+	public var numChildren(get, null):Int;
+
+	private function get_numChildren():Int {
+		return children.length;
+	}
+
+	public function getChildAt(index:Int):BObject {
+		return children[index];
+	}
 
 	private function __update():Void {
 		__transform.identity();
@@ -129,7 +140,13 @@ class BObject implements IBatchDisplayObject {
 
 	public var centerY:Null<Float>;
 
-	public function layout() {}
+	/**
+	 * 布局自身
+	 */
+	public function layout():Void {
+		trace("[Batch] layout");
+		layoutIDisplayObject(this);
+	}
 
 	public function onInit() {}
 
@@ -175,4 +192,26 @@ class BObject implements IBatchDisplayObject {
 	 * 交互器
 	 */
 	public var interactive:Interactive;
+
+	/**
+	 * 获取尺寸
+	 * @return Bounds
+	 */
+	public function getSize():Bounds {
+		var b = new Bounds();
+		b.x = 0;
+		b.y = 0;
+		b.width = width == null ? 0 : width;
+		b.height = height == null ? 0 : height;
+		for (object in children) {
+			var b2 = object.getSize();
+			b2.addPos(object.x, object.y);
+			b.addBounds(b2);
+		}
+		return b;
+	}
+
+	public function toString():String {
+		return Type.getClassName(Type.getClass(this));
+	}
 }
