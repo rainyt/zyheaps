@@ -1,3 +1,4 @@
+import sys.io.File;
 import sys.FileSystem;
 import lime.tools.AssetHelper;
 import hxp.System;
@@ -23,6 +24,23 @@ class Tools {
 		projectDirPath = args[args.length - 1];
 		buildPlatform = args[1];
 		switch (args[0]) {
+			case "create":
+				if (FileSystem.exists(projectDirPath + "/" + buildPlatform)) {
+					throw buildPlatform + " is exist.";
+				} else {
+					FileSystem.createDirectory(projectDirPath + "/" + buildPlatform);
+					// 创建Assets目录
+					FileSystem.createDirectory(projectDirPath + "/" + buildPlatform + "/Assets");
+					// 创建Source目录
+					FileSystem.createDirectory(projectDirPath + "/" + buildPlatform + "/Source");
+					// 拷贝Main.hx
+					File.copy("tools/templates/project/Source/Main.hx", projectDirPath + "/" + buildPlatform + "/Source/Main.hx");
+					// 项目配置
+					var content = File.getContent("tools/templates/project/zyheaps.xml");
+					content = StringTools.replace(content, "#PROJECT_NAME", buildPlatform);
+					content = StringTools.replace(content, "#PROJECT_PKG", buildPlatform.toLowerCase());
+					File.saveContent(projectDirPath + "/" + buildPlatform + "/zyheaps.xml", content);
+				}
 			case "hxml":
 				var c = "platform." + buildPlatform.charAt(0).toUpperCase() + buildPlatform.substr(1).toLowerCase();
 				var tc = Type.resolveClass(c);
@@ -65,6 +83,5 @@ class Tools {
 					Log.info(n);
 				}
 		}
-
 	}
 }
