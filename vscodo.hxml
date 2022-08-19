@@ -7,6 +7,6 @@
 -lib actuate
 -D actuate_manual_update
 -D actuate_manual_time
-# --hl bin/c/main.c
---js bin/main.js
+--hl bin/c/main.c
+# --js bin/main.js
 -debug
