@@ -1,5 +1,6 @@
 package platform;
 
+import lime.tools.ProjectHelper;
 import hxp.HXML;
 import haxe.Exception;
 import hxp.Log;
@@ -13,6 +14,15 @@ using StringTools;
 class Ios extends BasePlatform {
 	public function new() {
 		super("ios");
+	}
+
+	override function onBuilded() {
+		// IOS需要检测是否已经存在了App.xcodeproj，如果存在，则不会主动更新了，避免刷新
+		var appxcodeproj = project.app.path + "/" + platform + "/App.xcodeproj";
+		if (!FileSystem.exists(appxcodeproj)) {
+			ProjectHelper.recursiveSmartCopyTemplate(project, "ios-project", project.app.path + "/" + platform, project.templateContext);
+		}
+		super.onBuilded();
 	}
 
 	override function onCopyAssets() {
