@@ -16,6 +16,8 @@ class ScaleUtils {
 	 */
 	public static function mathScale(stageWidth:Float, stageHeight:Float, hdwidth:Float, hdheight:Float, lockLandscape:Bool = false,
 			scalePower:Bool = false):Float {
+		if (hdwidth == 0 || hdheight == 0)
+			return 1;
 		var currentScale:Float = 1;
 		var wscale:Float = 1;
 		var hscale:Float = 1;
