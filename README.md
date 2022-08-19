@@ -27,6 +27,7 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 | 异步加载(Async load) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 网络请求(Network) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 过渡动画(Actuate) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 文件选择器(FileDialog) | ❌ | ❌ | ✅ | ❌ | ❌ |
 
 ## UI Component
 - [x] 色块(Quad) zygame.display.Quad
