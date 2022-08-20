@@ -76,6 +76,8 @@ class Button extends Box {
 		} else {
 			display = skin;
 		}
+		display.width = this.width;
+		display.height = this.height;
 		this.addChildAt(cast display, 0);
 	}
 
