@@ -127,6 +127,8 @@ class Button extends Box {
 		var size = label.getSize();
 		label.x = labelOffest.x;
 		label.y = display.height / 2 - size.height / 2 + labelOffest.y;
+		label.maxWidth = display.width / label.scaleX;
+		cast(display, Object).addChild(label);
 	}
 
 	override function draw(ctx:RenderContext) {
