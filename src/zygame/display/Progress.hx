@@ -8,7 +8,6 @@ import h2d.Object;
  * 进度条
  */
 class Progress extends Box {
-
 	/**
 	 * 底部显示对象
 	 */
@@ -60,9 +59,13 @@ class Progress extends Box {
 				case VERTICAL:
 					_topdisplay.width = _bgdisplay.width;
 					_topdisplay.height = _bgdisplay.height * this.progress;
+					_topdisplay.x = 0;
+					_topdisplay.y = _bgdisplay.height - _topdisplay.height;
 				case HORIZONTAL:
 					_topdisplay.height = _bgdisplay.height;
 					_topdisplay.width = _bgdisplay.width * this.progress;
+					_topdisplay.x = 0;
+					_topdisplay.y = 0;
 			}
 		}
 		super.draw(ctx);
