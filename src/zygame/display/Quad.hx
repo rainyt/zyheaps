@@ -10,6 +10,13 @@ import h2d.Object;
  * 一个矩形对象，可以对它设置高宽设置大小
  */
 class Quad extends BaseGraphics {
+	public var radius(default, set):UInt;
+
+	private function set_radius(v:UInt):UInt {
+		this.radius = v;
+		this.dirt = true;
+		return v;
+	}
 
 	/**
 	 * 矩形的颜色
@@ -28,11 +35,12 @@ class Quad extends BaseGraphics {
 		return __quadColor;
 	}
 
-	public function new(width:Float, height:Float, color:UInt = 0x0, parent:Object = null) {
+	public function new(width:Float, height:Float, color:UInt = 0x0, parent:Object = null, radius:UInt = 0) {
 		super(parent);
 		this.width = width;
 		this.height = height;
 		this.__quadColor = color;
+		this.radius = radius;
 		this.setDirty();
 		onInit();
 	}
@@ -45,7 +53,10 @@ class Quad extends BaseGraphics {
 	private function change():Void {
 		this.clear();
 		this.beginFill(__quadColor);
-		this.drawRect(0, 0, this.width, this.height);
+		if (radius > 0)
+			this.drawRoundedRect(0, 0, this.width, this.height, radius);
+		else
+			this.drawRect(0, 0, this.width, this.height);
 		this.endFill();
 		this.setDirty(false);
 	}
@@ -56,5 +67,4 @@ class Quad extends BaseGraphics {
 		}
 		super.draw(ctx);
 	}
-
 }
