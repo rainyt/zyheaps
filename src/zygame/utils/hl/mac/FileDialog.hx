@@ -1,5 +1,7 @@
 package zygame.utils.hl.mac;
 
+import zygame.core.Start;
+import zygame.display.Quad;
 import haxe.io.Bytes;
 
 /**
@@ -12,7 +14,12 @@ import haxe.io.Bytes;
 	 * @param cb 
 	 */
 	public static function openSelectOneFile(dir:String, cb:FileDialogFile->Void):Void {
+		var quad = new Quad(Start.current.stageWidth, Start.current.stageHeight, 0x0);
+		quad.alpha = 0.8;
+		SceneManager.currentScene.addChild(quad);
 		IOSTools.open_select_dir(function(data) {
+			quad.remove();
+			quad = null;
 			var bytes:hl.Bytes = data.path;
 			var path = @:privateAccess String.fromUTF8(bytes);
 			cb({

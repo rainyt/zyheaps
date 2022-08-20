@@ -16,20 +16,22 @@ HL_PRIM void HL_NAME(open_select_dir)(vclosure* render_fn)
     NSOpenPanel* panel = [NSOpenPanel openPanel];
     [panel setAllowsMultipleSelection:FALSE];//是否允许多选file
     [panel beginWithCompletionHandler:^(NSModalResponse result) {
+        // 构造一个Dynamic数组，传参只有1，所以这里只需要长度1
+        vdynamic* args[1];
+        vdynamic* param = (vdynamic*)hl_alloc_dynobj();
+        args[0] = param;
         if(result == NSModalResponseOK){
-            // 构造一个Dynamic数组，传参只有1，所以这里只需要长度1
-            vdynamic* args[1];
-            vdynamic* param = (vdynamic*)hl_alloc_dynobj();
-            // 获取路径
+             // 获取路径
             const char* str = [panel.URLs[0].path UTF8String];
             // 转回haxe认识的字符编码
             hl_dyn_setp(param, hl_hash_utf8("path"), &hlt_bytes, (vdynamic*)(str));
-            args[0] = param;
-            // 回调
-            hl_dyn_call(render_fn, args, 1);
-            // 回调使用完毕，可以移除
-            hl_remove_root(render_fn);
+        }else{
+            hl_dyn_setp(param, hl_hash_utf8("path"), &hlt_bytes, (vdynamic*)(""));
         }
+        // 回调
+        hl_dyn_call(render_fn, args, 1);
+        // 回调使用完毕，可以移除
+        hl_remove_root(render_fn);
     }];
 }
 
