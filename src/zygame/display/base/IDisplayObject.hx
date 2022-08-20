@@ -84,6 +84,8 @@ function layoutIDisplayObject(display:IDisplayObject):Void {
 interface IDisplayObject {
 	public var dirt:Bool;
 
+	public final function getSize(?out:h2d.col.Bounds):h2d.col.Bounds;
+
 	public var stageWidth(get, never):Float;
 
 	public var stageHeight(get, never):Float;

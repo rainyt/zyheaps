@@ -1,5 +1,6 @@
 package zygame.display;
 
+import zygame.display.base.IDisplayObject;
 import h2d.Tile;
 import hxd.Event;
 import h2d.RenderContext;
@@ -29,7 +30,7 @@ class Button extends Box {
 	/**
 	 * 按钮的皮肤显示对象
 	 */
-	public var img:Image;
+	private var display:IDisplayObject;
 
 	/**
 	 * 按钮的文本显示对象
@@ -58,51 +59,80 @@ class Button extends Box {
 		return text;
 	}
 
+	private function setSkinDisplay(skin:Dynamic):Void {
+		if (display != null) {
+			cast(display, Object).remove();
+		}
+		if (skin == null) {
+			return;
+		}
+		if (skin is Tile) {
+			if (!(display is Image)) {
+				if (display != null) {
+					display = new Image();
+				}
+			}
+			cast(display, Image).tile = skin;
+		} else {
+			display = skin;
+		}
+		this.addChildAt(cast display, 0);
+	}
+
 	public function new(skin:ButtonSkin, ?parent:Object) {
 		super(parent);
 		this.dirt = true;
 		this.skin = skin;
-		img = new Image(this.skin.up, this);
+		this.setSkinDisplay(this.skin.up);
 		this.enableInteractive = true;
 		this.interactive.onPush = function(e) {
-			img.scale(1);
+			if (display == null)
+				return;
+			cast(display, Object).scale(1);
 			dirt = true;
 			if (skin.down != null) {
-				img.tile = skin.down;
+				setSkinDisplay(skin.down);
 			} else {
 				// 缩放计算
-				var rect = img.getSize();
-				img.x = rect.width * 0.03;
-				img.y = rect.height * 0.03;
-				img.scaleX = 0.94;
-				img.scaleY = 0.94;
+				var rect = display.getSize();
+				display.x = rect.width * 0.03;
+				display.y = rect.height * 0.03;
+				display.scaleX = 0.94;
+				display.scaleY = 0.94;
 			}
 		}
 		this.interactive.onRelease = function(e) {
-			img.tile = skin.up;
-			img.scaleX = 1;
-			img.scaleY = 1;
-			img.x = img.y = 0;
+			if (display == null)
+				return;
+			setSkinDisplay(skin.up);
+			display.scaleX = 1;
+			display.scaleY = 1;
+			display.x = display.y = 0;
 			dirt = true;
 		}
 		this.interactive.onClick = function(e) {
 			this.onClick(this, e);
 		}
-		label = new Label(null, img);
+		label = new Label(null, this);
 		label.textAlign = Center;
-		label.maxWidth = img.width;
-		this.width = img.width;
-		this.height = img.height;
+		var rect = display.getSize();
+		label.maxWidth = rect.width;
+		this.width = rect.width;
+		this.height = rect.height;
 	}
 
 	private function updateLabelContext():Void {
+		if (display == null)
+			return;
 		var size = label.getSize();
 		label.x = labelOffest.x;
-		label.y = img.height / 2 - size.height / 2 + labelOffest.y;
+		label.y = display.height / 2 - size.height / 2 + labelOffest.y;
 	}
 
 	override function draw(ctx:RenderContext) {
-		if (dirt || label.dirt || img.dirt) {
+		if (display == null)
+			return;
+		if (dirt || label.dirt || display.dirt) {
 			this.updateLabelContext();
 		}
 		super.draw(ctx);
@@ -115,15 +145,13 @@ class Button extends Box {
 	dynamic public function onClick(btn:Button, e:Event):Void {}
 
 	override function set_width(width:Null<Float>):Null<Float> {
-		this.img.width = width;
-		label.maxWidth = img.width;
+		this.display.width = width;
+		label.maxWidth = display.width;
 		return super.set_width(width);
 	}
 
 	override function set_height(height:Null<Float>):Null<Float> {
-		this.img.height = height;
+		this.display.height = height;
 		return super.set_height(height);
 	}
-
-	
 }

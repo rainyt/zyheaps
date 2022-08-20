@@ -10,12 +10,12 @@ class ButtonSkin {
 	/**
 	 * 松开时显示的纹理
 	 */
-	public var up:Tile;
+	public var up:Dynamic;
 
 	/**
 	 * 按下时显示的纹理
 	 */
-	public var down:Tile;
+	public var down:Dynamic;
 
 	/**
 	 * 构造一个按钮皮肤，如果只提供松开纹理时，则会呈现缩放效果
