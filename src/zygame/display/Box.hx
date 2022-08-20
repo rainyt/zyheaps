@@ -1,6 +1,6 @@
 package zygame.display;
 
-import zygame.utils.SceneManager;
+import zygame.display.base.IInteractiveObject;
 import h2d.Object;
 import h2d.RenderContext;
 import h2d.Interactive;
@@ -10,12 +10,10 @@ import zygame.display.base.IDisplayObject;
 /**
  * 基础容器
  */
-class Box extends h2d.Object implements IDisplayObject {
+class Box extends h2d.Object implements IInteractiveObject {
 	public var dirt:Bool = false;
 
-	public var enableInteractive(get, set):Bool;
-
-	private var _enableInteractive:Bool;
+	public var enableInteractive(default, set):Bool;
 
 	public function new(?parent:Object) {
 		super(parent);
@@ -24,17 +22,13 @@ class Box extends h2d.Object implements IDisplayObject {
 
 	public function onInit():Void {}
 
-	function get_enableInteractive():Bool {
-		return _enableInteractive;
-	}
-
 	override function addChildAt(s:Object, pos:Int) {
 		super.addChildAt(s, pos);
 	}
 
 	function set_enableInteractive(enableInteractive:Bool):Bool {
-		_enableInteractive = enableInteractive;
-		if (_enableInteractive) {
+		this.enableInteractive = enableInteractive;
+		if (this.enableInteractive) {
 			// 开启触摸
 			if (interactive == null) {
 				var interactive = new h2d.Interactive(0, 0);
@@ -49,7 +43,8 @@ class Box extends h2d.Object implements IDisplayObject {
 				interactive = null;
 			}
 		}
-		return _enableInteractive;
+		dirt = true;
+		return this.enableInteractive;
 	}
 
 	/**

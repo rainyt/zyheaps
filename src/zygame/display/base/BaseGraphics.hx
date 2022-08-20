@@ -1,5 +1,7 @@
 package zygame.display.base;
 
+import h2d.RenderContext;
+import h2d.Interactive;
 import zygame.utils.SceneManager;
 import h2d.Object;
 import zygame.core.Start;
@@ -9,7 +11,7 @@ import zygame.display.base.IDisplayObject;
 /**
  * 基础的绘制类型
  */
-class BaseGraphics extends Graphics implements IDisplayObject {
+class BaseGraphics extends Graphics implements IInteractiveObject {
 	public var dirt:Bool = false;
 
 	/**
@@ -110,5 +112,44 @@ class BaseGraphics extends Graphics implements IDisplayObject {
 		if (ids != null)
 			return cast ids.get(id);
 		return null;
+	}
+
+	public var enableInteractive(default, set):Bool;
+
+	public function set_enableInteractive(value:Bool):Bool {
+		this.enableInteractive = value;
+		if (this.enableInteractive) {
+			// 开启触摸
+			if (interactive == null) {
+				var interactive = new h2d.Interactive(0, 0);
+				addChildAt(interactive, 0);
+				this.interactive = interactive;
+				interactive.cursor = Default;
+				interactive.onPush = function(e) {
+					e.propagate = false;
+				}
+			}
+		} else {
+			// 关闭触摸
+			if (interactive != null) {
+				interactive.remove();
+				interactive = null;
+			}
+		}
+		setDirty();
+		return this.enableInteractive;
+	}
+
+	public var interactive:Interactive;
+
+	override function draw(ctx:RenderContext) {
+		if (dirt) {
+			if (interactive != null) {
+				interactive.width = this.width == null ? this.getSize().width : this.width;
+				interactive.height = this.height == null ? this.getSize().height : this.height;
+			}
+			dirt = false;
+		}
+		super.draw(ctx);
 	}
 }

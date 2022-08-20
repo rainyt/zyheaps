@@ -64,7 +64,7 @@ class Button extends Box {
 			cast(display, Object).remove();
 		}
 		display = convertIDisplayObject(skin);
-		if(display == null)
+		if (display == null)
 			return;
 		display.width = this.width;
 		display.height = this.height;
@@ -78,6 +78,7 @@ class Button extends Box {
 		this.setSkinDisplay(this.skin.up);
 		this.enableInteractive = true;
 		this.interactive.onPush = function(e) {
+			e.propagate = false;
 			if (display == null)
 				return;
 			cast(display, Object).scale(1);
@@ -94,6 +95,7 @@ class Button extends Box {
 			}
 		}
 		this.interactive.onRelease = function(e) {
+			e.propagate = false;
 			if (display == null)
 				return;
 			setSkinDisplay(skin.up);
@@ -103,6 +105,7 @@ class Button extends Box {
 			dirt = true;
 		}
 		this.interactive.onClick = function(e) {
+			e.propagate = false;
 			this.onClick(this, e);
 		}
 		label = new Label(null, this);
