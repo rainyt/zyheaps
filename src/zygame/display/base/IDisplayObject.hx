@@ -1,5 +1,6 @@
 package zygame.display.base;
 
+import h2d.Tile;
 import h2d.Object;
 
 inline private function getWidth(display:IDisplayObject):Float {
@@ -16,6 +17,24 @@ inline private function getHeight(display:IDisplayObject):Float {
 	} else {
 		return display.height;
 	}
+}
+
+/**
+ * 一个通用的数据转换
+ * @param data 
+ * @return IDisplayObject
+ */
+inline function convertIDisplayObject(data:Dynamic, ?parent:Object):IDisplayObject {
+	if (data is Tile || data is String) {
+		return new Image(data, parent);
+	}
+	if (data is IDisplayObject){
+		if(parent != null){
+			parent.addChild(cast data);
+		}
+		return cast data;
+	}
+	return null;
 }
 
 function layoutIDisplayObject(display:IDisplayObject):Void {

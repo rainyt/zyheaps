@@ -63,19 +63,9 @@ class Button extends Box {
 		if (display != null) {
 			cast(display, Object).remove();
 		}
-		if (skin == null) {
+		display = convertIDisplayObject(skin);
+		if(display == null)
 			return;
-		}
-		if (skin is Tile) {
-			if (!(display is Image)) {
-				if (display != null) {
-					display = new Image();
-				}
-			}
-			cast(display, Image).tile = skin;
-		} else {
-			display = skin;
-		}
 		display.width = this.width;
 		display.height = this.height;
 		this.addChildAt(cast display, 0);

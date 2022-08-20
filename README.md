@@ -41,6 +41,7 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 - [x] 横向排序容器(HBox) zygame.display.HBox
 - [x] 场景(Scene) zygame.display.Scene
 - [x] Spine动画(Spine) zygame.display.Spine
+- [x] 进度条(Progress) zygame.display.Progress
 
 ## Batch Component
 - [x] 按钮(BButton) zygame.display.batch.BButton
