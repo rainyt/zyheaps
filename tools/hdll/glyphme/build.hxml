@@ -1,0 +1,3 @@
+
+# glyphme mac
+--cmd arch -x86_64 gcc -shared -o ./glyphme.hdll -I stb ./stb/glyphme.cpp -lhl -L../../templates/mac/App.app/Contents/MacOS
