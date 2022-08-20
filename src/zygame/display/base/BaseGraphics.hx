@@ -125,9 +125,6 @@ class BaseGraphics extends Graphics implements IInteractiveObject {
 				addChildAt(interactive, 0);
 				this.interactive = interactive;
 				interactive.cursor = Default;
-				interactive.onPush = function(e) {
-					e.propagate = false;
-				}
 			}
 		} else {
 			// 关闭触摸

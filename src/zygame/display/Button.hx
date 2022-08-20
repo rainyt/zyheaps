@@ -78,7 +78,7 @@ class Button extends Box {
 		this.setSkinDisplay(this.skin.up);
 		this.enableInteractive = true;
 		this.interactive.onPush = function(e) {
-			e.propagate = false;
+			e.propagate = this.interactive.propagateEvents;
 			if (display == null)
 				return;
 			cast(display, Object).scale(1);
@@ -95,7 +95,7 @@ class Button extends Box {
 			}
 		}
 		this.interactive.onRelease = function(e) {
-			e.propagate = false;
+			e.propagate = this.interactive.propagateEvents;
 			if (display == null)
 				return;
 			setSkinDisplay(skin.up);
@@ -105,7 +105,7 @@ class Button extends Box {
 			dirt = true;
 		}
 		this.interactive.onClick = function(e) {
-			e.propagate = false;
+			e.propagate = this.interactive.propagateEvents;
 			this.onClick(this, e);
 		}
 		label = new Label(null, this);
