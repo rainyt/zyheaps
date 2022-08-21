@@ -1,5 +1,6 @@
 package zygame.res;
 
+import haxe.io.Bytes;
 import hxd.res.Atlas;
 import zygame.utils.Assets;
 import h2d.Tile;
@@ -44,6 +45,20 @@ class AssetsBuilder {
 			var tile = assets.getBitmapDataTile(id);
 			if (tile != null)
 				return tile;
+		}
+		return null;
+	}
+
+	/**
+	 * 获取Bytes二进制数据
+	 * @param id 
+	 * @return Bytes
+	 */
+	public static function getBytes(id:String):Bytes{
+		for (assets in assetsList) {
+			var b = assets.getBytes(id);
+			if (b != null)
+				return b;
 		}
 		return null;
 	}
