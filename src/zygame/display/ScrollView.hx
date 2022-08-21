@@ -40,6 +40,10 @@ class ScrollView extends Box {
 				Window.getInstance().removeEventTarget(onTouchMove);
 			}
 		}
+		this.interactive.onWheel = function(e:Event) {
+			this.view.scrollY += e.wheelDelta * 3;
+		}
+		// this.interactive.backgroundColor = 0xff0000ff;
 	}
 
 	private function onTouchMove(e:Event):Void {
@@ -54,7 +58,6 @@ class ScrollView extends Box {
 					this.view.scrollY = setY;
 					trace(_beginPos, _beginTouchPos, movepos);
 				}
-			case EWheel:
 			default:
 		}
 	}
