@@ -1,9 +1,9 @@
 package zygame.res;
 
+import zygame.display.ScrollView;
 import haxe.Exception;
 import h2d.Object;
 import zygame.display.Scene;
-import zygame.display.Scroll;
 import zygame.display.Image;
 import zygame.display.Quad;
 import zygame.display.Label;
@@ -119,7 +119,7 @@ class XMLBuilder extends Builder<Xml> {
 			}
 			return true;
 		});
-		// Scroll
-		addClass(Scroll);
+		// ScrollView
+		addClass(ScrollView);
 	}
 }

@@ -1,5 +1,8 @@
 package zygame.core;
 
+import zygame.utils.IteratorUtils.intIterator;
+import zygame.display.base.IRefresher;
+import zygame.utils.Lib;
 import hxd.fmt.pak.FileSystem;
 import hxd.res.Loader;
 import zygame.utils.FpsUtils;
@@ -62,6 +65,8 @@ class Start extends #if js zygame.core.platform.JsStart #else App #end {
 	private var _debug:Bool = false;
 	private var _debugDisplay:FPSDebug;
 
+	private var _updates:Array<IRefresher> = [];
+
 	/**
 	 * 构造一个启动类
 	 * @param width 适配宽度
@@ -82,6 +87,22 @@ class Start extends #if js zygame.core.platform.JsStart #else App #end {
 			_debugDisplay = new FPSDebug();
 		}
 		this.onResize();
+	}
+
+	/**
+	 * 添加到帧事件列表中
+	 * @param update 
+	 */
+	public function addToUpdate(update:IRefresher):Void {
+		_updates.push(update);
+	}
+
+	/**
+	 * 从帧事件列表中移除
+	 * @param update 
+	 */
+	public function removeToUpdate(update:IRefresher):Void {
+		_updates.remove(update);
 	}
 
 	override function onResize() {
@@ -154,5 +175,12 @@ class Start extends #if js zygame.core.platform.JsStart #else App #end {
 		}
 		if (SceneManager.currentScene != null)
 			SceneManager.currentScene.update(dt);
+		// 时间戳事件
+		Lib.onFrame();
+		Lib.onRender();
+		// 更新事件
+		for (i in intIterator(_updates.length, 0)) {
+			_updates[i].update(dt);
+		}
 	}
 }
