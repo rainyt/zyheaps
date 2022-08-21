@@ -14,6 +14,7 @@ class ScrollView extends Box {
 	private var view:Mask;
 
 	private var _touchid:Int = -1;
+	private var _down:Bool = false;
 
 	private var _beginPos:Point = new Point();
 	private var _beginTouchPos:Point;
@@ -26,15 +27,18 @@ class ScrollView extends Box {
 		this.enableInteractive = true;
 		this.interactive.onPush = function(e:Event) {
 			if (_touchid != e.touchId) {
+				_down = true;
 				_touchid = e.touchId;
 				_beginPos.x = view.scrollX;
 				_beginPos.y = view.scrollY;
-				_beginTouchPos = this.globalToLocal(new Point(e.relX, e.relY));
+				_beginTouchPos = new Point(e.relX, e.relY);
+				trace(e.relX, e.relY);
 				Window.getInstance().addEventTarget(onTouchMove);
 			}
 		}
 		this.interactive.onRelease = function(e:Event) {
 			if (_touchid == e.touchId) {
+				_down = false;
 				_touchid = -1;
 				Window.getInstance().removeEventTarget(onTouchMove);
 			}
@@ -44,11 +48,14 @@ class ScrollView extends Box {
 	private function onTouchMove(e:Event):Void {
 		switch e.kind {
 			case EMove:
-				if (_touchid == e.touchId) {
+				if (_down && _touchid == e.touchId) {
 					// 移动计算
 					var movepos = this.globalToLocal(new Point(e.relX, e.relY));
-					this.view.scrollX = _beginPos.x - (movepos.x - _beginTouchPos.x);
-					this.view.scrollY = _beginPos.y - (movepos.y - _beginTouchPos.y);
+					var setX = _beginPos.x - (movepos.x - _beginTouchPos.x);
+					var setY = _beginPos.y - (movepos.y - _beginTouchPos.y);
+					this.view.scrollX = setX;
+					this.view.scrollY = setY;
+					trace(_beginPos, _beginTouchPos, movepos);
 				}
 			case EWheel:
 			default:

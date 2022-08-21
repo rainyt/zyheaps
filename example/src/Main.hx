@@ -1,3 +1,4 @@
+import hxd.Window;
 import zygame.utils.SceneManager;
 import h2d.SpriteBatch;
 import zygame.core.Start;
@@ -14,7 +15,6 @@ class Main extends Start {
 
 	override function init() {
 		super.init();
-
 		s2d.defaultSmooth = true;
 
 		engine.backgroundColor = 0xffffffff;
