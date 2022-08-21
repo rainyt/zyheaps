@@ -1,5 +1,6 @@
 package platform;
 
+import utils.AssetHelperExt;
 import hxp.HXML;
 import haxe.Json;
 import hxp.Haxelib;
@@ -23,7 +24,7 @@ class Android extends BasePlatform {
 
 	override function onCopyAssets() {
 		for (asset in project.assets) {
-			AssetHelper.copyAsset(asset, project.app.path + "/" + platform + "/app/src/main/assets/" + asset.targetPath);
+			AssetHelperExt.copyAsset(asset, project.app.path + "/" + platform + "/app/src/main/assets/" + asset.targetPath);
 		}
 		// 解压对应的cpp文件
 		var cppDir = project.app.path + "/" + platform + "/app/src/main/cpp/";

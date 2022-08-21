@@ -5,6 +5,8 @@ package zygame.loader.parser;
  */
 enum abstract AssetsType(Int) to Int from Int {
 	public var BITMAP; // 位图：png/jpg/jpeg
+	public var BITMAP_DATA; // 通过Image.toBitmap得到
+	public var TEXTURE_3D; // 3D纹理
 	public var BITMAP_TILE; // 位图tile，一般由BITMAP自动生成
 	public var BYTES;
 	public var ATLAS; // 精灵图表：xml/png

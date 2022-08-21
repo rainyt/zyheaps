@@ -1,8 +1,8 @@
 package platform;
 
+import utils.AssetHelperExt;
 import hxp.HXML;
 import sys.FileSystem;
-import lime.tools.AssetHelper;
 
 class Window extends BasePlatform {
 	public var osPath:String = "";
@@ -14,7 +14,7 @@ class Window extends BasePlatform {
 	override function onCopyAssets() {
 		osPath = project.app.path + "/" + platform;
 		for (asset in project.assets) {
-			AssetHelper.copyAsset(asset, project.app.path + "/" + platform + "/res/" + asset.targetPath);
+			AssetHelperExt.copyAsset(asset, project.app.path + "/" + platform + "/res/" + asset.targetPath);
 		}
 	}
 

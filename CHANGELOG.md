@@ -1,3 +1,10 @@
+## 22.8.21
+- 新增：新增`AssetsBuilder.getTexture3D`获取3D纹理。
+- 新增：新增`AssetsBuilder.getBytes`获取二进制纹理。
+- 修复：修复`Assets.getBitmapData`错误的类型转换。
+- 新增：工具新增FBX自动转换为HDM的实现。
+- 改进：改进`Assets`的获取资源id，可以是名字，也可以是完整的路径。
+
 ## 22.8.20
 - 新增：新增`Progress`组件。
 - 新增：新增`Quad`组件。

@@ -1,5 +1,6 @@
 package zygame.utils;
 
+import h3d.mat.Texture;
 import haxe.Json;
 import zygame.display.Spine;
 #if spine_hx
@@ -210,9 +211,31 @@ class Assets {
 	 * @return BitmapData
 	 */
 	public function getBitmapData(id:String):BitmapData {
+		if (hasTypeAssets(BITMAP_DATA, id))
+			return getTypeAssets(BITMAP_DATA, id);
 		if (hasTypeAssets(BITMAP, id)) {
-			var bitmap:LoadedBitmap = getTypeAssets(BITMAP, id);
-			return bitmap.toBitmap();
+			var bitmap:Image = getTypeAssets(BITMAP, id);
+			var bmd = bitmap.toBitmap();
+			setTypeAssets(BITMAP_DATA, id, bmd);
+			return bmd;
+		}
+		return null;
+	}
+
+	/**
+	 * 通过id获取3D纹理
+	 * @param id 
+	 * @return Texture
+	 */
+	public function getTexture3D(id:String):Texture {
+		if (hasTypeAssets(TEXTURE_3D, id))
+			return getTypeAssets(TEXTURE_3D, id);
+		if (hasTypeAssets(BITMAP, id)) {
+			var bitmap:Image = getTypeAssets(BITMAP, id);
+			var bmd = bitmap.toBitmap();
+			var t3d = Texture.fromBitmap(bmd);
+			setTypeAssets(TEXTURE_3D, id, t3d);
+			return t3d;
 		}
 		return null;
 	}
@@ -231,7 +254,6 @@ class Assets {
 			if (!hasTypeAssets(BITMAP_TILE, id)) {
 				var bitmap:Image = getTypeAssets(BITMAP, id);
 				setTypeAssets(BITMAP_TILE, id, bitmap.toTile());
-				// setTypeAssets(BITMAP_TILE, id, Tile.fromTexture(bitmap.toTexture()));
 			}
 		} catch (e:Exception) {
 			trace("getBitmapDataTile error:", e.message);

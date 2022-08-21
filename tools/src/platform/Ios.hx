@@ -1,5 +1,6 @@
 package platform;
 
+import utils.AssetHelperExt;
 import lime.tools.ProjectHelper;
 import hxp.HXML;
 import haxe.Exception;
@@ -7,7 +8,6 @@ import hxp.Log;
 import sys.io.File;
 import haxe.zip.Reader;
 import sys.FileSystem;
-import lime.tools.AssetHelper;
 
 using StringTools;
 
@@ -27,7 +27,7 @@ class Ios extends BasePlatform {
 
 	override function onCopyAssets() {
 		for (asset in project.assets) {
-			AssetHelper.copyAsset(asset, project.app.path + "/" + platform + "/assets/" + asset.targetPath);
+			AssetHelperExt.copyAsset(asset, project.app.path + "/" + platform + "/assets/" + asset.targetPath);
 		}
 		// 解压对应的cpp文件
 		var cppDir = project.app.path + "/" + platform + "/deps/";

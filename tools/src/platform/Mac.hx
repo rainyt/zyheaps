@@ -1,12 +1,12 @@
 package platform;
 
+import utils.AssetHelperExt;
 import hxp.HXML;
 import sys.io.File;
 import lime.tools.IconHelper;
 import lime.tools.Icon;
 import hxp.System;
 import sys.FileSystem;
-import lime.tools.AssetHelper;
 
 /**
  * Mac Os目标
@@ -20,7 +20,7 @@ class Mac extends BasePlatform {
 
 	override function onCopyAssets() {
 		for (asset in project.assets) {
-			AssetHelper.copyAsset(asset, project.app.path + "/" + platform + "/App.app/Contents/Resources/" + asset.targetPath);
+			AssetHelperExt.copyAsset(asset, project.app.path + "/" + platform + "/App.app/Contents/Resources/" + asset.targetPath);
 		}
 		// 权限处理
 		macOsPath = project.app.path + "/" + platform + "/App.app/Contents/MacOS";

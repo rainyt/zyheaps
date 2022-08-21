@@ -1,5 +1,6 @@
 package platform;
 
+import utils.AssetHelperExt;
 import sys.io.File;
 import project.ProjectHXMLParser;
 import lime.tools.HXProject;
@@ -33,7 +34,7 @@ class BasePlatform {
 	**/
 	public function onCopyAssets():Void {
 		for (asset in project.assets) {
-			AssetHelper.copyAsset(asset, project.app.path + "/" + platform + "/" + asset.targetPath);
+			AssetHelperExt.copyAsset(asset, project.app.path + "/" + platform + "/" + asset.targetPath);
 		}
 	}
 
@@ -80,6 +81,7 @@ class BasePlatform {
 	/** 构造结束 **/
 	public function onBuilded():Void {
 		trace("build hxml:" + hxml);
+		trace("BUILD SUCCESS");
 	}
 
 	/** 启动测试 **/

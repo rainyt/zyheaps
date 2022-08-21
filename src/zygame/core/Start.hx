@@ -1,5 +1,7 @@
 package zygame.core;
 
+import hxd.fmt.pak.FileSystem;
+import hxd.res.Loader;
 import zygame.utils.FpsUtils;
 import zygame.utils.SceneManager;
 import haxe.Timer;
@@ -31,6 +33,7 @@ class Start extends #if js zygame.core.platform.JsStart #else App #end {
 	 */
 	public static function initApp(c:Class<Dynamic>, hdwidth:Float, hdheight:Float, debug:Bool = false):Void {
 		trace("Start.initApp");
+		hxd.res.Loader.currentInstance = new Loader(new FileSystem());
 		// Window.getInstance().vsync = true;
 		#if android
 		// 先不要那么着急初始化

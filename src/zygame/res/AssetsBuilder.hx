@@ -1,5 +1,7 @@
 package zygame.res;
 
+import zygame.utils.StringUtils;
+import h3d.mat.Texture;
 import haxe.io.Bytes;
 import hxd.res.Atlas;
 import zygame.utils.Assets;
@@ -41,10 +43,26 @@ class AssetsBuilder {
 	 * @return Tile
 	 */
 	public static function getBitmapDataTile(id:String):Tile {
+		id = StringUtils.getName(id);
 		for (assets in assetsList) {
 			var tile = assets.getBitmapDataTile(id);
 			if (tile != null)
 				return tile;
+		}
+		return null;
+	}
+
+	/**
+	 * 获取3D纹理
+	 * @param id 
+	 * @return Texture
+	 */
+	public static function getTexture3D(id:String):Texture {
+		id = StringUtils.getName(id);
+		for (assets in assetsList) {
+			var t3d = assets.getTexture3D(id);
+			if (t3d != null)
+				return t3d;
 		}
 		return null;
 	}
@@ -55,6 +73,7 @@ class AssetsBuilder {
 	 * @return Bytes
 	 */
 	public static function getBytes(id:String):Bytes{
+		id = StringUtils.getName(id);
 		for (assets in assetsList) {
 			var b = assets.getBytes(id);
 			if (b != null)
@@ -69,6 +88,7 @@ class AssetsBuilder {
 	 * @return Atlas
 	 */
 	public static function getAtlas(id:String):Atlas {
+		id = StringUtils.getName(id);
 		for (assets in assetsList) {
 			var atlas = assets.getAtlas(id);
 			if (atlas != null)
