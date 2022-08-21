@@ -14,10 +14,10 @@ class AssetHelperExt {
 	public static function copyAsset(asset:Asset, destination:String, context:Dynamic = null) {
 		AssetHelper.copyAsset(asset, destination, context);
 		// 需要遍历该目标目录下的所有3d资产，将FBX转换为HMD
-		convertFBX2HMD(destination);
+		convertFBX2HMD(asset.sourcePath, destination);
 	}
 
-	public static function convertFBX2HMD(filepath:String):Void {
+	public static function convertFBX2HMD(sourcePath:String, filepath:String):Void {
 		if (StringTools.endsWith(filepath.toLowerCase(), ".fbx")) {
 			var cacheFile = filepath.substr(0, filepath.lastIndexOf("/") + 1) + "hmdcache.json";
 			if (hmdcache == null) {
@@ -27,7 +27,7 @@ class AssetHelperExt {
 					hmdcache = {};
 				}
 			}
-			var stat = FileSystem.stat(filepath);
+			var stat = FileSystem.stat(sourcePath);
 			var time = stat.mtime.getTime();
 			var cacheid = filepath;
 			var lasttime = Reflect.getProperty(hmdcache, cacheid);
