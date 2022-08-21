@@ -1,5 +1,7 @@
 package zygame.res;
 
+import hxd.fmt.hmd.Library;
+import h3d.scene.Object;
 import zygame.utils.StringUtils;
 import h3d.mat.Texture;
 import haxe.io.Bytes;
@@ -72,10 +74,40 @@ class AssetsBuilder {
 	 * @param id 
 	 * @return Bytes
 	 */
-	public static function getBytes(id:String):Bytes{
+	public static function getBytes(id:String):Bytes {
 		id = StringUtils.getName(id);
 		for (assets in assetsList) {
 			var b = assets.getBytes(id);
+			if (b != null)
+				return b;
+		}
+		return null;
+	}
+
+	/**
+	 * 获取HMDLibrary
+	 * @param id 
+	 * @return Library
+	 */
+	public static function getHMDLibrary(id:String):Library {
+		id = StringUtils.getName(id);
+		for (assets in assetsList) {
+			var b = assets.getHMDLibrary(id);
+			if (b != null)
+				return b;
+		}
+		return null;
+	}
+
+	/**
+	 * 创建3D模型
+	 * @param id 
+	 * @return Object
+	 */
+	public static function create3DModel(id:String):Object {
+		id = StringUtils.getName(id);
+		for (assets in assetsList) {
+			var b = assets.create3DModel(id);
 			if (b != null)
 				return b;
 		}

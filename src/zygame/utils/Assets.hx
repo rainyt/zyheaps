@@ -1,5 +1,8 @@
 package zygame.utils;
 
+import zygame.res.AssetsBuilder;
+import h3d.scene.Object;
+import hxd.fmt.hmd.Library;
 import h3d.mat.Texture;
 import haxe.Json;
 import zygame.display.Spine;
@@ -236,6 +239,32 @@ class Assets {
 			var t3d = Texture.fromBitmap(bmd);
 			setTypeAssets(TEXTURE_3D, id, t3d);
 			return t3d;
+		}
+		return null;
+	}
+
+	/**
+	 * 获取HMDLibrary
+	 * @param id 
+	 * @return Library
+	 */
+	public function getHMDLibrary(id:String):Library {
+		if (hasTypeAssets(HMD, id))
+			return getTypeAssets(HMD, id);
+		return null;
+	}
+
+	/**
+	 * 创建3D模型
+	 * @param id 
+	 * @return Object
+	 */
+	public function create3DModel(id:String):Object {
+		var hmd = getHMDLibrary(id);
+		if (hmd != null) {
+			return hmd.makeObject((path) -> {
+				return AssetsBuilder.getTexture3D(path);
+			});
 		}
 		return null;
 	}
