@@ -14,7 +14,6 @@ class ScrollView extends Box {
 	private var view:Mask;
 
 	private var _touchid:Int = -1;
-	private var _down:Bool = false;
 
 	private var _beginPos:Point = new Point();
 	private var _beginTouchPos:Point;
@@ -27,7 +26,6 @@ class ScrollView extends Box {
 		this.enableInteractive = true;
 		this.interactive.onPush = function(e:Event) {
 			if (_touchid != e.touchId) {
-				_down = true;
 				_touchid = e.touchId;
 				_beginPos.x = view.scrollX;
 				_beginPos.y = view.scrollY;
@@ -38,7 +36,6 @@ class ScrollView extends Box {
 		}
 		this.interactive.onRelease = function(e:Event) {
 			if (_touchid == e.touchId) {
-				_down = false;
 				_touchid = -1;
 				Window.getInstance().removeEventTarget(onTouchMove);
 			}
@@ -48,7 +45,7 @@ class ScrollView extends Box {
 	private function onTouchMove(e:Event):Void {
 		switch e.kind {
 			case EMove:
-				if (_down && _touchid == e.touchId) {
+				if (_touchid == e.touchId) {
 					// 移动计算
 					var movepos = this.globalToLocal(new Point(e.relX, e.relY));
 					var setX = _beginPos.x - (movepos.x - _beginTouchPos.x);
