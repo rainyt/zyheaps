@@ -10,7 +10,11 @@ import h2d.Object;
 import h2d.Mask;
 
 /**
- * ScrollView，含遮罩可滑动的容器
+ * ScrollView，含遮罩可滑动的容器，使用：
+ * ```haxe
+ * var view = new ScrollView(this);
+ * var quad = new Quad(600,600,0xff0000,view);
+ * ```
  */
 class ScrollView extends Box {
 	private var view:Mask;
@@ -97,7 +101,6 @@ class ScrollView extends Box {
 		var size = this._box.getSize();
 		var targetX = x;
 		var targetY = y;
-		trace(view.scrollX, view.scrollY, targetX, targetY);
 		if (targetX < 0)
 			targetX = 0;
 		if (targetY < 0)
