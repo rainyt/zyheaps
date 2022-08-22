@@ -48,11 +48,17 @@ class ScrollView extends Box {
 			if (_touchid == e.touchId) {
 				_touchid = -1;
 				Window.getInstance().removeEventTarget(onTouchMove);
-				scrollTo(0, 0);
+				var vx = _lastPos == null ? 0 : (_movePos.x - _lastPos.x) * 10;
+				var vy = _lastPos == null ? 0 : (_movePos.y - _lastPos.y) * 10;
+				scrollTo(this.view.scrollX - vx, this.view.scrollY - vy);
 			}
 		}
 		this.interactive.onWheel = function(e:Event) {
-			this.view.scrollY += e.wheelDelta * 3;
+			if (__actuate != null)
+				Actuate.stop(__actuate);
+			__actuate = null;
+			this.view.scrollY -= e.wheelDelta * 3;
+			scrollTo(this.view.scrollX, this.view.scrollY, 0);
 		}
 	}
 
@@ -81,12 +87,17 @@ class ScrollView extends Box {
 
 	private var __actuate:motion.actuators.GenericActuator<Dynamic>;
 
-	public function scrollTo(x:Float, y:Float):Void {
+	/**
+	 * 移动到对应的X/Y
+	 * @param x x轴
+	 * @param y y轴
+	 * @param overrideTimeOffest 覆盖时间偏移值，没有提供时，则使用timeOffest
+	 */
+	public function scrollTo(x:Float, y:Float, overrideTimeOffest:Null<Float> = null):Void {
 		var size = this._box.getSize();
-		var vx = _lastPos == null ? 0 : (_movePos.x - _lastPos.x) * 10;
-		var vy = _lastPos == null ? 0 : (_movePos.y - _lastPos.y) * 10;
-		var targetX = view.scrollX - vx;
-		var targetY = view.scrollY - vy;
+		var targetX = x;
+		var targetY = y;
+		trace(view.scrollX, view.scrollY, targetX, targetY);
 		if (targetX < 0)
 			targetX = 0;
 		if (targetY < 0)
@@ -99,7 +110,12 @@ class ScrollView extends Box {
 		if (targetY > size.height) {
 			targetY = size.height;
 		}
-		__actuate = Actuate.update(__scrollTo, timeOffest, [view.scrollX, view.scrollY], [targetX, targetY]);
+		if (overrideTimeOffest == 0) {
+			this.view.scrollX = targetX;
+			this.view.scrollY = targetY;
+		} else
+			__actuate = Actuate.update(__scrollTo, overrideTimeOffest != null ? overrideTimeOffest : timeOffest, [view.scrollX, view.scrollY],
+				[targetX, targetY]);
 	}
 
 	private function __scrollTo(x:Float, y:Float):Void {
