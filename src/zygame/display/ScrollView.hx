@@ -1,5 +1,6 @@
 package zygame.display;
 
+import h2d.col.Matrix;
 import zygame.core.Start;
 import zygame.utils.Lib;
 import motion.Actuate;
@@ -29,6 +30,32 @@ class ScrollView extends Box {
 	private var _movePos:Point;
 	private var _lastPos:Point;
 
+	public var scrollX(get, set):Float;
+
+	function get_scrollX():Float {
+		var s = getAbsPos().getScale();
+		return view.scrollX / s.x;
+	}
+
+	function set_scrollX(scrollX:Float):Float {
+		var s = getAbsPos().getScale();
+		this.view.scrollX = scrollX * s.x;
+		return scrollX;
+	}
+
+	public var scrollY(get, set):Float;
+
+	function get_scrollY():Float {
+		var s = getAbsPos().getScale();
+		return view.scrollY / s.y;
+	}
+
+	function set_scrollY(scrollY:Float):Float {
+		var s = getAbsPos().getScale();
+		view.scrollY = scrollY * s.y;
+		return scrollY;
+	}
+
 	public function new(?parent:Object) {
 		super(parent);
 		this.view = new Mask(0, 0);
@@ -43,8 +70,8 @@ class ScrollView extends Box {
 					Actuate.stop(__actuate);
 				__actuate = null;
 				_touchid = e.touchId;
-				_beginPos.x = view.scrollX;
-				_beginPos.y = view.scrollY;
+				_beginPos.x = this.scrollX;
+				_beginPos.y = this.scrollY;
 				_beginTouchPos = new Point(e.relX, e.relY);
 				Window.getInstance().addEventTarget(onTouchMove);
 			}
@@ -55,15 +82,15 @@ class ScrollView extends Box {
 				Window.getInstance().removeEventTarget(onTouchMove);
 				var vx = _lastPos == null ? 0 : (_movePos.x - _lastPos.x) * 10;
 				var vy = _lastPos == null ? 0 : (_movePos.y - _lastPos.y) * 10;
-				scrollTo(this.view.scrollX - vx, this.view.scrollY - vy);
+				scrollTo(this.scrollX - vx, this.scrollY - vy);
 			}
 		}
 		this.interactive.onWheel = function(e:Event) {
 			if (__actuate != null)
 				Actuate.stop(__actuate);
 			__actuate = null;
-			this.view.scrollY -= e.wheelDelta * 3;
-			scrollTo(this.view.scrollX, this.view.scrollY, 0);
+			this.scrollY -= e.wheelDelta * 3;
+			scrollTo(this.scrollX, this.scrollY, 0);
 		}
 	}
 
@@ -78,8 +105,8 @@ class ScrollView extends Box {
 					_movePos = this.globalToLocal(new Point(e.relX, e.relY));
 					var setX = _beginPos.x - (_movePos.x - _beginTouchPos.x);
 					var setY = _beginPos.y - (_movePos.y - _beginTouchPos.y);
-					this.view.scrollX = setX;
-					this.view.scrollY = setY;
+					this.scrollX = setX;
+					this.scrollY = setY;
 					Lib.setTimeout(() -> {
 						_lastPos = null;
 					}, 100);
@@ -108,8 +135,8 @@ class ScrollView extends Box {
 			targetY = 0;
 		size.width -= this.width;
 		size.height -= this.height;
-		size.width *= Start.current.currentScale;
-		size.height *= Start.current.currentScale;
+		// size.width *= Start.current.currentScale;
+		// size.height *= Start.current.currentScale;
 		if (targetX > size.width) {
 			targetX = size.width;
 		}
@@ -117,16 +144,16 @@ class ScrollView extends Box {
 			targetY = size.height;
 		}
 		if (overrideTimeOffest == 0) {
-			this.view.scrollX = targetX;
-			this.view.scrollY = targetY;
+			this.scrollX = targetX;
+			this.scrollY = targetY;
 		} else
-			__actuate = Actuate.update(__scrollTo, overrideTimeOffest != null ? overrideTimeOffest : timeOffest, [view.scrollX, view.scrollY],
+			__actuate = Actuate.update(__scrollTo, overrideTimeOffest != null ? overrideTimeOffest : timeOffest, [this.scrollX, this.scrollY],
 				[targetX, targetY]);
 	}
 
 	private function __scrollTo(x:Float, y:Float):Void {
-		view.scrollX = x;
-		view.scrollY = y;
+		this.scrollX = x;
+		this.scrollY = y;
 	}
 
 	override function set_width(width:Null<Float>):Null<Float> {
