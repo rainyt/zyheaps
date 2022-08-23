@@ -1,5 +1,6 @@
 package zygame.display;
 
+import zygame.layout.ILayout;
 import zygame.utils.SceneManager;
 import h2d.RenderContext;
 import zygame.core.Start;
@@ -66,10 +67,12 @@ class Label extends Text implements IDisplayObject {
 	 */
 	public var centerY:Null<Float>;
 
+	public var layout:ILayout;
+
 	/**
 	 * 布局自身
 	 */
-	public function layout():Void {
+	public function updateLayout():Void {
 		layoutIDisplayObject(this);
 	}
 

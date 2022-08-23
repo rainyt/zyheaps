@@ -54,15 +54,15 @@ class Scene extends Box {
 
 	override function draw(ctx:RenderContext) {
 		if (this.dirt) {
-			this.layout();
+			this.updateLayout();
 		}
 		super.draw(ctx);
 	}
 
-	override function layout() {
+	override function updateLayout() {
 		this.width = stageWidth;
 		this.height = stageHeight;
-		super.layout();
+		super.updateLayout();
 	}
 
 	/**

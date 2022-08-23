@@ -1,5 +1,6 @@
 package zygame.display.base;
 
+import zygame.layout.ILayout;
 import h2d.Tile;
 import h2d.Object;
 
@@ -28,8 +29,8 @@ inline function convertIDisplayObject(data:Dynamic, ?parent:Object):IDisplayObje
 	if (data is Tile || data is String) {
 		return new Image(data, parent);
 	}
-	if (data is IDisplayObject){
-		if(parent != null){
+	if (data is IDisplayObject) {
+		if (parent != null) {
 			parent.addChild(cast data);
 		}
 		return cast data;
@@ -44,7 +45,7 @@ function layoutIDisplayObject(display:IDisplayObject):Void {
 		for (i in 0...obj.numChildren) {
 			var c = obj.getChildAt(i);
 			if (c is IDisplayObject) {
-				cast(c, IDisplayObject).layout();
+				cast(c, IDisplayObject).updateLayout();
 			}
 		}
 		// 后布局
@@ -175,9 +176,14 @@ interface IDisplayObject {
 	public var centerY:Null<Float>;
 
 	/**
+	 * 布局对象
+	 */
+	public var layout:ILayout;
+
+	/**
 	 * 布局自身
 	 */
-	public function layout():Void;
+	public function updateLayout():Void;
 
 	/**
 	 * 初始化入口

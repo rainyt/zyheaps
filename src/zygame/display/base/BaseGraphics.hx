@@ -1,5 +1,6 @@
 package zygame.display.base;
 
+import zygame.layout.ILayout;
 import h2d.RenderContext;
 import h2d.Interactive;
 import zygame.utils.SceneManager;
@@ -67,12 +68,13 @@ class BaseGraphics extends Graphics implements IInteractiveObject {
 	 */
 	public var stageHeight(get, never):Float;
 
+	public var layout:ILayout;
+
 	/**
 	 * 布局自身
 	 */
-	public function layout():Void {
+	public function updateLayout():Void {
 		layoutIDisplayObject(this);
-		this.x;
 	}
 
 	public function onInit():Void {}

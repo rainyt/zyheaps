@@ -1,5 +1,6 @@
 package zygame.display;
 
+import zygame.layout.ILayout;
 import zygame.display.base.IInteractiveObject;
 import h2d.Object;
 import h2d.RenderContext;
@@ -121,10 +122,12 @@ class Box extends h2d.Object implements IInteractiveObject {
 	 */
 	public var centerY:Null<Float>;
 
+	public var layout:ILayout;
+
 	/**
 	 * 布局自身
 	 */
-	public function layout():Void {
+	public function updateLayout():Void {
 		layoutIDisplayObject(this);
 	}
 

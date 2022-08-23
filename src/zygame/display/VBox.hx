@@ -11,8 +11,8 @@ class VBox extends Box {
 	 */
 	public var gap:Float = 0;
 
-	override function layout() {
-		super.layout();
+	override function updateLayout() {
+		super.updateLayout();
 		// 重新排序
 		var offestY = 0.;
 		for (object in this.children) {

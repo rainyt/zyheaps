@@ -97,12 +97,12 @@ class SceneBatch extends Scene {
 		super.draw(ctx);
 	}
 
-	override function layout() {
-		super.layout();
+	override function updateLayout() {
+		super.updateLayout();
 		this.group.width = stageWidth;
 		this.group.height = stageHeight;
 		for (object in group.children) {
-			object.layout();
+			object.updateLayout();
 		}
 	}
 }

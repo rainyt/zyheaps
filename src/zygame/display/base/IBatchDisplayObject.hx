@@ -1,5 +1,6 @@
 package zygame.display.base;
 
+import zygame.layout.ILayout;
 import zygame.display.batch.BObject;
 
 inline private function getWidth(display:IBatchDisplayObject):Float {
@@ -25,7 +26,7 @@ function layoutIDisplayObject(display:IBatchDisplayObject):Void {
 		for (i in 0...obj.numChildren) {
 			var c = obj.getChildAt(i);
 			if (c is IDisplayObject) {
-				cast(c, IDisplayObject).layout();
+				cast(c, IDisplayObject).updateLayout();
 			}
 		}
 		// 后布局
@@ -162,9 +163,14 @@ interface IBatchDisplayObject {
 	public var centerY:Null<Float>;
 
 	/**
+	 * 布局对象
+	 */
+	public var layout:ILayout;
+
+	/**
 	 * 布局自身
 	 */
-	public function layout():Void;
+	public function updateLayout():Void;
 
 	/**
 	 * 初始化入口

@@ -1,13 +1,10 @@
 package zygame.display;
 
-import h2d.col.Matrix;
-import zygame.core.Start;
 import zygame.utils.Lib;
 import motion.Actuate;
 import hxd.Window;
 import h2d.col.Point;
 import hxd.Event;
-import h2d.col.Bounds;
 import h2d.Object;
 import h2d.Mask;
 
@@ -145,8 +142,6 @@ class ScrollView extends Box {
 			targetY = 0;
 		size.width -= this.width;
 		size.height -= this.height;
-		// size.width *= Start.current.currentScale;
-		// size.height *= Start.current.currentScale;
 		if (targetX > size.width) {
 			targetX = size.width;
 		}

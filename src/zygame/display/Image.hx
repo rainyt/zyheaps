@@ -1,5 +1,6 @@
 package zygame.display;
 
+import zygame.layout.ILayout;
 import zygame.utils.SceneManager;
 import zygame.res.AssetsBuilder;
 import h2d.Object;
@@ -63,10 +64,13 @@ class Image extends Bitmap implements IDisplayObject {
 	 */
 	public var centerY:Null<Float>;
 
+
+	public var layout:ILayout;
+
 	/**
 	 * 布局自身
 	 */
-	public function layout():Void {
+	public function updateLayout():Void {
 		layoutIDisplayObject(this);
 	}
 

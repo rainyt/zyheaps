@@ -1,5 +1,6 @@
 package zygame.display.batch;
 
+import zygame.layout.ILayout;
 import h2d.col.Bounds;
 import h2d.Interactive;
 import h2d.col.Matrix;
@@ -140,10 +141,12 @@ class BObject implements IBatchDisplayObject {
 
 	public var centerY:Null<Float>;
 
+	public var layout:ILayout;
+
 	/**
 	 * 布局自身
 	 */
-	public function layout():Void {
+	public function updateLayout():Void {
 		trace("[Batch] layout");
 		layoutIDisplayObject(this);
 	}
