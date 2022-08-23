@@ -30,27 +30,37 @@ class ScrollView extends Box {
 	private var _movePos:Point;
 	private var _lastPos:Point;
 
+	/**
+	 * 设置ScrollX偏移值，值为正数
+	 */
 	public var scrollX(get, set):Float;
 
 	function get_scrollX():Float {
+		// TODO:兼容drawRec时绘制的错误偏移量
 		var s = getAbsPos().getScale();
 		return view.scrollX / s.x;
 	}
 
 	function set_scrollX(scrollX:Float):Float {
+		// TODO:兼容drawRec时绘制的错误偏移量
 		var s = getAbsPos().getScale();
 		this.view.scrollX = scrollX * s.x;
 		return scrollX;
 	}
 
+	/**
+	 * 设置ScrollY偏移值，值为正数
+	 */
 	public var scrollY(get, set):Float;
 
 	function get_scrollY():Float {
+		// TODO:兼容drawRec时绘制的错误偏移量
 		var s = getAbsPos().getScale();
 		return view.scrollY / s.y;
 	}
 
 	function set_scrollY(scrollY:Float):Float {
+		// TODO:兼容drawRec时绘制的错误偏移量
 		var s = getAbsPos().getScale();
 		view.scrollY = scrollY * s.y;
 		return scrollY;
