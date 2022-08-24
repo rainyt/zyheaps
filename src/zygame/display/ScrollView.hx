@@ -96,6 +96,7 @@ class ScrollView extends Box {
 				_beginPos.x = this.scrollX;
 				_beginPos.y = this.scrollY;
 				_beginTouchPos = new Point(e.relX, e.relY);
+				_movePos = _beginTouchPos;
 				Window.getInstance().addEventTarget(onTouchMove);
 			}
 		}
