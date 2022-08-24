@@ -151,4 +151,13 @@ class Button extends Box {
 		this.display.height = height;
 		return super.set_height(height);
 	}
+
+	override function onRemove() {
+		super.onRemove();
+		setSkinDisplay(skin.up);
+		display.scaleX = 1;
+		display.scaleY = 1;
+		display.x = display.y = 0;
+		dirt = true;
+	}
 }

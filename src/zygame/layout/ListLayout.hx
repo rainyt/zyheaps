@@ -33,5 +33,10 @@ class ListLayout extends Layout {
 		updateListLayout(list, recycler);
 	}
 
+	/**
+	 * 统一实现布局更新的入口
+	 * @param list 
+	 * @param recycler 
+	 */
 	public function updateListLayout(list:ListView, recycler:ObjectRecycler<Dynamic>):Void {}
 }

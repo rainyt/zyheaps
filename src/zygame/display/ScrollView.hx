@@ -134,8 +134,7 @@ class ScrollView extends Box {
 					if (!enableOutEasing) {
 						scrollTo(setX, setY, 0);
 					} else {
-						this.scrollX = setX;
-						this.scrollY = setY;
+						__scrollTo(setX, setY);
 					}
 					if (_moveTimeId != -1)
 						Lib.clearTimeout(_moveTimeId);
@@ -186,8 +185,7 @@ class ScrollView extends Box {
 		if (targetY < 0)
 			targetY = 0;
 		if (overrideTimeOffest == 0) {
-			this.scrollX = targetX;
-			this.scrollY = targetY;
+			__scrollTo(targetX, targetY);
 		} else
 			__actuate = Actuate.update(__scrollTo, overrideTimeOffest != null ? overrideTimeOffest : timeOffest, [this.scrollX, this.scrollY],
 				[targetX, targetY]);

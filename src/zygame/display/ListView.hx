@@ -1,5 +1,6 @@
 package zygame.display;
 
+import hxd.Event;
 import h2d.RenderContext;
 import zygame.display.data.ArrayCollection;
 import zygame.display.data.ObjectRecycler;
@@ -19,6 +20,11 @@ import zygame.layout.VerticalListLayout;
  * - `zygame.layout.VerticalListLayout`
  */
 class ListView extends ScrollView {
+	/**
+	 * 移动的时候更新数据，默认为false
+	 */
+	private var __moveUpdateData:Bool = false;
+
 	/**
 	 * 自定义渲染器
 	 * ```haxe
@@ -69,4 +75,11 @@ class ListView extends ScrollView {
 	}
 
 	override function updateLayout() {}
+
+	override function __scrollTo(x:Float, y:Float) {
+		super.__scrollTo(x, y);
+		if (__moveUpdateData) {
+			this.updateData();
+		}
+	}
 }
