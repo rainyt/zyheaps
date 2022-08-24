@@ -133,6 +133,8 @@ class ListView extends ScrollView {
 			this.selectedItem = value;
 			// 单选支持
 			__selectedIndexs = [this.selectedIndex];
+			// 更新数据
+			this.updateData();
 			// 发生变化时触发
 			this.dispatchEvent(new zygame.events.Event(zygame.events.Event.CHANGE));
 		}
