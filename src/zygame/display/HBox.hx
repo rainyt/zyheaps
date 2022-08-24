@@ -1,6 +1,9 @@
 package zygame.display;
 
-import zygame.display.base.IDisplayObject;
+import h2d.Object;
+import zygame.layout.HorizontalLayout;
+
+using zygame.utils.LayoutTools;
 
 /**
  * 横向排序的Box
@@ -9,20 +12,17 @@ class HBox extends Box {
 	/**
 	 * 间隔
 	 */
-	public var gap:Float = 0;
+	public var gap(default, set):Float;
 
-	override function updateLayout() {
-		super.updateLayout();
-		// 重新排序
-		var offestX = 0.;
-		for (object in this.children) {
-			object.x = offestX;
-			offestX += gap;
-			if (object is IDisplayObject) {
-				offestX += cast(object, IDisplayObject).width;
-			} else {
-				offestX += object.getSize().width;
-			}
-		}
+	private function set_gap(f:Float):Float {
+		this.gap = f;
+		this.getLayout(HorizontalLayout).gap = f;
+		return f;
+	}
+
+	public function new(?parent:Object) {
+		super(parent);
+		// 竖向布局
+		this.layout = new HorizontalLayout();
 	}
 }
