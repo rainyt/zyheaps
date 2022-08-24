@@ -25,7 +25,7 @@ class ListView extends ScrollView {
 	 * listview.itemRendererRecycler = ObjectRecycler.withClass(ItemRendererClass);
 	 * ```
 	 */
-	public var itemRendererRecycler:ObjectRecycler<ItemRenderer>;
+	public var itemRendererRecycler:ObjectRecycler<Dynamic>;
 
 	/**
 	 * 列表数据
@@ -50,7 +50,7 @@ class ListView extends ScrollView {
 	 * 刷新所有数据
 	 */
 	public function updateData():Void {
-		this.updateLayout();
+		this.layout.updateLayout(this, @:private this._box.children);
 	}
 
 	override function draw(ctx:RenderContext) {
@@ -59,4 +59,6 @@ class ListView extends ScrollView {
 		}
 		super.draw(ctx);
 	}
+
+	override function updateLayout() {}
 }

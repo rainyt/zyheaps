@@ -168,4 +168,16 @@ class Label extends Text implements IDisplayObject {
 			return cast ids.get(id);
 		return null;
 	}
+
+	public var contentWidth(get, null):Float;
+
+	public function get_contentWidth():Float {
+		return getWidth(this);
+	}
+
+	public var contentHeight(get, null):Float;
+
+	public function get_contentHeight():Float {
+		return getHeight(this);
+	}
 }

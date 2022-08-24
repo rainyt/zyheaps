@@ -32,6 +32,21 @@ class ScrollView extends Box {
 	 */
 	public var scrollX(get, set):Float;
 
+	/**
+	 * 是否可以竖向滑动
+	 */
+	public var enableVerticalScroll:Bool = true;
+
+	/**
+	 * 是否可以横向滑动
+	 */
+	public var enableHorizontalScroll:Bool = true;
+
+	/**
+	 * 是否允许超出后滑动
+	 */
+	public var enableOutEasing:Bool = true;
+
 	function get_scrollX():Float {
 		// TODO:兼容drawRec时绘制的错误偏移量
 		var s = getAbsPos().getScale();
@@ -87,8 +102,8 @@ class ScrollView extends Box {
 			if (_touchid == e.touchId) {
 				_touchid = -1;
 				Window.getInstance().removeEventTarget(onTouchMove);
-				var vx = _lastPos == null ? 0 : (_movePos.x - _lastPos.x) * 10;
-				var vy = _lastPos == null ? 0 : (_movePos.y - _lastPos.y) * 10;
+				var vx = (!enableHorizontalScroll || _lastPos == null) ? 0 : (_movePos.x - _lastPos.x) * 10;
+				var vy = (!enableVerticalScroll || _lastPos == null) ? 0 : (_movePos.y - _lastPos.y) * 10;
 				scrollTo(this.scrollX - vx, this.scrollY - vy);
 			}
 		}
@@ -110,10 +125,14 @@ class ScrollView extends Box {
 						_lastPos = _movePos;
 					}
 					_movePos = this.globalToLocal(new Point(e.relX, e.relY));
-					var setX = _beginPos.x - (_movePos.x - _beginTouchPos.x);
-					var setY = _beginPos.y - (_movePos.y - _beginTouchPos.y);
-					this.scrollX = setX;
-					this.scrollY = setY;
+					var setX = !enableHorizontalScroll ? scrollX : _beginPos.x - (_movePos.x - _beginTouchPos.x);
+					var setY = !enableVerticalScroll ? scrollY : _beginPos.y - (_movePos.y - _beginTouchPos.y);
+					if (!enableOutEasing) {
+						scrollTo(setX, setY, 0);
+					} else {
+						this.scrollX = setX;
+						this.scrollY = setY;
+					}
 					Lib.setTimeout(() -> {
 						_lastPos = null;
 					}, 100);
@@ -134,6 +153,12 @@ class ScrollView extends Box {
 	 */
 	public function scrollTo(x:Float, y:Float, overrideTimeOffest:Null<Float> = null):Void {
 		var size = this._box.getSize();
+		if (this._box.width != null) {
+			size.width = this._box.width;
+		}
+		if (this._box.height != null) {
+			size.height = this._box.height;
+		}
 		var targetX = x;
 		var targetY = y;
 		size.width -= this.width;

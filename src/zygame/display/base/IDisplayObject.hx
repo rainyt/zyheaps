@@ -4,7 +4,7 @@ import zygame.layout.ILayout;
 import h2d.Tile;
 import h2d.Object;
 
-inline private function getWidth(display:IDisplayObject):Float {
+inline function getWidth(display:IDisplayObject):Float {
 	if (display.width == null) {
 		return cast(display, Object).getSize().width;
 	} else {
@@ -12,7 +12,7 @@ inline private function getWidth(display:IDisplayObject):Float {
 	}
 }
 
-inline private function getHeight(display:IDisplayObject):Float {
+inline function getHeight(display:IDisplayObject):Float {
 	if (display.height == null) {
 		return cast(display, Object).getSize().height;
 	} else {
@@ -124,4 +124,8 @@ interface IDisplayObject extends IObject {
 	 * @return T
 	 */
 	public function get<T:Object>(id:String, c:Class<T>):T;
+
+	public var contentWidth(get, null):Float;
+
+	public var contentHeight(get, null):Float;
 }

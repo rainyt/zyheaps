@@ -151,4 +151,16 @@ class BaseGraphics extends Graphics implements IInteractiveObject {
 		}
 		super.draw(ctx);
 	}
+
+	public var contentWidth(get, null):Float;
+
+	public function get_contentWidth():Float {
+		return getWidth(this);
+	}
+
+	public var contentHeight(get, null):Float;
+
+	public function get_contentHeight():Float {
+		return getHeight(this);
+	}
 }

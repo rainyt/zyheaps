@@ -1,5 +1,6 @@
 package zygame.layout;
 
+import zygame.display.ItemRenderer;
 import zygame.display.DefalutItemRenderer;
 import zygame.display.ListView;
 import zygame.display.base.IObject;
@@ -12,6 +13,8 @@ class VerticalListLayout extends Layout {
 	override function updateLayout(self:IObject, children:Array<Object>) {
 		super.updateLayout(self, children);
 		var list:ListView = cast self;
+		list.enableHorizontalScroll = false;
+		list.enableVerticalScroll = true;
 		if (list.dataProvider == null) {
 			return;
 		}
@@ -32,14 +35,16 @@ class VerticalListLayout extends Layout {
 			// 直接清空
 			box.removeChildren();
 		}
+		trace("刷新了？");
 		var offestY = 0.;
 		for (index => value in list.dataProvider.source) {
-			var item = recycler.create();
+			var item:ItemRenderer = recycler.create();
 			item.x = 0;
+			item.width = list.width;
 			item.y = offestY;
 			list.addChild(item);
 			item.data = value;
-			offestY += item.height;
+			offestY += item.contentHeight;
 		}
 	}
 }

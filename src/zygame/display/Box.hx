@@ -138,4 +138,16 @@ class Box extends h2d.Object implements IInteractiveObject {
 			return cast ids.get(id);
 		return null;
 	}
+
+	public var contentWidth(get, null):Float;
+
+	public function get_contentWidth():Float {
+		return getWidth(this);
+	}
+
+	public var contentHeight(get, null):Float;
+
+	public function get_contentHeight():Float {
+		return getHeight(this);
+	}
 }

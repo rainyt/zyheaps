@@ -6,11 +6,19 @@ import zygame.display.base.IItemRenderer;
  * ObjectRecycler用于垃圾回收处理
  */
 class ObjectRecycler<T:IItemRenderer> {
+	public static function withClass<T:B, B:IItemRenderer>(c:Class<T>):ObjectRecycler<T> {
+		return new ObjectRecycler(() -> {
+			var obj = Type.createInstance(c, []);
+			return obj;
+		});
+	}
+
 	private var _array:Array<T> = [];
 
 	public function new(create:Void->T, ?reset:T->Void) {
 		this._create = create;
-		this._reset = reset;
+		if (reset != null)
+			this._reset = reset;
 	}
 
 	dynamic private function _create():T {
