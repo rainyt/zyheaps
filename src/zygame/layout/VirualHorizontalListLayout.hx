@@ -44,6 +44,7 @@ class VirualHorizontalListLayout extends ListLayout {
 			item.x = offestX;
 			list.addChild(item);
 			item.data = value;
+			item.selected = list.hasSelectedIndex(startIndex);
 			offestX += item.contentWidth;
 			visibleLen--;
 			startIndex++;

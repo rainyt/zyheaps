@@ -172,6 +172,8 @@ class Box extends h2d.Object implements IInteractiveObject implements IEventList
 	}
 
 	public function dispatchEvent(event:Event, bubble:Bool = false):Void {
+		if (@:privateAccess event.__target == null)
+			@:privateAccess event.__target = this;
 		this.__events.dispatchEvent(event, bubble);
 		EventTools.dispatchParentEvent(this, event, bubble);
 	}

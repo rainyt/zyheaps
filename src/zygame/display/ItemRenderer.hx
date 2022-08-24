@@ -31,7 +31,6 @@ class ItemRenderer extends Box implements IItemRenderer {
 		super(parent);
 		this.enableInteractive = true;
 		this.interactive.propagateEvents = true;
-		// this.interactive.backgroundColor = 0xddff0000;
 		this.interactive.onClick = function(e) {
 			this.dispatchEvent(new Event(Event.CLICK), true);
 		}

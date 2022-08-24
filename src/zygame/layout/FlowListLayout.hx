@@ -14,7 +14,7 @@ class FlowListLayout extends ListLayout {
 		list.enableVerticalScroll = true;
 		var offestY = 0.;
 		var offestX = 0.;
-		for (value in list.dataProvider.source) {
+		for (index => value in list.dataProvider.source) {
 			var item:ItemRenderer = recycler.create();
 			var iwidth = item.contentWidth;
 			if (offestX + iwidth > list.width) {
@@ -27,6 +27,7 @@ class FlowListLayout extends ListLayout {
 			item.y = offestY;
 			list.addChild(item);
 			item.data = value;
+			item.selected = list.hasSelectedIndex(index);
 		}
 	}
 }

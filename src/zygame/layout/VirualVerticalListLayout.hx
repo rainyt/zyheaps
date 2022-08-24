@@ -44,6 +44,7 @@ class VirualVerticalListLayout extends ListLayout {
 			item.y = offestY;
 			list.addChild(item);
 			item.data = value;
+			item.selected = list.hasSelectedIndex(startIndex);
 			offestY += item.contentHeight;
 			visibleLen--;
 			startIndex++;

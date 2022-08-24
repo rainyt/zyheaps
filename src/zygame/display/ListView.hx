@@ -46,6 +46,66 @@ class ListView extends ScrollView {
 	 */
 	public var selectedItem(default, set):Dynamic;
 
+	/**
+	 * 当前选中的索引
+	 */
+	public var selectedIndex(get, set):Int;
+
+	/**
+	 * 所有选中的索引
+	 */
+	private var __selectedIndexs:Array<Int> = [];
+
+	/**
+	 * 是否已经选中
+	 * @param index 
+	 * @return Bool
+	 */
+	public function hasSelectedIndex(index:Int):Bool {
+		return __selectedIndexs.indexOf(index) != -1;
+	}
+
+	/**
+	 * 当前选中的列表
+	 */
+	public var selectedItems(get, set):Array<Dynamic>;
+
+	private function get_selectedItems():Array<Dynamic> {
+		var array = [];
+		if (dataProvider == null)
+			return array;
+		for (i in __selectedIndexs) {
+			array.push(dataProvider.source[i]);
+		}
+		return array;
+	}
+
+	private function set_selectedItems(data:Array<Dynamic>) {
+		__selectedIndexs = [];
+		if (dataProvider == null) {
+			return null;
+		}
+		for (index => value in data) {
+			__selectedIndexs.push(dataProvider.source.indexOf(value));
+		}
+		return data;
+	}
+
+	private function get_selectedIndex():Int {
+		if (selectedItem == null || dataProvider == null) {
+			return -1;
+		}
+		return dataProvider.source.indexOf(selectedItem);
+	}
+
+	private function set_selectedIndex(v:Int):Int {
+		if (dataProvider == null) {
+			return -1;
+		}
+		this.selectedItem = dataProvider.source[v];
+		return v;
+	}
+
 	private function set_selectedItem(v:Dynamic):Dynamic {
 		this.selectedItem = v;
 		return v;
@@ -68,7 +128,14 @@ class ListView extends ScrollView {
 	}
 
 	private function onItemRendererClick(e:zygame.events.Event):Void {
-		trace("点击事件");
+		var value = (e.target is ItemRenderer) ? cast(e.target, ItemRenderer).data : null;
+		if (this.selectedItem != value) {
+			this.selectedItem = value;
+			// 单选支持
+			__selectedIndexs = [this.selectedIndex];
+			// 发生变化时触发
+			this.dispatchEvent(new zygame.events.Event(zygame.events.Event.CHANGE));
+		}
 	}
 
 	private function __onChange():Void {

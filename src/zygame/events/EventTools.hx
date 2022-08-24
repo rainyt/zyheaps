@@ -10,9 +10,8 @@ class EventTools {
 			if (self.parent != null) {
 				if (self.parent is IEventListener)
 					cast(self.parent, IEventListener).dispatchEvent(event, bubble);
-				dispatchParentEvent(self.parent, event, bubble);
-			} else {
-				trace("停止了", self.parent);
+				else
+					dispatchParentEvent(self.parent, event, bubble);
 			}
 		}
 	}

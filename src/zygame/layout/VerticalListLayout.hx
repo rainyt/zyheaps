@@ -13,13 +13,14 @@ class VerticalListLayout extends ListLayout {
 		list.enableHorizontalScroll = false;
 		list.enableVerticalScroll = true;
 		var offestY = 0.;
-		for (value in list.dataProvider.source) {
+		for (index => value in list.dataProvider.source) {
 			var item:ItemRenderer = recycler.create();
 			item.x = 0;
 			item.width = list.width;
 			item.y = offestY;
 			list.addChild(item);
 			item.data = value;
+			item.selected = list.hasSelectedIndex(index);
 			offestY += item.contentHeight;
 		}
 	}
