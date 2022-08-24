@@ -36,7 +36,11 @@ class ListView extends ScrollView {
 	public var dataProvider(default, set):ArrayCollection<Dynamic>;
 
 	private function set_dataProvider(data:ArrayCollection<Dynamic>):ArrayCollection<Dynamic> {
+		if (this.dataProvider != null) {
+			this.dataProvider.onChange = null;
+		}
 		this.dataProvider = data;
+		this.dataProvider.onChange = __onChange;
 		this.dirt = true;
 		return data;
 	}
@@ -44,6 +48,10 @@ class ListView extends ScrollView {
 	override function onInit() {
 		super.onInit();
 		this.layout = new VerticalListLayout();
+	}
+
+	private function __onChange():Void {
+		this.dirt = true;
 	}
 
 	/**
