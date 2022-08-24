@@ -1,5 +1,6 @@
 package platform;
 
+import utils.FixHashLinkNative;
 import utils.AssetHelperExt;
 import hxp.HXML;
 import haxe.Json;
@@ -77,6 +78,8 @@ class Android extends BasePlatform {
 		var hxml = initHxml();
 		hxml.build();
 		System.writeText(hxml, project.app.path + "/" + platform + "/app/src/main/build.hxml");
+		// Fix
+		FixHashLinkNative.fix(project.app.path + "/" + platform + "/app/src/main/cpp/out/");
 		// 从android studio编译
 		Sys.setCwd(project.app.path + "/" + platform);
 		var cmd = project.app.path + "/" + platform + "/gradlew";

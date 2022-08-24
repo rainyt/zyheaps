@@ -12,8 +12,10 @@ class IOSTools {
 		return 1;
 	}
 
+	#if mac
 	/**
 	 * 打开文件选择器
 	 */
 	public static function open_select_dir(cb:Dynamic->Void):Void {}
+	#end
 }

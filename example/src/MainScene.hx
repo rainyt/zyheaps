@@ -72,7 +72,7 @@ class MainScene extends Scene {
 
 				for (index => item in array) {
 					var button = Button.create("btn_LvSe", null, vbox);
-					button.img.scale9Grid = new Rect(30, 30, 30, 30);
+					// button.img.scale9Grid = new Rect(30, 30, 30, 30);
 					button.width = 800;
 					button.text = item;
 					button.label.setSize(40);

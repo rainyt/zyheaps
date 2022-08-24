@@ -1,5 +1,6 @@
 package platform;
 
+import utils.FixHashLinkNative;
 import utils.AssetHelperExt;
 import lime.tools.ProjectHelper;
 import hxp.HXML;
@@ -74,6 +75,8 @@ class Ios extends BasePlatform {
 		// 开始编译cpp目标
 		var hxml = initHxml();
 		hxml.build();
+		// Fix
+		FixHashLinkNative.fix(project.app.path + "/" + platform + "/out/");
 		// System.writeText(hxml, project.app.path + "/" + platform + "/app/src/main/build.hxml");
 	}
 }

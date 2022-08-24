@@ -4,6 +4,7 @@ import zygame.core.Start;
 import zygame.display.Quad;
 import haxe.io.Bytes;
 
+#if mac
 /**
  * 文件管理器
  */
@@ -32,3 +33,4 @@ import haxe.io.Bytes;
 typedef FileDialogFile = {
 	path:String
 }
+#end

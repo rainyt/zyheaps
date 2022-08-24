@@ -74,7 +74,6 @@ class BasePlatform {
 			} else
 				hxml.define(key, '${value}');
 		}
-
 		return hxml;
 	}
 
