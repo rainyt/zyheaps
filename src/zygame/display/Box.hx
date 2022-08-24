@@ -33,9 +33,10 @@ class Box extends h2d.Object implements IInteractiveObject {
 			// 开启触摸
 			if (interactive == null) {
 				var interactive = new h2d.Interactive(0, 0);
-				super.addChildAt(interactive, 0);
+				super.addChildAt(interactive, numChildren);
 				this.interactive = interactive;
 				interactive.cursor = Default;
+				// interactive.backgroundColor = 0x33ff0000;
 			}
 		} else {
 			// 关闭触摸

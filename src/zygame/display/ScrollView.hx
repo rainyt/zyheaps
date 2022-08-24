@@ -85,6 +85,7 @@ class ScrollView extends Box {
 		super.addChildAt(view, 0);
 		this.height = this.width = 300;
 		this.enableInteractive = true;
+		this.interactive.propagateEvents = true;
 		this.interactive.onPush = function(e:Event) {
 			if (_touchid != e.touchId) {
 				_lastPos = null;
@@ -102,8 +103,8 @@ class ScrollView extends Box {
 			if (_touchid == e.touchId) {
 				_touchid = -1;
 				Window.getInstance().removeEventTarget(onTouchMove);
-				var vx = (!enableHorizontalScroll || _lastPos == null) ? 0 : (_movePos.x - _lastPos.x) * 10;
-				var vy = (!enableVerticalScroll || _lastPos == null) ? 0 : (_movePos.y - _lastPos.y) * 10;
+				var vx = (!enableHorizontalScroll) ? 0 : (_movePos.x - _beginTouchPos.x);
+				var vy = (!enableVerticalScroll) ? 0 : (_movePos.y - _beginTouchPos.y);
 				scrollTo(this.scrollX - vx, this.scrollY - vy);
 			}
 		}
@@ -115,6 +116,8 @@ class ScrollView extends Box {
 			scrollTo(this.scrollX, this.scrollY, 0);
 		}
 	}
+
+	private var _moveTimeId:Int = -1;
 
 	private function onTouchMove(e:Event):Void {
 		switch e.kind {
@@ -133,7 +136,15 @@ class ScrollView extends Box {
 						this.scrollX = setX;
 						this.scrollY = setY;
 					}
-					Lib.setTimeout(() -> {
+					if (_moveTimeId != -1)
+						Lib.clearTimeout(_moveTimeId);
+					_moveTimeId = Lib.setTimeout(() -> {
+						if (_lastPos == null)
+							return;
+						_beginPos.x = this.scrollX;
+						_beginPos.y = this.scrollY;
+						_beginTouchPos.x = _movePos.x;
+						_beginTouchPos.y = _movePos.y;
 						_lastPos = null;
 					}, 100);
 				}
