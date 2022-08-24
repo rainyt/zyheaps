@@ -6,45 +6,45 @@ import zygame.display.ItemRenderer;
 import zygame.display.ListView;
 
 /**
- * 虚拟化竖向的ListView布局，请注意，该布局会不停刷新发生变化的data，但仅使用可见的渲染项。当使用大量数据时，这个会非常有用。
- * 注意事项：虚拟布局是使用相同的高度进行计算，如果使用虚拟布局，请确保所有的高度是一样的。
+ * 虚拟化横向的ListView布局，请注意，该布局会不停刷新发生变化的data，但仅使用可见的渲染项。当使用大量数据时，这个会非常有用。
+ * 注意事项：虚拟布局是使用相同的宽度进行计算，如果使用虚拟布局，请确保所有的宽度是一样的。
  */
-class VirualVerticalListLayout extends ListLayout {
+class VirualHorizontalListLayout extends ListLayout {
 	override function updateListLayout(list:ListView, recycler:ObjectRecycler<Dynamic>) {
 		super.updateListLayout(list, recycler);
-		list.enableHorizontalScroll = false;
-		list.enableVerticalScroll = true;
+		list.enableHorizontalScroll = true;
+		list.enableVerticalScroll = false;
 		@:privateAccess list.__moveUpdateData = true;
 		var item:ItemRenderer = recycler.create();
-		var itemHeight = item.contentHeight;
+		var itemWidth = item.contentWidth;
 		var counts = list.dataProvider.source.length;
 		recycler.release(item);
-		// 虚拟高度
-		@:privateAccess list._box.height = itemHeight * counts;
+		// 虚拟宽度
+		@:privateAccess list._box.width = itemWidth * counts;
 		// 计算开始位置
-		var visibleLen = Std.int(list.height / itemHeight) + 1;
-		var startIndex = Std.int(list.scrollY / itemHeight);
+		var visibleLen = Std.int(list.width / itemWidth) + 1;
+		var startIndex = Std.int(list.scrollX / itemWidth);
 		// 初始化开始渲染位置
-		var offestY = startIndex * itemHeight;
+		var offestX = startIndex * itemWidth;
 		while (visibleLen > 0) {
 			if (startIndex >= list.dataProvider.source.length) {
 				break;
 			}
 			if (startIndex < 0) {
 				startIndex++;
-				offestY += itemHeight;
+				offestX += itemWidth;
 				continue;
 			}
 			var value = list.dataProvider.source[startIndex];
 			if (value == null)
 				break;
 			var item:ItemRenderer = recycler.create();
-			item.x = 0;
-			item.width = list.width;
-			item.y = offestY;
+			item.y = 0;
+			item.height = list.height;
+			item.x = offestX;
 			list.addChild(item);
 			item.data = value;
-			offestY += item.contentHeight;
+			offestX += item.contentWidth;
 			visibleLen--;
 			startIndex++;
 		}
