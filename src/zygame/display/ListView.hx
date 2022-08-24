@@ -41,6 +41,16 @@ class ListView extends ScrollView {
 	 */
 	public var dataProvider(default, set):ArrayCollection<Dynamic>;
 
+	/**
+	 * 当前选中的对象
+	 */
+	public var selectedItem(default, set):Dynamic;
+
+	private function set_selectedItem(v:Dynamic):Dynamic {
+		this.selectedItem = v;
+		return v;
+	}
+
 	private function set_dataProvider(data:ArrayCollection<Dynamic>):ArrayCollection<Dynamic> {
 		if (this.dataProvider != null) {
 			this.dataProvider.onChange = null;
@@ -54,6 +64,11 @@ class ListView extends ScrollView {
 	override function onInit() {
 		super.onInit();
 		this.layout = new VerticalListLayout();
+		this.addEventListener(zygame.events.Event.CLICK, onItemRendererClick);
+	}
+
+	private function onItemRendererClick(e:zygame.events.Event):Void {
+		trace("点击事件");
 	}
 
 	private function __onChange():Void {

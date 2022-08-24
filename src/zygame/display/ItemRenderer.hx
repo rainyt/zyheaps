@@ -1,11 +1,18 @@
 package zygame.display;
 
+import h2d.RenderContext;
+import zygame.events.Event;
 import h2d.Object;
-import zygame.display.data.ObjectRecycler;
 import zygame.display.base.IItemRenderer;
 
+/**
+ * 基础的ItemRenderer渲染器
+ * ### 事件列表：
+ * ```haxe
+ * Event.CLICK（点击事件，通过该事件会返回到ListView中）
+ * ```
+ */
 class ItemRenderer extends Box implements IItemRenderer {
-
 	public var data(default, set):Dynamic;
 
 	public function set_data(value:Dynamic):Dynamic {
@@ -22,5 +29,15 @@ class ItemRenderer extends Box implements IItemRenderer {
 
 	public function new(?parent:Object) {
 		super(parent);
+		this.enableInteractive = true;
+		this.interactive.propagateEvents = true;
+		// this.interactive.backgroundColor = 0xddff0000;
+		this.interactive.onClick = function(e) {
+			this.dispatchEvent(new Event(Event.CLICK), true);
+		}
+	}
+
+	override function draw(ctx:RenderContext) {
+		super.draw(ctx);
 	}
 }

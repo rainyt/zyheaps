@@ -1,5 +1,10 @@
 package zygame.display;
 
+import zygame.events.EventTools;
+import zygame.events.Event;
+import zygame.events.EventType;
+import zygame.events.EventListener;
+import zygame.display.base.IEventListener;
 import zygame.layout.ILayout;
 import zygame.display.base.IInteractiveObject;
 import h2d.Object;
@@ -11,7 +16,7 @@ import zygame.display.base.IDisplayObject;
 /**
  * 基础容器
  */
-class Box extends h2d.Object implements IInteractiveObject {
+class Box extends h2d.Object implements IInteractiveObject implements IEventListener {
 	public var dirt:Bool = false;
 
 	public var enableInteractive(default, set):Bool;
@@ -85,8 +90,8 @@ class Box extends h2d.Object implements IInteractiveObject {
 	override function draw(ctx:RenderContext) {
 		if (dirt) {
 			if (interactive != null) {
-				interactive.width = this.width == null ? 1 : this.width;
-				interactive.height = this.height == null ? 1 : this.height;
+				interactive.width = this.contentWidth;
+				interactive.height = this.contentHeight;
 			}
 			dirt = false;
 		}
@@ -150,5 +155,24 @@ class Box extends h2d.Object implements IInteractiveObject {
 
 	public function get_contentHeight():Float {
 		return getHeight(this);
+	}
+
+	private var __events:EventListener = new EventListener();
+
+	public function addEventListener<T>(type:EventType<T>, listener:T->Void) {
+		__events.addEventListener(type, listener);
+	}
+
+	public function removeEventListener<T>(type:EventType<T>, listener:T->Void) {
+		__events.removeEventListener(type, listener);
+	}
+
+	public function hasEventListener<T>(type:EventType<T>):Bool {
+		return __events.hasEventListener(type);
+	}
+
+	public function dispatchEvent(event:Event, bubble:Bool = false):Void {
+		this.__events.dispatchEvent(event, bubble);
+		EventTools.dispatchParentEvent(this, event, bubble);
 	}
 }
