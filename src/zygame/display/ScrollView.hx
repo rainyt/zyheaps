@@ -136,10 +136,6 @@ class ScrollView extends Box {
 		var size = this._box.getSize();
 		var targetX = x;
 		var targetY = y;
-		if (targetX < 0)
-			targetX = 0;
-		if (targetY < 0)
-			targetY = 0;
 		size.width -= this.width;
 		size.height -= this.height;
 		if (targetX > size.width) {
@@ -148,6 +144,10 @@ class ScrollView extends Box {
 		if (targetY > size.height) {
 			targetY = size.height;
 		}
+		if (targetX < 0)
+			targetX = 0;
+		if (targetY < 0)
+			targetY = 0;
 		if (overrideTimeOffest == 0) {
 			this.scrollX = targetX;
 			this.scrollY = targetY;

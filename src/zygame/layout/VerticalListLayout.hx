@@ -17,8 +17,29 @@ class VerticalListLayout extends Layout {
 		}
 		var recycler = list.itemRendererRecycler;
 		if (recycler == null) {
-			recycler = DefalutItemRenderer.recycler;
+			recycler = cast DefalutItemRenderer.recycler;
 		}
-        // 布局渲染
+		// 布局渲染
+		var box = @:privateAccess list._box;
+		var childs = @:privateAccess box.children;
+		if (childs.length > 0) {
+			if (recycler.testClass(childs[0])) {
+				for (object in childs) {
+					// 回收
+					recycler.release(cast object);
+				}
+			}
+			// 直接清空
+			box.removeChildren();
+		}
+		var offestY = 0.;
+		for (index => value in list.dataProvider.source) {
+			var item = recycler.create();
+			item.x = 0;
+			item.y = offestY;
+			list.addChild(item);
+			item.data = value;
+			offestY += item.height;
+		}
 	}
 }

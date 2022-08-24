@@ -1,12 +1,13 @@
 package zygame.display;
 
+import h2d.Object;
 import zygame.display.data.ObjectRecycler;
 import zygame.display.base.IItemRenderer;
 
 /**
  * 默认列表渲染器
  */
-class DefalutItemRenderer extends Box implements IItemRenderer {
+class DefalutItemRenderer extends ItemRenderer {
 	/**
 	 * 默认的渲染器
 	 */
@@ -14,20 +15,22 @@ class DefalutItemRenderer extends Box implements IItemRenderer {
 		return new DefalutItemRenderer();
 	}, (display) -> {
 		display.data = null;
-		display.selected = null;
+		display.selected = false;
 	});
 
-	public var data(default, set):Dynamic;
+	public var label:Label = new Label();
 
-	public function set_data(value:Dynamic):Dynamic {
-		this.data = value;
-		return value;
+	override function onInit() {
+		super.onInit();
+		this.addChild(label);
+		this.height = 50;
 	}
 
-	public var selected(default, set):Bool;
-
-	public function set_selected(value:Bool):Bool {
-		this.selected = value;
-		return value;
+	override function set_data(value:Dynamic):Dynamic {
+		if (value is Float) {
+			value = Std.string(value);
+		}
+		this.label.text = value == null ? "" : value;
+		return super.set_data(value);
 	}
 }
