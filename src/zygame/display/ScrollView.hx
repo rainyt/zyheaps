@@ -87,7 +87,7 @@ class ScrollView extends Box {
 		this.enableInteractive = true;
 		this.interactive.propagateEvents = true;
 		this.interactive.onPush = function(e:Event) {
-			if (_touchid != e.touchId) {
+			if (_touchid == -1) {
 				_lastPos = null;
 				if (__actuate != null)
 					Actuate.stop(__actuate);
