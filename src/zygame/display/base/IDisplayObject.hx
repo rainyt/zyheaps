@@ -39,15 +39,11 @@ inline function convertIDisplayObject(data:Dynamic, ?parent:Object):IDisplayObje
 }
 
 function layoutIDisplayObject(display:IDisplayObject):Void {
+	if (display.parent is IDisplayObject) {
+		var dw = getWidth(cast display.parent);
+		var dh = getHeight(cast display.parent);
+	}
 	if (display.parent != null) {
-		// 先处理子布局
-		var obj:Object = cast display;
-		for (i in 0...obj.numChildren) {
-			var c = obj.getChildAt(i);
-			if (c is IDisplayObject) {
-				cast(c, IDisplayObject).updateLayout();
-			}
-		}
 		// 后布局
 		var w = 0.;
 		var h = 0.;
@@ -96,6 +92,13 @@ function layoutIDisplayObject(display:IDisplayObject):Void {
 			} else {
 				// 改变位置
 				display.y = h / 2 + display.centerY - dh / 2 - 1;
+			}
+		}
+		var obj:Object = cast display;
+		for (i in 0...obj.numChildren) {
+			var c = obj.getChildAt(i);
+			if (c is IDisplayObject) {
+				cast(c, IDisplayObject).updateLayout();
 			}
 		}
 		if (display.layout != null && display.layout.autoLayout) {
