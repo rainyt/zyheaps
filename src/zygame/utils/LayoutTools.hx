@@ -3,6 +3,7 @@ package zygame.utils;
 import h2d.Object;
 import zygame.layout.ILayout;
 import zygame.display.base.IObject;
+import zygame.display.Label;
 
 /**
  * 布局工具
@@ -24,7 +25,9 @@ class LayoutTools {
 	 * @return Float
 	 */
 	public static function getWidth(object:Object):Float {
-		if (object is IObject) {
+		if (object is Label) {
+			return cast(object, Label).contentWidth;
+		} else if (object is IObject) {
 			return cast(object, IObject).width;
 		} else {
 			return object.getSize().width;
@@ -37,7 +40,9 @@ class LayoutTools {
 	 * @return Float
 	 */
 	public static function getHeight(object:Object):Float {
-		if (object is IObject) {
+		if (object is Label) {
+			return cast(object, Label).contentHeight;
+		} else if (object is IObject) {
 			return cast(object, IObject).height;
 		} else {
 			return object.getSize().height;
