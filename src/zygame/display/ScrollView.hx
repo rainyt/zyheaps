@@ -120,11 +120,16 @@ class ScrollView extends Box {
 
 	private var _moveTimeId:Int = -1;
 
+	private var _scrolling:Bool = false;
+
 	/**
 	 * 是否移动窗口
 	 * @return Bool
 	 */
 	public function scrolling():Bool {
+		if (_scrolling) {
+			return true;
+		}
 		var mx = _beginTouchPos.x - _movePos.x;
 		var my = _beginTouchPos.y - _movePos.y;
 		return Math.abs(mx) > 10 || Math.abs(my) > 10;
@@ -195,10 +200,17 @@ class ScrollView extends Box {
 		if (targetY < 0)
 			targetY = 0;
 		if (overrideTimeOffest == 0) {
+			_scrolling = true;
 			__scrollTo(targetX, targetY);
-		} else
+			_scrolling = false;
+		} else {
+			_scrolling = true;
 			__actuate = Actuate.update(__scrollTo, overrideTimeOffest != null ? overrideTimeOffest : timeOffest, [this.scrollX, this.scrollY],
-				[targetX, targetY]);
+				[targetX, targetY])
+				.onComplete(() -> {
+					_scrolling = false;
+				});
+		}
 	}
 
 	private function __scrollTo(x:Float, y:Float):Void {
