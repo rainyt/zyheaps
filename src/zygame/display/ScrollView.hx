@@ -113,7 +113,7 @@ class ScrollView extends Box {
 			if (__actuate != null)
 				Actuate.stop(__actuate);
 			__actuate = null;
-			this.scrollY -= e.wheelDelta * 3;
+			this.scrollY -= e.wheelDelta * this._box.getSize().height * 0.01;
 			scrollTo(this.scrollX, this.scrollY, 0);
 		}
 	}

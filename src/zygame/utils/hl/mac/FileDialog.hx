@@ -9,13 +9,15 @@ import haxe.io.Bytes;
  * 文件管理器
  */
 @:noCompletion class FileDialog {
+	public static var quad:Quad;
+
 	/**
 	 * 打开单个可选目录文件
 	 * @param dir 
 	 * @param cb 
 	 */
 	public static function openSelectOneFile(dir:String, cb:FileDialogFile->Void):Void {
-		var quad = new Quad(Start.current.stageWidth, Start.current.stageHeight, 0x0);
+		quad = new Quad(Start.current.stageWidth, Start.current.stageHeight, 0x0);
 		quad.alpha = 0.8;
 		SceneManager.currentScene.addChild(quad);
 		IOSTools.open_select_dir(function(data) {

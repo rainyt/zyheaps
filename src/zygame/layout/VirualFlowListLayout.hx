@@ -43,11 +43,11 @@ class VirualFlowListLayout extends ListLayout {
 				if (value == null)
 					break;
 				var item:ItemRenderer = recycler.create();
+				item.data = value;
+				item.selected = list.hasSelectedIndex(startIndex);
 				item.y = offestY;
 				item.x = offestX;
 				list.addChild(item);
-				item.data = value;
-				item.selected = list.hasSelectedIndex(startIndex);
 				offestX += item.contentWidth;
 				startIndex++;
 			}

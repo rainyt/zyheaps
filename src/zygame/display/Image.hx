@@ -25,10 +25,6 @@ class Image extends Bitmap implements IDisplayObject {
 
 	private var __scale9Grid:Rect;
 
-	private var __setWidth:Bool = false;
-
-	private var __setHeight:Bool = false;
-
 	/**
 	 * 设置九宫格数据
 	 */
@@ -127,13 +123,11 @@ class Image extends Bitmap implements IDisplayObject {
 
 	override function set_width(w:Null<Float>):Null<Float> {
 		dirt = true;
-		this.__setWidth = true;
 		return super.set_width(w);
 	}
 
 	override function set_height(h:Null<Float>):Null<Float> {
 		dirt = true;
-		this.__setHeight = true;
 		return super.set_height(h);
 	}
 
@@ -153,10 +147,8 @@ class Image extends Bitmap implements IDisplayObject {
 						this.__scaleGrid.tile = null;
 						this.__scaleGrid.remove();
 					}
-					if (!__setWidth)
-						this.width = tile.width;
-					if (!__setHeight)
-						this.height = tile.height;
+					this.width = tile.width;
+					this.height = tile.height;
 				}
 			}
 		}
