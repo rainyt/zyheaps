@@ -120,6 +120,16 @@ class ScrollView extends Box {
 
 	private var _moveTimeId:Int = -1;
 
+	/**
+	 * 是否移动窗口
+	 * @return Bool
+	 */
+	public function scrolling():Bool {
+		var mx = _beginTouchPos.x - _movePos.x;
+		var my = _beginTouchPos.y - _movePos.y;
+		return Math.abs(mx) > 10 || Math.abs(my) > 10;
+	}
+
 	private function onTouchMove(e:Event):Void {
 		switch e.kind {
 			case EMove:

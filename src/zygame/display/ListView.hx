@@ -160,7 +160,7 @@ class ListView extends ScrollView {
 
 	override function __scrollTo(x:Float, y:Float) {
 		super.__scrollTo(x, y);
-		if (__moveUpdateData) {
+		if (__moveUpdateData && scrolling()) {
 			this.updateData();
 		}
 	}
