@@ -91,7 +91,8 @@ class Label extends Text implements IDisplayObject {
 	public function onInit():Void {}
 
 	override function addChildAt(s:Object, pos:Int) {
-		@:privateAccess SceneManager.setDirt();
+		// TODO 这里不能直接更新，否则ListView会引起循环dirt的错误
+		// @:privateAccess SceneManager.setDirt();
 		super.addChildAt(s, pos);
 	}
 

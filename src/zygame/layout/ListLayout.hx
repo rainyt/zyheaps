@@ -7,6 +7,12 @@ import zygame.display.base.IObject;
 import h2d.Object;
 
 class ListLayout extends Layout {
+
+	public function new() {
+		super();
+		this.autoLayout = false;
+	}
+
 	override function updateLayout(self:IObject, children:Array<Object>) {
 		super.updateLayout(self, children);
 		var list:ListView = cast self;

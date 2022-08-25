@@ -7,4 +7,6 @@ class Layout implements ILayout {
 	public function new() {}
 
 	public function updateLayout(self:IObject, children:Array<Object>) {}
+
+	public var autoLayout:Bool = true;
 }

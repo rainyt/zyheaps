@@ -98,7 +98,7 @@ function layoutIDisplayObject(display:IDisplayObject):Void {
 				display.y = h / 2 + display.centerY - dh / 2 - 1;
 			}
 		}
-		if (display.layout != null) {
+		if (display.layout != null && display.layout.autoLayout) {
 			display.layout.updateLayout(display, @:privateAccess cast(display, Object).children);
 		}
 	}
