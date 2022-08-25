@@ -158,8 +158,6 @@ class ListView extends ScrollView {
 		super.draw(ctx);
 	}
 
-	override function updateLayout() {}
-
 	override function __scrollTo(x:Float, y:Float) {
 		super.__scrollTo(x, y);
 		if (__moveUpdateData) {

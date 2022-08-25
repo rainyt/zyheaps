@@ -1,5 +1,6 @@
 package zygame.display;
 
+import hxd.res.DefaultFont;
 import zygame.layout.ILayout;
 import zygame.utils.SceneManager;
 import h2d.RenderContext;
@@ -100,6 +101,17 @@ class Label extends Text implements IDisplayObject {
 	public var useFont:Font;
 
 	override function set_text(t:String):String {
+		if (t == "") {
+			this.dirt = true;
+			this.font = DefaultFont.get();
+			return super.set_text(t);
+		}
+		if (this.font == DefaultFont.get()) {
+			this.font = null;
+		}
+		if (t == null) {
+			t = "null";
+		}
 		if (font != null && t == this.text)
 			return t;
 		// 当文本存在时，将旧的文本清理，重新构造
@@ -115,6 +127,7 @@ class Label extends Text implements IDisplayObject {
 			this.font = FontBuilder.getFont(defaultFont, _size, {
 				chars: t
 			});
+			trace("create font?", t);
 		}
 		this.dirt = true;
 		return super.set_text(t);
