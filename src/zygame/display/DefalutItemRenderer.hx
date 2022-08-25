@@ -1,5 +1,6 @@
 package zygame.display;
 
+import haxe.Json;
 import h2d.Object;
 import zygame.display.data.ObjectRecycler;
 import zygame.display.base.IItemRenderer;
@@ -29,6 +30,9 @@ class DefalutItemRenderer extends ItemRenderer {
 	override function set_data(value:Dynamic):Dynamic {
 		if (value is Float) {
 			value = Std.string(value);
+		}
+		if (!(value is String)) {
+			value = "[Object]";
 		}
 		this.label.text = value == null ? "" : value;
 		return super.set_data(value);
