@@ -154,8 +154,18 @@ class Start extends #if js zygame.core.platform.JsStart #else App #end {
 
 	private var _fpsUtils:FpsUtils = new FpsUtils(60);
 
+	private var _lastFrame:Float;
+
 	override function update(dt:Float) {
 		super.update(dt);
+		#if hl
+		// 这里是限制隐藏后台后，产生的高FPS引起CPU满载的问题。
+		var spent = haxe.Timer.stamp() - _lastFrame;
+		var limit:Float = 1 / 65;
+		if (spent < limit)
+			Sys.sleep(limit - spent);
+		_lastFrame = haxe.Timer.stamp();
+		#end
 		if (!_fpsUtils.update())
 			return;
 
