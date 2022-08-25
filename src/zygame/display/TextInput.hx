@@ -154,8 +154,9 @@ class TextInput extends h2d.TextInput implements IDisplayObject {
 
 	override function draw(ctx:RenderContext) {
 		if (dirt) {
-			this.inputWidth = Std.int(width);
-			this.maxWidth = width;
+			if (width != null) {
+				this.inputWidth = Std.int(width);
+			}
 			dirt = false;
 		}
 		super.draw(ctx);
