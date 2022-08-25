@@ -36,9 +36,13 @@ class AssetsTools {
 		trace("ios load file:", path);
 		return File.getBytes("assets/" + path);
 		#elseif mac
-		var root = Sys.programPath();
-		root = root.substr(0, root.lastIndexOf("/"));
-		return File.getBytes(root + "/../Resources/" + path);
+		var loadpath = path;
+		if (loadpath.indexOf("/") == -1) {
+			var root = Sys.programPath();
+			root = root.substr(0, root.lastIndexOf("/"));
+			loadpath = root + "/../Resources/" + loadpath;
+		}
+		return File.getBytes(loadpath);
 		#elseif window
 		var root = Sys.programPath();
 		root = root.substr(0, root.lastIndexOf("\\")) + "/res/" + path;

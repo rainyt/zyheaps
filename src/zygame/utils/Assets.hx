@@ -35,6 +35,11 @@ class Assets {
 	public var maxLoadCounts:Int = #if hl 30 #else 10 #end;
 
 	/**
+	 * 可提供路径，更改默认的加载路径，它会拼接在所有的加载资源的前面
+	 */
+	public var repath:String = null;
+
+	/**
 	 * 当前已载入的线程
 	 */
 	private var _currentLoadCounts:Int = 0;
@@ -61,6 +66,20 @@ class Assets {
 	public function new() {}
 
 	/**
+	 * 拼接repath的加载路径
+	 * @param path 
+	 * @return String
+	 */
+	public function addRepath(path:String):String {
+		if (repath == null)
+			return path;
+		if (!StringTools.endsWith(repath, "/")) {
+			return repath + "/" + path;
+		}
+		return repath + path;
+	}
+
+	/**
 	 * 加载单个文件
 	 * @param file 
 	 */
@@ -69,7 +88,7 @@ class Assets {
 		for (parser in LoaderAssets.fileparser) {
 			var bool = parser.callMethod(parser.getProperty("support"), [ext]);
 			if (bool) {
-				_loadlist.push(Type.createInstance(parser, [file]));
+				_loadlist.push(Type.createInstance(parser, [addRepath(file)]));
 				break;
 			}
 		}
@@ -80,8 +99,8 @@ class Assets {
 	**/
 	public function loadAtlas(png:String, xml:String):Void {
 		_loadlist.push(new AtlasParser({
-			png: png,
-			xml: xml
+			png: addRepath(png),
+			xml: addRepath(xml)
 		}));
 	}
 
@@ -92,6 +111,10 @@ class Assets {
 	 */
 	public function loadSpineAtlas(pngs:Array<String>, atlas:String):Void {
 		#if spine_hx
+		for (index => value in pngs) {
+			pngs[index] = addRepath(value);
+		}
+		atlas = addRepath(atlas);
 		_loadlist.push(new zygame.loader.parser.SpineAtlasParser({
 			pngs: pngs,
 			atlas: atlas
