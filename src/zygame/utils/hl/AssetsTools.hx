@@ -42,10 +42,18 @@ class AssetsTools {
 			root = root.substr(0, root.lastIndexOf("/"));
 			loadpath = root + "/../Resources/" + loadpath;
 		}
-		return File.getBytes(loadpath);
+		try {
+			return File.getBytes(loadpath);
+		} catch (e:Dynamic) {
+			throw("load fail:" + loadpath);
+		}
 		#elseif window
-		var root = Sys.programPath();
-		root = root.substr(0, root.lastIndexOf("\\")) + "/res/" + path;
+		var loadpath = path;
+		if (loadpath.indexOf("/") != 0) {
+			var root = Sys.programPath();
+			root = root.substr(0, root.lastIndexOf("\\")) + "/res/" + path;
+			loadpath = root;
+		}
 		try {
 			return File.getBytes(root);
 		} catch (e:Dynamic) {
