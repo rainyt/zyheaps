@@ -82,7 +82,7 @@ class Label extends Text implements IDisplayObject {
 	 * @param text 
 	 */
 	public function new(text:String = null, parent:Object = null) {
-		super(null, parent);
+		super(DefaultFont.get(), parent);
 		if (text != null)
 			this.text = text;
 		onInit();
@@ -102,11 +102,6 @@ class Label extends Text implements IDisplayObject {
 	public var useFont:Font;
 
 	override function set_text(t:String):String {
-		if (t == "") {
-			this.dirt = true;
-			this.font = DefaultFont.get();
-			return super.set_text(t);
-		}
 		if (t == null) {
 			t = "null";
 		}
@@ -130,7 +125,7 @@ class Label extends Text implements IDisplayObject {
 		this.dirt = true;
 		return super.set_text(t);
 	}
-
+	
 	private var _size:Int = 40;
 
 	/**
