@@ -39,6 +39,15 @@ class TrueTypeFont extends h2d.Font {
 		super.tile = @:privateAccess new Tile(null, 0, 0, 0, 0); // to avoid null access
 	}
 
+	private var __forceHasChar:Bool = false;
+
+	override function hasChar(code:Int):Bool {
+		trace("__forceHasChar=",__forceHasChar);
+		if (__forceHasChar)
+			return true;
+		return super.hasChar(code);
+	}
+
 	/** Fallbacks are used to look up glyphs from multiple fonts. When a glyph is not found
 	 * we try the next font. If you have multiple fallbacks with slightly overlapping glyph support
 	 * this might result in weird looking text, since we always stop at the first one found. 
@@ -157,7 +166,7 @@ class TrueTypeFont extends h2d.Font {
 						maxHeightThisRow = height;
 
 					final dx = g.offsetX * ratio;
-					final dy = (g.offsetY + ascent / ratio) * ratio;
+					final dy = (g.offsetY + ascent / ratio) * ratio - size * 0.2;
 					final t = tile.sub(x, y, width, height, dx, dy);
 					t.scaleToSize(ratio * width, ratio * height);
 
