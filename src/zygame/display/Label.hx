@@ -106,9 +106,6 @@ class Label extends Text implements IDisplayObject {
 			this.font = DefaultFont.get();
 			return super.set_text(t);
 		}
-		if (this.font == DefaultFont.get()) {
-			this.font = null;
-		}
 		if (t == null) {
 			t = "null";
 		}
@@ -122,12 +119,12 @@ class Label extends Text implements IDisplayObject {
 			this.font = useFont;
 		} else {
 			if (this.font != null) {
-				this.font.dispose();
+				if (font != DefaultFont.get())
+					this.font.dispose();
 			}
 			this.font = FontBuilder.getFont(defaultFont, _size, {
 				chars: t
 			});
-			trace("create font?", t);
 		}
 		this.dirt = true;
 		return super.set_text(t);
