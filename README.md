@@ -28,6 +28,13 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 | 网络请求(Network) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 过渡动画(Actuate) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 文件选择器(FileDialog) | ❌ | ❌ | ✅ | ❌ | ❌ |
+| 输入法(IME) | ❌ | ❌ | ✅ | check  | check  |
+
+## 输入法（IME）
+请注意使用IME需要`rainyt/hlsdl`库支持，可通过安装：
+```shell
+haxelib git hlsdl https://github.com/rainyt/hlsdl.git
+```
 
 ## UI Component
 - [x] 色块(Quad) zygame.display.Quad
