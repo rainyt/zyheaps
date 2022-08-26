@@ -42,7 +42,6 @@ class TrueTypeFont extends h2d.Font {
 	private var __forceHasChar:Bool = false;
 
 	override function hasChar(code:Int):Bool {
-		trace("__forceHasChar=",__forceHasChar);
 		if (__forceHasChar)
 			return true;
 		return super.hasChar(code);

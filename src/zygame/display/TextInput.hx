@@ -4,7 +4,9 @@ import h2d.RenderContext;
 import zygame.core.Start;
 import zygame.layout.ILayout;
 import zygame.display.base.IDisplayObject;
+#if hl
 import zygame.display.text.glyphme.TrueTypeFont;
+#end
 import hxd.Event;
 import h2d.Font;
 import zygame.res.FontBuilder;
@@ -19,16 +21,12 @@ class TextInput extends h2d.TextInput implements IDisplayObject {
 		var font = FontBuilder.getFont(Label.defaultFont, _size, {
 			chars: ""
 		});
+        #if hl
 		@:privateAccess cast(font, TrueTypeFont).__forceHasChar = true;
+        #end
 		super(font, parent);
-		// this.onTextInput = _onTextInput;
 	}
 
-	// private function _onTextInput(e:Event):Void {
-	// trace("_onTextInput", e.charCode);
-	// this.text = text + String.fromCharCode(e.charCode);
-	// this.selectionPos = this.text.length;
-	// }
 	private var _size:Int = 40;
 
 	/**
@@ -78,7 +76,9 @@ class TextInput extends h2d.TextInput implements IDisplayObject {
 			this.font = FontBuilder.getFont(Label.defaultFont, _size, {
 				chars: t
 			});
+            #if hl
 			@:privateAccess cast(this.font, TrueTypeFont).__forceHasChar = true;
+            #end
 		}
 		// this.dirt = true;
 		return super.set_text(t);

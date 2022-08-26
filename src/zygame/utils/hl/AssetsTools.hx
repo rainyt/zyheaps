@@ -55,9 +55,9 @@ class AssetsTools {
 			loadpath = root;
 		}
 		try {
-			return File.getBytes(root);
+			return File.getBytes(loadpath);
 		} catch (e:Dynamic) {
-			throw("load fail:" + root);
+			throw("load fail:" + loadpath);
 		}
 		#elseif hl
 		return File.getBytes(path);
