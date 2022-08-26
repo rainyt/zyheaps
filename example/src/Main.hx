@@ -2,9 +2,6 @@ import hxd.Window;
 import zygame.utils.SceneManager;
 import h2d.SpriteBatch;
 import zygame.core.Start;
-#if hl
-import zygame.display.Label;
-#end
 
 class Main extends Start {
 	static function main() {
@@ -15,24 +12,24 @@ class Main extends Start {
 
 	override function init() {
 		super.init();
+
+		// Window.getInstance().vsync = false;
+		// Window.getInstance().title = "123";
+
 		s2d.defaultSmooth = true;
 
 		engine.backgroundColor = 0xffffffff;
 
 		#if hl
-		Label.defaultFont = "assets/DroidSansFallbackFull.ttf";
+		zygame.display.Label.defaultFont = "assets/DroidSansFallbackFull.ttf";
 		#end
 
 		SceneManager.replaceScene(MainScene);
+
 	}
 
 	override function onResize() {
 		super.onResize();
-		// if (box != null) {
-		// 	box.width = stageWidth;
-		// 	box.height = stageHeight;
-		// 	box.layout();
-		// }
 	}
 
 	override function update(dt:Float) {

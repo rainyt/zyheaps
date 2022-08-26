@@ -9,6 +9,7 @@
     <haxelib name="zyheaps" />
     <!-- <undefine name="highdpi"/> -->
     <haxelib name="heaps" />
+    <haxelib name="spine-hx"/>
     <haxelib name="actuate"/>
     <!-- 使用hldx -->
     <define name="dx"/>
@@ -19,11 +20,10 @@
     <define name="ANDROID_SDK_DIR" value="/Users/rainy/Library/Android/sdk" />
     <define name="NDK_VERSION" value="18.1.5063045" />
     <!-- 定义res -->
-    <!-- <define name="resourcesPath" value="res"/> -->
+    <!-- <define name="resourcesPath" value="Assets"/> -->
 
     <!-- 取消Object.x内联 -->
     <haxeflag name="--macro" value="addGlobalMetadata('h2d.Object', '@:build(zygame.macro.Uninline.build([\'set_x\',\'set_y\']))')"/>
     
-
     <!-- <define name="hl_ver" value="1.12.0"/> -->
 </project>

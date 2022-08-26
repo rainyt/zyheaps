@@ -1,14 +1,17 @@
 <Scene>
+    <Quad left="0" right="0" top="0" bottom="0" color="0"/>
     <VBox centerX="0" centerY="0" gap="50">
         <Quad width="100" height="100" color="0xff0000" centerX="0">
-            <Image src="FetterDescAtlas:et1001" centerX="0" centerY="0"/>
+            <Image src="FetterDescAtlas:et1001" centerX="0" centerY="0" />
         </Quad>
-        <Button id="button" src="btn_LvSe" color="0x0" text="返回" centerX="0" centerY="200"/>
-        <Label id="label" text="大家好，我是一串文字噢！" color="0x0" size="80" centerX="0" centerY="-200"/>
+        <Button id="button" src="btn_LvSe" color="0x0" text="返回" centerX="0" centerY="200" />
+        <Label id="label" text="大家好，我是一串文字噢！" color="0x0" size="80" centerX="0" centerY="-200" />
     </VBox>
     <Quad width="100" height="100" left="50" top="50" />
     <Quad width="100" height="100" right="50" top="50" />
     <Quad width="100" height="100" bottom="50" right="50" />
     <Quad width="100" height="100" bottom="50" left="50" />
-    <Image src="btn_LvSe" left="50" centerY="0"/>
+    <Image src="btn_LvSe" left="50" centerY="0" />
+    <Image id="img" src="rockTexture" bottom="50" centerX="-300" />
+    <Image id="img2" src="rockTexture" bottom="350" centerX="300" />
 </Scene>
