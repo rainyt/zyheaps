@@ -21,10 +21,15 @@ class TextInput extends h2d.TextInput implements IDisplayObject {
 		var font = FontBuilder.getFont(Label.defaultFont, _size, {
 			chars: ""
 		});
-        #if hl
+		#if hl
 		@:privateAccess cast(font, TrueTypeFont).__forceHasChar = true;
-        #end
+		#end
 		super(font, parent);
+		// this.onTextInput = _onTextInput;
+	}
+
+	private function _onTextInput(e:Event):Void {
+		// this.text = this.text + e.inputChar;
 	}
 
 	private var _size:Int = 40;
@@ -76,9 +81,9 @@ class TextInput extends h2d.TextInput implements IDisplayObject {
 			this.font = FontBuilder.getFont(Label.defaultFont, _size, {
 				chars: t
 			});
-            #if hl
+			#if hl
 			@:privateAccess cast(this.font, TrueTypeFont).__forceHasChar = true;
-            #end
+			#end
 		}
 		// this.dirt = true;
 		return super.set_text(t);
