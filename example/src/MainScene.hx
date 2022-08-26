@@ -86,7 +86,7 @@ class MainScene extends Scene {
 				img2.left = 940;
 
 				var array = [
-					"过渡动画", "3D渲染", "网络请求", "播放音乐", "加载资源", "进入场景", "进入XML场景", "XML自动构造", "Spine测试", "卸载资源", "批渲染"
+					"过渡动画", "3D渲染", "网络请求", "播放音乐", "加载资源", "进入场景", "进入XML场景", "XML自动构造", "Spine测试", "卸载资源", "批渲染", "列表渲染", "文本输入"
 				];
 
 				var vbox = new Box(this);
@@ -109,6 +109,10 @@ class MainScene extends Scene {
 					button.onClick = function(btn, e) {
 						trace(Window.getInstance().mouseX, Window.getInstance().mouseY);
 						switch (btn.text) {
+							case "列表渲染":
+								this.replaceScene(ListViewScene);
+							case "文本输入":
+								this.replaceScene(InputScene);
 							case "3D渲染":
 								this.replaceScene(Object3DScene);
 							case "批渲染":
@@ -250,17 +254,6 @@ class MainScene extends Scene {
 					}
 				});
 
-				// 测试输入法
-				var input:TextInput = new TextInput();
-				input.backgroundColor = 0xffff0000;
-				this.addChild(input);
-				input.inputWidth = 300;
-				input.x = 400;
-				input.y = 400;
-				input.scale(3);
-				input.left = 20;
-				input.centerX = 0;
-				
 				this.updateLayout();
 			}
 		});
