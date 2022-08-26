@@ -147,8 +147,8 @@ class Image extends Bitmap implements IDisplayObject {
 						this.__scaleGrid.tile = null;
 						this.__scaleGrid.remove();
 					}
-					this.width = tile.width;
-					this.height = tile.height;
+					// this.width = tile.width;
+					// this.height = tile.height;
 				}
 			}
 		}
