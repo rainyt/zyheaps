@@ -37,7 +37,12 @@ class TextInput extends h2d.TextInput implements IDisplayObject {
 		_size = size;
 		if (font != null) {
 			if (_size != font.size) {
-				font = null;
+				this.font = FontBuilder.getFont(Label.defaultFont, _size, {
+					chars: text
+				});
+				#if hl
+				@:privateAccess cast(font, TrueTypeFont).__forceHasChar = true;
+				#end
 				this.text = this.text;
 			}
 		}
