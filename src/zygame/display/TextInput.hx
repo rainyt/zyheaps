@@ -25,11 +25,6 @@ class TextInput extends h2d.TextInput implements IDisplayObject {
 		@:privateAccess cast(font, TrueTypeFont).__forceHasChar = true;
 		#end
 		super(font, parent);
-		// this.onTextInput = _onTextInput;
-	}
-
-	private function _onTextInput(e:Event):Void {
-		// this.text = this.text + e.inputChar;
 	}
 
 	private var _size:Int = 40;
