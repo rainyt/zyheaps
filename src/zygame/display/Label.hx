@@ -99,7 +99,13 @@ class Label extends Text implements IDisplayObject {
 	/**
 	 * 指定使用的字体
 	 */
-	public var useFont:Font;
+	public var useFont(default, set):Font;
+
+	private function set_useFont(v:Font):Font {
+		this.useFont = v;
+		this.font = useFont;
+		return v;
+	}
 
 	override function set_text(t:String):String {
 		if (t == null) {
@@ -125,7 +131,7 @@ class Label extends Text implements IDisplayObject {
 		this.dirt = true;
 		return super.set_text(t);
 	}
-	
+
 	private var _size:Int = 40;
 
 	/**
