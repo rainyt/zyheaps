@@ -10,6 +10,9 @@ import spine.SkeletonJson;
 import spine.SkeletonData;
 import zygame.display.Spine;
 import hxd.res.Image;
+#if (spine_hx > version("4.0.0"))
+import spine.support.utils.JsonValue;
+#end
 
 class SpineTextureAtlas {
 	private var _spriteSkeletonManager:SkeletonJson;
@@ -53,7 +56,7 @@ class SpineTextureAtlas {
 		if (_skeletonData.exists(id)) {
 			return _skeletonData.get(id);
 		}
-		#if (spine_hx >= "4.0.0")
+		#if (spine_hx >= version("4.0.0"))
 		var skeletonData:SkeletonData = getSpriteSkeletonManager().readSkeletonData(new JsonDynamic(data));
 		#else
 		var skeletonData:SkeletonData = getSpriteSkeletonManager().readSkeletonData(new SkeletonDataFileHandle(null, Json.stringify(data)));

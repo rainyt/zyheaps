@@ -4,4 +4,5 @@
     <define name="highdpi"/>
     <define name="actuate_manual_update"/>
     <define name="actuate_manual_time"/>
+    <!-- <define name="hl_ver" value="1.12.0"/> -->
 </project>
