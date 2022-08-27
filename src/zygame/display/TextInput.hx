@@ -1,5 +1,6 @@
 package zygame.display;
 
+import h2d.col.Bounds;
 import h2d.RenderContext;
 import zygame.core.Start;
 import zygame.layout.ILayout;
@@ -21,7 +22,7 @@ class TextInput extends h2d.TextInput implements IDisplayObject {
 
 	public function new(?parent:Object) {
 		var font = FontBuilder.getFont(Label.defaultFont, _size, {
-			chars: ""
+			chars: " "
 		});
 		#if hl
 		@:privateAccess cast(font, TrueTypeFont).__forceHasChar = true;
@@ -42,7 +43,7 @@ class TextInput extends h2d.TextInput implements IDisplayObject {
 		if (font != null) {
 			if (_size != font.size) {
 				this.font = FontBuilder.getFont(Label.defaultFont, _size, {
-					chars: text
+					chars: text == "" ? " " : text
 				});
 				#if hl
 				@:privateAccess cast(font, TrueTypeFont).__forceHasChar = true;
