@@ -53,7 +53,7 @@ class SpineTextureAtlas {
 		if (_skeletonData.exists(id)) {
 			return _skeletonData.get(id);
 		}
-		#if spine4
+		#if (spine_hx >= "4.0.0")
 		var skeletonData:SkeletonData = getSpriteSkeletonManager().readSkeletonData(new JsonDynamic(data));
 		#else
 		var skeletonData:SkeletonData = getSpriteSkeletonManager().readSkeletonData(new SkeletonDataFileHandle(null, Json.stringify(data)));
@@ -190,5 +190,4 @@ class SkeletonDataFileHandle implements spine.support.files.FileHandle {
 		return _data;
 	}
 }
-
 #end
