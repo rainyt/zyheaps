@@ -34,9 +34,9 @@ class TrueTypeFont extends h2d.Font {
 		super(null, sizeInPixels, h2d.Font.FontType.SignedDistanceField(Red, alphaCutOff, smoothing));
 
 		// HELP: I feel like these are wrong but they look right on the fonts that i have tested
-		super.lineHeight = ascent - lineGap;
-		super.baseLine = ascent;
-		super.tile = @:privateAccess new Tile(null, 0, 0, 0, 0); // to avoid null access
+		this.lineHeight = ascent - lineGap;
+		this.baseLine = ascent;
+		this.tile = @:privateAccess new Tile(null, 0, 0, 0, 0); // to avoid null access
 	}
 
 	private var __forceHasChar:Bool = false;
