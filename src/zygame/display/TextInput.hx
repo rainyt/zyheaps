@@ -17,6 +17,8 @@ import hxd.res.DefaultFont;
  * 自动兼容中文输入的TextInput
  */
 class TextInput extends h2d.TextInput implements IDisplayObject {
+	private var _select:Quad = new Quad(1, 1);
+
 	public function new(?parent:Object) {
 		var font = FontBuilder.getFont(Label.defaultFont, _size, {
 			chars: ""
@@ -25,6 +27,8 @@ class TextInput extends h2d.TextInput implements IDisplayObject {
 		@:privateAccess cast(font, TrueTypeFont).__forceHasChar = true;
 		#end
 		super(font, parent);
+		this.addChildAt(_select, 0);
+		_select.alpha = 0.5;
 	}
 
 	private var _size:Int = 40;
@@ -163,6 +167,16 @@ class TextInput extends h2d.TextInput implements IDisplayObject {
 				this.inputWidth = Std.int(width);
 			}
 			dirt = false;
+		}
+		this._select.visible = this.selectionRange != null;
+		if (_select.visible) {
+			_select.height = this.calcHeight;
+			if (this.selectionSize != 0) {
+				_select.x = this.selectionPos - this.scrollX;
+				_select.width = this.selectionSize;
+			}
+		} else {
+			_select.width = 0;
 		}
 		super.draw(ctx);
 	}
