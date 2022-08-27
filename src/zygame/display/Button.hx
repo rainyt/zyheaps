@@ -47,7 +47,7 @@ class Button extends Box {
 	 */
 	public var labelOffest = {
 		x: 0.,
-		y: -6.
+		y: 0.
 	}
 
 	function get_text():String {
