@@ -1,5 +1,5 @@
 package zygame.utils;
 
-#if mac
+#if (mac || window)
 typedef FileDialog = zygame.utils.hl.mac.FileDialog;
 #end

@@ -4,7 +4,7 @@ import zygame.core.Start;
 import zygame.display.Quad;
 import haxe.io.Bytes;
 
-#if mac
+#if (window || mac)
 /**
  * 文件管理器
  */
@@ -20,11 +20,15 @@ import haxe.io.Bytes;
 		quad = new Quad(Start.current.stageWidth, Start.current.stageHeight, 0x0);
 		quad.alpha = 0.8;
 		SceneManager.currentScene.addChild(quad);
-		IOSTools.open_select_dir(function(data) {
+		NativeTools.open_select_dir(function(data) {
 			quad.remove();
 			quad = null;
+			#if window
+			var path:String = data.path;
+			#else
 			var bytes:hl.Bytes = data.path;
 			var path = @:privateAccess String.fromUTF8(bytes);
+			#end
 			cb({
 				path: path
 			});

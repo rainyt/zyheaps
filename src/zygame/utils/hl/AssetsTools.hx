@@ -49,7 +49,7 @@ class AssetsTools {
 		}
 		#elseif window
 		var loadpath = path;
-		if (loadpath.indexOf("/") != 0) {
+		if (loadpath.indexOf("/") != 0 && loadpath.indexOf(":/") == -1) {
 			var root = Sys.programPath();
 			root = root.substr(0, root.lastIndexOf("\\")) + "/res/" + path;
 			loadpath = root;
