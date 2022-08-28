@@ -1,3 +1,9 @@
+## 22.8.28
+- 升级：Mac/Window SDL更新至2.24.0。
+- 新增：Window新增highdpi支持。
+- 改进：改进IME输入支持。
+- 新增：新增Mac的文件选择器支持。
+
 ## 22.8.21
 - 新增：新增`AssetsBuilder.getTexture3D`获取3D纹理。
 - 新增：新增`AssetsBuilder.getBytes`获取二进制纹理。
