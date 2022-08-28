@@ -32,6 +32,14 @@ class NativeTools {
 	/**
 	 * 打开文件选择器
 	 */
-	public static function open_select_dir(cb:Dynamic->Void):Void {}
+	public static function open_select_dir():Void {}
+
+	/**
+	 * 查询文件选择情况
+	 * @return FileDialogState
+	 */
+	public static function read_open_select_dir_state():Dynamic {
+		return null;
+	}
 	#end
 }

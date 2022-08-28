@@ -9,31 +9,40 @@ HL_PRIM float HL_NAME(get_pixel_ratio)()
     return [NSScreen mainScreen].backingScaleFactor;
 }
 
-HL_PRIM void HL_NAME(open_select_dir)(vclosure* render_fn)
+const char* path;
+
+int state = -1;
+
+HL_PRIM void HL_NAME(open_select_dir)()
 {   
-    // 由于回调是异步的，先标记
-    hl_add_root(&render_fn);
+    state = -1;
+    path = nil;
     NSOpenPanel* panel = [NSOpenPanel openPanel];
     [panel setAllowsMultipleSelection:FALSE];//是否允许多选file
     [panel beginWithCompletionHandler:^(NSModalResponse result) {
         // 构造一个Dynamic数组，传参只有1，所以这里只需要长度1
-        vdynamic* args[1];
-        vdynamic* param = (vdynamic*)hl_alloc_dynobj();
-        args[0] = param;
         if(result == NSModalResponseOK){
-             // 获取路径
-            const char* str = [panel.URLs[0].path UTF8String];
-            // 转回haxe认识的字符编码
-            hl_dyn_setp(param, hl_hash_utf8("path"), &hlt_bytes, (vdynamic*)(str));
+            state = 0;
+            // 获取路径
+            const char * c = [panel.URLs[0].path UTF8String];
+            char *b = new char((strlen(c) + 1) * sizeof(char));
+            strcpy(b,c);
+            path = b;
         }else{
-            hl_dyn_setp(param, hl_hash_utf8("path"), &hlt_bytes, (vdynamic*)(""));
+            state = 1;
         }
-        // 回调
-        hl_dyn_call(render_fn, args, 1);
-        // 回调使用完毕，可以移除
-        hl_remove_root(render_fn);
     }];
 }
 
-DEFINE_PRIM(_F32, get_pixel_ratio,_NO_ARG);
-DEFINE_PRIM(_VOID, open_select_dir, _FUN(_VOID, _DYN));
+HL_PRIM vdynamic* HL_NAME(read_open_select_dir_state)()
+{   
+    vdynamic *obj = (vdynamic*) hl_alloc_dynobj();
+    hl_dyn_seti(obj, hl_hash_utf8("state"), &hlt_i32, state);
+    hl_dyn_setp(obj, hl_hash_utf8("path"), &hlt_bytes,(vbyte*) path);
+    hl_remove_root(&path);
+    return obj;
+}
+
+DEFINE_PRIM(_F32, get_pixel_ratio, _NO_ARG);
+DEFINE_PRIM(_VOID, open_select_dir, _NO_ARG);
+DEFINE_PRIM(_DYN, read_open_select_dir_state, _NO_ARG);
