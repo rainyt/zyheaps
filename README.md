@@ -75,7 +75,7 @@ haxelib git hlsdl https://github.com/rainyt/hlsdl.git
 
 ## 第三方库版本
 | 第三方库 | Mac | Window | IOS | Android |
-|  ----  | ----  | --- | --- | --- | --- |
+|  ----  | ----  | --- | --- | --- |
 | SDL | 2.24.0 | 2.24.0 | uncheck | uncheck |
 
 ## Project inspiration
