@@ -20,6 +20,11 @@ class Label extends Text implements IDisplayObject {
 	 */
 	public static var defaultFont:String = "黑体";
 
+	/**
+	 * 默认字体颜色
+	 */
+	public static var defaultColor:UInt = 0xffffff;
+
 	public var dirt:Bool = false;
 
 	public var width(default, set):Null<Float>;
@@ -85,6 +90,7 @@ class Label extends Text implements IDisplayObject {
 		super(DefaultFont.get(), parent);
 		if (text != null)
 			this.text = text;
+		this.setColor(defaultColor);
 		onInit();
 	}
 

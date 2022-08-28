@@ -62,6 +62,11 @@ class Start extends #if js zygame.core.platform.JsStart #else App #end {
 		height: 0
 	}
 
+	/**
+	 * 这是一个固定的缩放比例，在Window上可能会有用，如果不提供则按实际屏幕比
+	 */
+	public static var fixScale:Null<Float>;
+
 	private var _debug:Bool = false;
 	private var _debugDisplay:FPSDebug;
 
@@ -107,7 +112,7 @@ class Start extends #if js zygame.core.platform.JsStart #else App #end {
 
 	override function onResize() {
 		super.onResize();
-		__currentScale = ScaleUtils.mathScale(this.s2d.width, this.s2d.height, _hdsize.width, _hdsize.height);
+		__currentScale = fixScale != null ? fixScale : ScaleUtils.mathScale(this.s2d.width, this.s2d.height, _hdsize.width, _hdsize.height);
 		this.s2d.setScale(__currentScale);
 		this.__stateSize.width = Math.round(s2d.width / __currentScale);
 		this.__stateSize.height = Math.round(s2d.height / __currentScale);
