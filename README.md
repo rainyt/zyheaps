@@ -43,7 +43,7 @@ haxelib git hlsdl https://github.com/rainyt/hlsdl.git
 - [x] 图片/九宫格图片(Image) zygame.display.Image
 - [x] 列表/列表Item（ListView） zygame.display.ListView & zygame.display.ItemRenderer
 - [x] 场景管理(SceneManager) zygame.utils.SceneManager
-- [x] UI自动构造器
+- [x] UI自动构造器 (XMLBuilder) zygame.res.XMLBuiler
 - [x] 竖向排序容器(VBox) zygame.display.VBox
 - [x] 横向排序容器(HBox) zygame.display.HBox
 - [x] 场景(Scene) zygame.display.Scene
