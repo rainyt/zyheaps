@@ -18,7 +18,7 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 
 |  Support   | IOS  | Android | Mac | HTML5 | Window |
 |  ----  | ----  | --- | --- | --- | --- |
-| 默认的高DPI(High DPI)  | ✅ | ✅ | ✅ | ✅ | ❌ |
+| 默认的高DPI(High DPI)  | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 正常触摸(Touch)  | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 中文渲染TTF(Font TTF)  | ✅ | ✅ | ✅ | ✅ | ✅ |
 | XML格式精灵图(Sprite XML format)  | ✅ | ✅ | ✅ | ✅ | ✅ |
