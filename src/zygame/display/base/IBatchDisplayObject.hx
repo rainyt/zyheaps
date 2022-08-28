@@ -79,9 +79,6 @@ function layoutIDisplayObject(display:IBatchDisplayObject):Void {
 				display.y = h / 2 + display.centerY - dh / 2 - 1;
 			}
 		}
-		trace(display, display.x, display.y);
-	} else {
-		trace(display, "为什么没父节点");
 	}
 }
 

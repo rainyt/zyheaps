@@ -147,7 +147,6 @@ class BObject implements IBatchDisplayObject {
 	 * 布局自身
 	 */
 	public function updateLayout():Void {
-		trace("[Batch] layout");
 		layoutIDisplayObject(this);
 	}
 
