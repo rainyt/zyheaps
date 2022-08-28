@@ -73,6 +73,10 @@ haxelib git hlsdl https://github.com/rainyt/hlsdl.git
 - Actuate:[https://github.com/openfl/actuate](https://github.com/openfl/actuate)
     - 使用内置的heaps.update进行更新，得到丝滑流畅效果。
 
+## 第三方库版本
+| 第三方库 | Mac | Window | IOS | Android |
+| SDL | 2.24.0 | 2.24.0 | uncheck | uncheck |
+
 ## Project inspiration
 - IOS:[https://github.com/qkdreyer/heaps-ios](https://github.com/qkdreyer/heaps-ios)
 - Android:[https://github.com/altef/heaps-android](https://github.com/altef/heaps-android)
