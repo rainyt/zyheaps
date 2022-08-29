@@ -52,6 +52,7 @@ haxelib git hlsdl https://github.com/rainyt/hlsdl.git
 - [x] 滚动窗口(ScrollView) zygame.display.ScrollView
 - [x] 列表窗口(ListView) zygame.display.ListView
 - [x] 文本输入(TextInput) zygame.display.TextInput
+- [ ] 下拉框(DownListView) zygame.display.DownListView
 
 ## Batch Component
 - [x] 按钮(BButton) zygame.display.batch.BButton
