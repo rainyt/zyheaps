@@ -1,5 +1,6 @@
 package zygame.res;
 
+import hxd.clipper.Rect;
 import h2d.Tile;
 import hxd.res.Atlas;
 
@@ -10,6 +11,29 @@ class XMLAtlas extends Atlas {
 	public var rootTile:Tile;
 
 	public var xml:Xml;
+
+	/**
+	 * 九宫格图映射
+	 */
+	private var _s9dmap:Map<String, Rect> = [];
+
+	/**
+	 * 根据Tile获取对应的九宫格数据
+	 * @param tile 
+	 * @return Rect
+	 */
+	public function getScale9GridById(id:String):Rect {
+		return _s9dmap.get(id);
+	}
+
+	/**
+	 * 根据Tile设置九宫格数据
+	 * @param tile 
+	 * @param rect 
+	 */
+	public function setScale9Grid(id:String, rect:Rect):Void {
+		_s9dmap.set(id, rect);
+	}
 
 	/**
 	 * 构造一个XML格式的精灵图数据
@@ -55,6 +79,13 @@ class XMLAtlas extends Atlas {
 				frame.frameHeight = frame.height;
 			var tile = rootTile.sub(frame.x, frame.y, frame.width, frame.height, frame.frameX, frame.frameY);
 			contents.set(frame.name, [{t: tile, width: frame.frameWidth, height: frame.frameHeight}]);
+			// 九图数据
+			if (item.exists("slice9")) {
+				// 存在九图数据时，应绑定
+				var slice9 = item.get("slice9").split(" ");
+				var rect = new Rect(Std.parseInt(slice9[0]), Std.parseInt(slice9[1]), Std.parseInt(slice9[2]), Std.parseInt(slice9[3]));
+				this.setScale9Grid(frame.name, rect);
+			}
 		}
 		return contents;
 	}

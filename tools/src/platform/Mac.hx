@@ -48,6 +48,6 @@ class Mac extends BasePlatform {
 	}
 
 	override function onTest() {
-		Sys.command(macOsPath + "/main.command");
+		Sys.command(macOsPath + "/Main");
 	}
 }

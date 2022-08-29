@@ -1,5 +1,6 @@
 package zygame.display;
 
+import hxd.clipper.Rect;
 import zygame.display.base.IDisplayObject;
 import h2d.Tile;
 import hxd.Event;
@@ -43,6 +44,17 @@ class Button extends Box {
 	public var text(get, set):String;
 
 	/**
+	 * 设置九宫格图
+	 */
+	public var scale9Grid(default, set):Rect;
+
+	private function set_scale9Grid(v:Rect):Rect {
+		this.scale9Grid = v;
+		this.dirt = true;
+		return v;
+	}
+
+	/**
 	 * 设置文本的偏移值
 	 */
 	public var labelOffest = {
@@ -63,6 +75,7 @@ class Button extends Box {
 		if (display != null) {
 			cast(display, Object).remove();
 		}
+		trace("skin=", skin);
 		display = convertIDisplayObject(skin);
 		if (display == null)
 			return;
@@ -130,6 +143,9 @@ class Button extends Box {
 		if (display == null)
 			return;
 		if (dirt || label.dirt || display.dirt) {
+			if (this.scale9Grid != null && display is Image) {
+				cast(display, Image).scale9Grid = this.scale9Grid;
+			}
 			this.updateLabelContext();
 		}
 		super.draw(ctx);

@@ -23,12 +23,12 @@ class ButtonSkin {
 	 * @param down 
 	 */
 	public function new(up:Dynamic, ?down:Dynamic) {
-		if (up is String) {
-			up = AssetsBuilder.getBitmapDataTile(up);
-		}
-		if (down is String) {
-			down = AssetsBuilder.getBitmapDataTile(down);
-		}
+		// if (up is String) {
+		// 	up = AssetsBuilder.getBitmapDataTile(up);
+		// }
+		// if (down is String) {
+		// 	down = AssetsBuilder.getBitmapDataTile(down);
+		// }
 		this.up = up;
 		this.down = down;
 	}

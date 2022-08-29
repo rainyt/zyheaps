@@ -1,5 +1,6 @@
 package zygame.res;
 
+import hxd.clipper.Rect;
 import hxd.fmt.hmd.Library;
 import h3d.scene.Object;
 import zygame.utils.StringUtils;
@@ -50,6 +51,22 @@ class AssetsBuilder {
 			var tile = assets.getBitmapDataTile(id);
 			if (tile != null)
 				return tile;
+		}
+		return null;
+	}
+
+	/**
+	 * 获取对应的九宫格图数据
+	 * @param id 
+	 * @return Rect
+	 */
+	public static function getScale9Grid(id:String):Rect {
+		trace("getScale9Grid", id);
+		id = StringUtils.getName(id);
+		for (assets in assetsList) {
+			var r = assets.getScale9Grid(id);
+			if (r != null)
+				return r;
 		}
 		return null;
 	}

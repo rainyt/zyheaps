@@ -1,5 +1,6 @@
 package zygame.utils;
 
+import hxd.clipper.Rect;
 import zygame.res.AssetsBuilder;
 import h3d.scene.Object;
 import hxd.fmt.hmd.Library;
@@ -249,6 +250,20 @@ class Assets {
 	}
 
 	/**
+	 * 获取对应的九宫格图数据
+	 * @param id 
+	 * @return Rect
+	 */
+	public function getScale9Grid(id:String):Rect {
+		var arr = id.split(":");
+		var atlas = this.getAtlas(arr[0]);
+		if (atlas != null && atlas is XMLAtlas) {
+			return cast(atlas, XMLAtlas).getScale9GridById(arr[1]);
+		}
+		return null;
+	}
+
+	/**
 	 * 通过id获取3D纹理
 	 * @param id 
 	 * @return Texture
@@ -307,9 +322,7 @@ class Assets {
 				var bitmap:Image = getTypeAssets(BITMAP, id);
 				setTypeAssets(BITMAP_TILE, id, bitmap.toTile());
 			}
-		} catch (e:Exception) {
-			trace("getBitmapDataTile error:", e.message);
-		}
+		} catch (e:Exception) {}
 		return getTypeAssets(BITMAP_TILE, id);
 	}
 

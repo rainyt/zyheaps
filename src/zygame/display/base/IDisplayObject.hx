@@ -27,7 +27,8 @@ inline function getHeight(display:IDisplayObject):Float {
  */
 inline function convertIDisplayObject(data:Dynamic, ?parent:Object):IDisplayObject {
 	if (data is Tile || data is String) {
-		return new Image(data, parent);
+		var img = new Image(data, parent);
+		return img;
 	}
 	if (data is IDisplayObject) {
 		if (parent != null) {

@@ -82,7 +82,13 @@ class Image extends Bitmap implements IDisplayObject {
 	 */
 	public function new(?tile:Dynamic, ?parent:Object) {
 		if (tile is String) {
-			tile = AssetsBuilder.getBitmapDataTile(tile);
+			var id = tile;
+			tile = AssetsBuilder.getBitmapDataTile(id);
+			var rect = AssetsBuilder.getScale9Grid(id);
+			if (rect != null){
+				trace("存在九宫格图",rect);
+				this.scale9Grid = rect;
+			}
 		}
 		super(tile, parent);
 		if (tile is Tile) {
