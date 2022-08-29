@@ -38,7 +38,11 @@ class NativeTools {
 	 * 查询文件选择情况
 	 * @return FileDialogState
 	 */
-	public static function read_open_select_dir_state():Dynamic {
+	public static function read_open_select_dir_state():Int {
+		return -1;
+	}
+
+	public static function read_open_select_file_path():hl.Bytes {
 		return null;
 	}
 	#end

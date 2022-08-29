@@ -1,5 +1,7 @@
 package zygame.utils.hl.mac;
 
+import zygame.display.Scene;
+import zygame.display.Label;
 import zygame.core.Start;
 import zygame.display.Quad;
 import haxe.io.Bytes;
@@ -23,17 +25,17 @@ import haxe.io.Bytes;
 		NativeTools.open_select_dir();
 		FrameEngine.create((f) -> {
 			// 轮查
-			var obj = NativeTools.read_open_select_dir_state();
-			if (obj.state == 0) {
-				var bytes:hl.Bytes = obj.path;
-				obj.nativePath = @:privateAccess String.fromUTF8(bytes);
+			var state = NativeTools.read_open_select_dir_state();
+			if (state == 0) {
+				var bytes:hl.Bytes = NativeTools.read_open_select_file_path();
+				var nativePath = @:privateAccess String.fromUTF8(bytes);
 				f.stop();
 				quad.remove();
 				quad = null;
 				cb({
-					path: obj.nativePath
+					path: nativePath
 				});
-			} else if (obj.state == 1) {
+			} else if (state == 1) {
 				cb({
 					path: ""
 				});

@@ -19,17 +19,22 @@ class AssetsUtils {
 	 */
 	public static function loadBytes(path:String, success:Bytes->Void, fail:String->Void):Void {
 		#if hl
+		#if sync_load_bytes
+		// 同步接口
+		trace("sync_load_bytes=", path);
+		var data = zygame.utils.hl.AssetsTools.getBytes(path);
+		trace("sync_load_bytes2=", data);
+		if (data != null) {
+			success(data);
+		} else {
+			fail("load fail:" + path);
+		}
+		#else
 		// 异步接口
 		var loader = new BytesLoader(path);
 		loader.onSuccess = success;
 		loader.onError = fail;
-		// 同步接口
-		// var data = zygame.utils.hl.AssetsTools.getBytes(path);
-		// if (data != null) {
-		// 	success(data);
-		// } else {
-		// 	fail("load fail:" + path);
-		// }
+		#end
 		#else
 		var loader = new BinaryLoader(path);
 		loader.onProgress = function(a, b) {}
