@@ -121,7 +121,6 @@ class BaseGraphics extends Graphics implements IInteractiveObject {
 
 	public function set_enableInteractive(value:Bool):Bool {
 		this.enableInteractive = value;
-		trace("set_enableInteractive", enableInteractive);
 		if (this.enableInteractive) {
 			// 开启触摸
 			if (interactive == null) {
@@ -148,7 +147,6 @@ class BaseGraphics extends Graphics implements IInteractiveObject {
 			if (interactive != null) {
 				interactive.width = contentWidth;
 				interactive.height = contentHeight;
-				trace("interactive", interactive.width, interactive.height);
 			}
 			dirt = false;
 		}
