@@ -58,7 +58,6 @@ class Quad extends BaseGraphics {
 		else
 			this.drawRect(0, 0, this.width, this.height);
 		this.endFill();
-		this.setDirty(false);
 	}
 
 	override function draw(ctx:RenderContext) {

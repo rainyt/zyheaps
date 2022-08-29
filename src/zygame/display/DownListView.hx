@@ -1,5 +1,7 @@
 package zygame.display;
 
+import h2d.col.Point;
+import zygame.core.Start;
 import zygame.display.data.ButtonSkin;
 import h2d.Object;
 
@@ -25,6 +27,15 @@ class DownListView extends Box {
 		__button = new Button(skin, this);
 		__button.onClick = (b, e) -> {
 			// 打开下拉选项
+			var pos = this.localToGlobal(new Point(this.x, this.y));
+			var quad = new Quad(300, 400, 0xff0000, Start.current.topView);
+			quad.x = pos.x;
+			quad.y = pos.y + this.height + 1;
+			quad.enableInteractive = true;
+			quad.interactive.onFocusLost = (e) -> {
+				quad.remove();
+			}
+			quad.interactive.focus();
 		}
 	}
 

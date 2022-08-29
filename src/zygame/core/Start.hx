@@ -1,5 +1,6 @@
 package zygame.core;
 
+import zygame.display.Box;
 import zygame.utils.IteratorUtils.intIterator;
 import zygame.display.base.IRefresher;
 import zygame.utils.Lib;
@@ -91,6 +92,7 @@ class Start extends #if js zygame.core.platform.JsStart #else App #end {
 		if (_debug) {
 			_debugDisplay = new FPSDebug();
 		}
+		this.s2d.addChild(topView);
 		this.onResize();
 	}
 
@@ -121,6 +123,8 @@ class Start extends #if js zygame.core.platform.JsStart #else App #end {
 		// trace("changed scale:", __currentScale, "size:", this.stageWidth, this.stageHeight);
 		// 控制场景的尺寸变化
 		@:privateAccess SceneManager.onResize();
+		topView.width = this.stageWidth;
+		topView.height = this.stageHeight;
 	}
 
 	/**
@@ -199,4 +203,9 @@ class Start extends #if js zygame.core.platform.JsStart #else App #end {
 			_updates[i].update(dt);
 		}
 	}
+
+	/**
+	 * 在顶层的场景容器，可用于放置UI等行为
+	 */
+	public var topView(default, null):Box = new Box();
 }
