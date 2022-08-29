@@ -1,7 +1,9 @@
 package zygame.utils.hl;
 
+import sys.FileSystem;
+import haxe.Exception;
 import sys.thread.Thread;
-import hxd.File;
+import sys.io.File;
 import haxe.io.Bytes;
 
 /**
@@ -33,7 +35,6 @@ class AssetsTools {
 		var tmpSize = tmpSize();
 		return bytes.toBytes(tmpSize);
 		#elseif ios
-		trace("ios load file:", path);
 		return File.getBytes("assets/" + path);
 		#elseif mac
 		var loadpath = path;
@@ -43,9 +44,12 @@ class AssetsTools {
 			loadpath = root + "/../Resources/" + loadpath;
 		}
 		try {
-			return File.getBytes(loadpath);
-		} catch (e:Dynamic) {
-			throw("load fail:" + loadpath);
+			var data = File.getContent(loadpath);
+			var bytes = File.getBytes(loadpath);
+			return bytes;
+		} catch (e:Exception) {
+			trace(e.message);
+			return null;
 		}
 		#elseif window
 		var loadpath = path;
@@ -57,7 +61,7 @@ class AssetsTools {
 		try {
 			return File.getBytes(loadpath);
 		} catch (e:Dynamic) {
-			throw("load fail:" + loadpath);
+			return null;
 		}
 		#elseif hl
 		return File.getBytes(path);
