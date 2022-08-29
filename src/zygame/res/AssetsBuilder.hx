@@ -61,7 +61,6 @@ class AssetsBuilder {
 	 * @return Rect
 	 */
 	public static function getScale9Grid(id:String):Rect {
-		trace("getScale9Grid", id);
 		id = StringUtils.getName(id);
 		for (assets in assetsList) {
 			var r = assets.getScale9Grid(id);

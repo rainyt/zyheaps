@@ -75,7 +75,6 @@ class Button extends Box {
 		if (display != null) {
 			cast(display, Object).remove();
 		}
-		trace("skin=", skin);
 		display = convertIDisplayObject(skin);
 		if (display == null)
 			return;

@@ -86,7 +86,6 @@ class Image extends Bitmap implements IDisplayObject {
 			tile = AssetsBuilder.getBitmapDataTile(id);
 			var rect = AssetsBuilder.getScale9Grid(id);
 			if (rect != null){
-				trace("存在九宫格图",rect);
 				this.scale9Grid = rect;
 			}
 		}

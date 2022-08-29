@@ -45,6 +45,9 @@ function layoutIDisplayObject(display:IDisplayObject):Void {
 		var dh = getHeight(cast display.parent);
 	}
 	if (display.parent != null) {
+		if (display.layout != null && display.layout.autoLayout) {
+			display.layout.updateLayout(display, @:privateAccess cast(display, Object).children);
+		}
 		// 后布局
 		var w = 0.;
 		var h = 0.;
