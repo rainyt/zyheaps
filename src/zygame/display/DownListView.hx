@@ -19,6 +19,11 @@ import h2d.Object;
  * ```
  */
 class DownListView extends Box implements IListView {
+	/**
+	 * 默认文案，当没有选择任何项目时，则会显示该默认文案
+	 */
+	public var defaultText:String = "请选择";
+
 	private var __button:Button;
 
 	public var text(default, set):String;
@@ -87,7 +92,7 @@ class DownListView extends Box implements IListView {
 
 	public function set_selectedItem(value:Dynamic):Dynamic {
 		this.selectedItem = value;
-		this.text = itemToText(value);
+		this.updateData();
 		return value;
 	}
 
@@ -100,9 +105,10 @@ class DownListView extends Box implements IListView {
 	public var selectedIndex(get, set):Int;
 
 	public function set_selectedIndex(value:Int):Int {
-		if (dataProvider == null)
-			return value;
-		this.selectedItem = dataProvider.source[value];
+		if (dataProvider != null) {
+			this.selectedItem = dataProvider.source[value];
+		}
+		updateData();
 		return value;
 	}
 
@@ -124,5 +130,11 @@ class DownListView extends Box implements IListView {
 		return value;
 	}
 
-	public function updateData() {}
+	public function updateData() {
+		if (this.selectedItem == null) {
+			this.text = defaultText;
+		} else {
+			this.text = itemToText(selectedItem);
+		}
+	}
 }
