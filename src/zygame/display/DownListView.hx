@@ -1,5 +1,6 @@
 package zygame.display;
 
+import zygame.events.Event;
 import zygame.display.data.ObjectRecycler;
 import zygame.display.data.ArrayCollection;
 import zygame.display.base.IListView;
@@ -49,6 +50,12 @@ class DownListView extends Box implements IListView {
 			}
 			listview.interactive.focus();
 			listview.backgroundColor = 0xfcfcfc;
+			listview.addEventListener(Event.CHANGE, function(e:Event) {
+				this.selectedItem = listview.selectedItem;
+				this.dispatchEvent(e, true);
+				listview.dataProvider = null;
+				listview.remove();
+			});
 		}
 	}
 
@@ -74,31 +81,42 @@ class DownListView extends Box implements IListView {
 	public var selectedItem(default, set):Dynamic;
 
 	public function set_selectedItem(value:Dynamic):Dynamic {
-		throw new haxe.exceptions.NotImplementedException();
+		this.selectedItem = value;
+		this.text = value;
+		return value;
 	}
 
 	public function get_selectedIndex():Int {
-		throw new haxe.exceptions.NotImplementedException();
+		if (dataProvider == null)
+			return -1;
+		return dataProvider.source.indexOf(this.selectedItem);
 	}
 
 	public var selectedIndex(get, set):Int;
 
 	public function set_selectedIndex(value:Int):Int {
-		throw new haxe.exceptions.NotImplementedException();
+		if (dataProvider == null)
+			return value;
+		this.selectedItem = dataProvider.source[value];
+		return value;
 	}
 
+	private var __selectIndexs:Array<Int> = [];
+
 	public function hasSelectedIndex(index:Int):Bool {
-		throw new haxe.exceptions.NotImplementedException();
+		return __selectIndexs.indexOf(index) != -1;
 	}
 
 	public function get_selectedItems():Array<Dynamic> {
-		throw new haxe.exceptions.NotImplementedException();
+		if (selectedItem == null)
+			return [];
+		return [selectedItem];
 	}
 
 	public var selectedItems(get, set):Array<Dynamic>;
 
 	public function set_selectedItems(value:Array<Dynamic>):Array<Dynamic> {
-		throw new haxe.exceptions.NotImplementedException();
+		return value;
 	}
 
 	public function updateData() {}

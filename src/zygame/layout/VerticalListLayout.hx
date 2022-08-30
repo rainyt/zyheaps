@@ -15,10 +15,10 @@ class VerticalListLayout extends ListLayout {
 		var offestY = 0.;
 		for (index => value in list.dataProvider.source) {
 			var item:ItemRenderer = recycler.create();
-			item.data = value;
-			item.selected = list.hasSelectedIndex(index);
 			item.x = 0;
 			item.width = list.width;
+			item.data = value;
+			item.selected = list.hasSelectedIndex(index);
 			item.y = offestY;
 			list.addChild(item);
 			offestY += item.contentHeight;

@@ -44,10 +44,10 @@ class VirualVerticalListLayout extends ListLayout {
 			if (value == null)
 				break;
 			var item:ItemRenderer = recycler.create();
-			item.data = value;
-			item.selected = list.hasSelectedIndex(startIndex);
 			item.x = 0;
 			item.width = list.width;
+			item.data = value;
+			item.selected = list.hasSelectedIndex(startIndex);
 			item.y = offestY;
 			list.addChild(item);
 			offestY += item.contentHeight;
