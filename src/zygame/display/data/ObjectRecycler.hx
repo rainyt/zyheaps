@@ -37,6 +37,7 @@ class ObjectRecycler<T:IItemRenderer> {
 	public function release(obj:T):Void {
 		if (_array.indexOf(obj) == -1) {
 			_array.push(obj);
+			obj.listView = null;
 			_reset(obj);
 		}
 	}

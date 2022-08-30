@@ -1,5 +1,6 @@
 package zygame.display;
 
+import zygame.display.base.IListView;
 import hxd.Event;
 import h2d.RenderContext;
 import zygame.display.data.ArrayCollection;
@@ -19,7 +20,7 @@ import zygame.layout.VerticalListLayout;
  * - `zygame.layout.HorizontalListLayout`
  * - `zygame.layout.VerticalListLayout`
  */
-class ListView extends ScrollView {
+class ListView extends ScrollView implements IListView {
 	/**
 	 * 移动的时候更新数据，默认为false
 	 */
@@ -63,6 +64,15 @@ class ListView extends ScrollView {
 	 */
 	public function hasSelectedIndex(index:Int):Bool {
 		return __selectedIndexs.indexOf(index) != -1;
+	}
+
+	/**
+	 * 
+	 * @param data 
+	 * @return String
+	 */
+	public dynamic function itemToText(data:Dynamic):String {
+		return Std.string(data);
 	}
 
 	/**

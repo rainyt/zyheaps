@@ -15,6 +15,7 @@ class VerticalListLayout extends ListLayout {
 		var offestY = 0.;
 		for (index => value in list.dataProvider.source) {
 			var item:ItemRenderer = recycler.create();
+			item.listView = list;
 			item.x = 0;
 			item.width = list.width;
 			item.data = value;

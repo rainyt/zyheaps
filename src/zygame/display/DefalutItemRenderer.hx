@@ -44,14 +44,10 @@ class DefalutItemRenderer extends ItemRenderer {
 	}
 
 	override function set_data(value:Dynamic):Dynamic {
-		if (value is Float) {
-			value = Std.string(value);
+		if (value != null) {
+			this.label.text = this.listView.itemToText(value);
+			label.updateLayout();
 		}
-		if (!(value is String)) {
-			value = "[Object]";
-		}
-		this.label.text = value == null ? "" : value;
-		label.updateLayout();
 		return super.set_data(value);
 	}
 

@@ -1,5 +1,6 @@
 package zygame.display;
 
+import zygame.display.base.IListView;
 import h2d.RenderContext;
 import zygame.events.Event;
 import h2d.Object;
@@ -39,4 +40,6 @@ class ItemRenderer extends Box implements IItemRenderer {
 	override function draw(ctx:RenderContext) {
 		super.draw(ctx);
 	}
+
+	public var listView:IListView;
 }

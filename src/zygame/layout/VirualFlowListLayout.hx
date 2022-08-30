@@ -43,6 +43,7 @@ class VirualFlowListLayout extends ListLayout {
 				if (value == null)
 					break;
 				var item:ItemRenderer = recycler.create();
+				item.listView = list;
 				item.data = value;
 				item.selected = list.hasSelectedIndex(startIndex);
 				item.y = offestY;

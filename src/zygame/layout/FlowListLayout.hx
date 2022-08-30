@@ -16,6 +16,7 @@ class FlowListLayout extends ListLayout {
 		var offestX = 0.;
 		for (index => value in list.dataProvider.source) {
 			var item:ItemRenderer = recycler.create();
+			item.listView = list;
 			var iwidth = item.contentWidth;
 			if (offestX + iwidth > list.width) {
 				offestY += item.contentHeight;

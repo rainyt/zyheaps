@@ -17,6 +17,8 @@ interface IListView {
 	 */
 	public var itemRendererRecycler:ObjectRecycler<Dynamic>;
 
+	dynamic function itemToText(data:Dynamic):String;
+
 	/**
 	 * 列表数据
 	 * ```haxe

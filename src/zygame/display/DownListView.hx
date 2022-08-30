@@ -32,6 +32,10 @@ class DownListView extends Box implements IListView {
 		return v;
 	}
 
+	public dynamic function itemToText(data:Dynamic):String {
+		return Std.string(data);
+	}
+
 	public function new(skin:ButtonSkin, ?parent:Object) {
 		super(parent);
 		__button = new Button(skin, this);
@@ -39,6 +43,7 @@ class DownListView extends Box implements IListView {
 			// 打开下拉选项
 			var pos = this.localToGlobal(new Point(this.x, this.y));
 			var listview = new ListView(Start.current.topView);
+			listview.itemToText = itemToText;
 			listview.dataProvider = this.dataProvider;
 			listview.x = pos.x;
 			listview.y = pos.y + this.height + 1;
@@ -82,7 +87,7 @@ class DownListView extends Box implements IListView {
 
 	public function set_selectedItem(value:Dynamic):Dynamic {
 		this.selectedItem = value;
-		this.text = value;
+		this.text = itemToText(value);
 		return value;
 	}
 

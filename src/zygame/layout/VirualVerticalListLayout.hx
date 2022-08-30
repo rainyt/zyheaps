@@ -44,6 +44,7 @@ class VirualVerticalListLayout extends ListLayout {
 			if (value == null)
 				break;
 			var item:ItemRenderer = recycler.create();
+			item.listView = list;
 			item.x = 0;
 			item.width = list.width;
 			item.data = value;

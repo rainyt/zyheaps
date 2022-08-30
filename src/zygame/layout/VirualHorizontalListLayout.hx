@@ -39,6 +39,7 @@ class VirualHorizontalListLayout extends ListLayout {
 			if (value == null)
 				break;
 			var item:ItemRenderer = recycler.create();
+			item.listView = list;
 			item.y = 0;
 			item.height = list.height;
 			item.data = value;

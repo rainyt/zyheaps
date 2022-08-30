@@ -15,6 +15,7 @@ class HorizontalListLayout extends ListLayout {
 		var offestX = 0.;
 		for (index => value in list.dataProvider.source) {
 			var item:ItemRenderer = recycler.create();
+			item.listView = list;
 			item.y = 0;
 			item.height = list.height;
 			item.x = offestX;
