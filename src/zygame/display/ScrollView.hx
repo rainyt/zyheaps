@@ -18,6 +18,8 @@ import h2d.Mask;
 class ScrollView extends Box {
 	private var view:Mask;
 
+	private var _bg:Quad;
+
 	private var _box:Box;
 
 	private var _touchid:Int = -1;
@@ -26,6 +28,27 @@ class ScrollView extends Box {
 	private var _beginTouchPos:Point;
 	private var _movePos:Point;
 	private var _lastPos:Point;
+
+	/**
+	 * 设置背景颜色，默认为null，会呈透明显示
+	 * ```haxe
+	 * scroll.backgroundColor = 0xff0000;
+	 * ```
+	 */
+	public var backgroundColor(default, set):Null<UInt>;
+
+	private function set_backgroundColor(v:Null<UInt>):Null<UInt> {
+		if (_bg == null) {
+			_bg = new Quad(1, 1, v);
+			_bg.enableInteractive = true;
+			_bg.interactive.propagateEvents = false;
+			super.addChildAt(_bg, 0);
+		}
+		_bg.quadColor = v;
+		_bg.width = this.width;
+		_bg.height = this.height;
+		return v;
+	}
 
 	/**
 	 * 设置ScrollX偏移值，值为正数
@@ -220,11 +243,15 @@ class ScrollView extends Box {
 
 	override function set_width(width:Null<Float>):Null<Float> {
 		this.view.width = Std.int(width);
+		if (_bg != null)
+			_bg.width = width;
 		return super.set_width(width);
 	}
 
 	override function set_height(height:Null<Float>):Null<Float> {
 		this.view.height = Std.int(height);
+		if (_bg != null)
+			_bg.height = height;
 		return super.set_height(height);
 	}
 

@@ -116,7 +116,8 @@ class ListView extends ScrollView {
 			this.dataProvider.onChange = null;
 		}
 		this.dataProvider = data;
-		this.dataProvider.onChange = __onChange;
+		if (dataProvider != null)
+			this.dataProvider.onChange = __onChange;
 		this.dirt = true;
 		return data;
 	}

@@ -21,6 +21,7 @@ import haxe.io.Bytes;
 	public static function openSelectOneFile(dir:String, cb:FileDialogFile->Void):Void {
 		quad = new Quad(Start.current.stageWidth, Start.current.stageHeight, 0x0);
 		quad.alpha = 0.8;
+		quad.enableInteractive = true;
 		SceneManager.currentScene.addChild(quad);
 		NativeTools.open_select_dir();
 		FrameEngine.create((f) -> {

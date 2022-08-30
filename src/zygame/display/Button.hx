@@ -31,7 +31,7 @@ class Button extends Box {
 	/**
 	 * 按钮的皮肤显示对象
 	 */
-	private var display:IDisplayObject;
+	private var display:AnyDisplay;
 
 	/**
 	 * 按钮的文本显示对象
@@ -72,22 +72,23 @@ class Button extends Box {
 	}
 
 	private function setSkinDisplay(skin:Dynamic):Void {
-		if (display != null) {
-			cast(display, Object).remove();
-		}
-		display = convertIDisplayObject(skin);
-		if (display == null)
-			return;
+		// if (display != null) {
+		// 	cast(display, Object).remove();
+		// }
+		// display = convertIDisplayObject(skin);
+		// if (display == null)
+		// 	return;
+		display.setData(skin);
 		display.width = this.width;
 		display.height = this.height;
 		this.addChildAt(cast display, 0);
+		this.dirt = true;
 	}
 
 	public function new(skin:ButtonSkin, ?parent:Object) {
 		super(parent);
 		this.dirt = true;
 		this.skin = skin;
-		this.setSkinDisplay(this.skin.up);
 		this.enableInteractive = true;
 		this.interactive.onPush = function(e) {
 			e.propagate = this.interactive.propagateEvents;
@@ -120,6 +121,8 @@ class Button extends Box {
 			e.propagate = this.interactive.propagateEvents;
 			this.onClick(this, e);
 		}
+		display = new AnyDisplay(this);
+		this.setSkinDisplay(this.skin.up);
 		label = new Label(null, this);
 		label.textAlign = Center;
 		var rect = display.getSize();
@@ -174,5 +177,54 @@ class Button extends Box {
 		display.scaleY = 1;
 		display.x = display.y = 0;
 		dirt = true;
+	}
+}
+
+/**
+ * 通用的显示对象
+ */
+private class AnyDisplay extends Box {
+	public var img:Image;
+
+	public var display:IDisplayObject;
+
+	public function setData(data:Dynamic):Void {
+		if (data is Tile || data is String) {
+			if (img == null)
+				img = new Image(data, this);
+			img.setTile(data);
+			img.width = this.width;
+			img.height = this.height;
+			if (display != null) {
+				display.parent.removeChild(cast display);
+			}
+			this.addChild(img);
+		}
+		if (data is IDisplayObject) {
+			if (parent != null)
+				this.addChild(cast data);
+			display = cast data;
+			display.width = this.width;
+			display.height = this.height;
+			if (img != null) {
+				img.parent.removeChild(img);
+			}
+		}
+	}
+
+	override function set_width(width:Null<Float>):Null<Float> {
+		if (img != null)
+			img.width = width;
+		if (display != null)
+			display.width = width;
+		return super.set_width(width);
+	}
+
+	override function set_height(height:Null<Float>):Null<Float> {
+		if (img != null)
+			img.height = height;
+		if (display != null)
+			display.height = height;
+		return super.set_height(height);
 	}
 }

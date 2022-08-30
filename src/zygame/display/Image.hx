@@ -81,20 +81,30 @@ class Image extends Bitmap implements IDisplayObject {
 	 * @param parent 
 	 */
 	public function new(?tile:Dynamic, ?parent:Object) {
-		if (tile is String) {
-			var id = tile;
-			tile = AssetsBuilder.getBitmapDataTile(id);
-			var rect = AssetsBuilder.getScale9Grid(id);
-			if (rect != null){
-				this.scale9Grid = rect;
-			}
-		}
-		super(tile, parent);
+		super(null, parent);
+		this.setTile(tile);
 		if (tile is Tile) {
 			this.width = tile.width;
 			this.height = tile.height;
 		}
 		onInit();
+	}
+
+	/**
+	 * 设置动态的tile，tile可以是`String`或者`Tile`，当使用`String`时，它会从`AssetsBuiler`中查找资源。
+	 * @param data 
+	 */
+	public function setTile(data:Dynamic):Void {
+		if (data is String) {
+			var id = data;
+			data = AssetsBuilder.getBitmapDataTile(id);
+			var rect = AssetsBuilder.getScale9Grid(id);
+			if (rect != null) {
+				this.scale9Grid = rect;
+			}
+		}
+		this.tile = data;
+		this.dirt = true;
 	}
 
 	public function onInit():Void {}
@@ -145,6 +155,7 @@ class Image extends Bitmap implements IDisplayObject {
 						this.__scaleGrid = new ScaleGrid(tile, __scale9Grid.left, __scale9Grid.top, __scale9Grid.right, __scale9Grid.bottom);
 						this.addChildAt(__scaleGrid, 0);
 					}
+					__scaleGrid.tile = tile;
 					__scaleGrid.width = this.width;
 					__scaleGrid.height = this.height;
 				} else {
