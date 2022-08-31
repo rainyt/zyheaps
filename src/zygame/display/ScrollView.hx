@@ -41,7 +41,7 @@ class ScrollView extends Box {
 		if (_bg == null) {
 			_bg = new Quad(1, 1, v);
 			_bg.enableInteractive = true;
-			_bg.interactive.propagateEvents = false;
+			// _bg.interactive.propagateEvents = false;
 			super.addChildAt(_bg, 0);
 		}
 		_bg.quadColor = v;

@@ -183,4 +183,18 @@ class TextInput extends h2d.TextInput implements IDisplayObject {
 		}
 		super.draw(ctx);
 	}
+
+	public var percentageWidth(default, set):Null<Float>;
+
+	public function set_percentageWidth(value:Null<Float>):Null<Float> {
+		this.percentageWidth = value;
+		return value;
+	}
+
+	public var percentageHeight(default, set):Null<Float>;
+
+	public function set_percentageHeight(value:Null<Float>):Null<Float> {
+		this.percentageHeight = value;
+		return value;
+	}
 }
