@@ -19,6 +19,16 @@ interface IObject {
 	public var width(default, set):Null<Float>;
 
 	/**
+	 * 百分比宽度
+	 */
+	public var percentageWidth(default, set):Null<Float>;
+
+	/**
+	 * 百分比高度
+	 */
+	public var percentageHeight(default, set):Null<Float>;
+
+	/**
 	 * 高度
 	 */
 	public var height(default, set):Null<Float>;

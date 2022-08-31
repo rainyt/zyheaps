@@ -55,7 +55,17 @@ class XMLBuilder extends Builder<Xml> {
 					return;
 				}
 			}
-			Reflect.setProperty(display, key, Std.parseFloat(data.get(key)));
+			var value:String = data.get(key);
+			if (value != null) {
+				if (key == "width" || key == "height") {
+					if (value.indexOf("%") != -1) {
+						// 这是百分比
+						Reflect.setProperty(display, "percentage" + key.charAt(0).toUpperCase() + key.substr(1), Std.parseFloat(value));
+						return;
+					}
+				}
+			}
+			Reflect.setProperty(display, key, Std.parseFloat(value));
 		} catch (e:Exception) {}
 	}
 

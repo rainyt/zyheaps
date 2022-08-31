@@ -59,6 +59,12 @@ function layoutIDisplayObject(display:IDisplayObject):Void {
 			w = getWidth(display);
 			h = getHeight(display);
 		}
+		if (display.percentageWidth != null) {
+			display.width = w * display.percentageWidth / 100;
+		}
+		if (display.percentageHeight != null) {
+			display.height = w * display.percentageHeight / 100;
+		}
 		if (display.left != null) {
 			display.x = display.left;
 		}

@@ -179,4 +179,18 @@ class Box extends h2d.Object implements IInteractiveObject implements IEventList
 	}
 
 	public var mouseChildren:Bool = true;
+
+	public var percentageWidth(default, set):Null<Float>;
+
+	public function set_percentageWidth(value:Null<Float>):Null<Float> {
+		this.percentageWidth = value;
+		return value;
+	}
+
+	public var percentageHeight(default, set):Null<Float>;
+
+	public function set_percentageHeight(value:Null<Float>):Null<Float> {
+		this.percentageHeight = value;
+		return value;
+	}
 }
