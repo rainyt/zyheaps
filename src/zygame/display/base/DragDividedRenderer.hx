@@ -14,7 +14,7 @@ class DragDividedRenderer extends ItemRenderer {
 
 	public function new() {
 		super();
-		bg = new Quad(5, 5, 0x0000ff, this);
+		bg = new Quad(5, 5, 0xe0e0e0, this);
 		this.width = 10;
 		this.height = 5;
 		this.bg.enableInteractive = true;

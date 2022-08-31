@@ -85,4 +85,9 @@ class BaseDividedBox extends Box {
 			default:
 		}
 	}
+
+	public function setDividedWidth(index:Int, width:Float):Void {
+		__dividedState.set(index, width);
+		this.updateLayout();
+	}
 }

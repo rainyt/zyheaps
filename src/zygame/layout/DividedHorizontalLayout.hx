@@ -71,7 +71,7 @@ class DividedHorizontalLayout extends HorizontalLayout {
 				var divideWidth:Null<Float> = @:privateAccess view.__dividedState.get(childs.length - 2);
 				mathItem(childs.length - 1, right, false, divideWidth == null ? null : divideWidth);
 			} else {
-				mathItem(childs.length - 1, right, false);
+				mathItem(childs.length - 1, right, true);
 			}
 
 			var len = childs.length - 1;
