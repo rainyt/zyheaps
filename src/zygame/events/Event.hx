@@ -7,6 +7,16 @@ class Event {
 	public static inline var CLICK:EventType<Event> = "click";
 
 	/**
+	 * 按下事件
+	 */
+	public static inline var PUSH:EventType<Event> = "push";
+
+	/**
+	 * 松开事件
+	 */
+	public static inline var RELEASE:EventType<Event> = "release";
+
+	/**
 	 * 数据更改事件
 	 */
 	public static inline var CHANGE:EventType<Event> = "change";

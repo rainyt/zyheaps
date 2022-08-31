@@ -136,4 +136,9 @@ interface IDisplayObject extends IObject {
 	public var contentWidth(get, null):Float;
 
 	public var contentHeight(get, null):Float;
+
+	/**
+	 * 是否允许触摸子对象
+	 */
+	public var mouseChildren:Bool;
 }

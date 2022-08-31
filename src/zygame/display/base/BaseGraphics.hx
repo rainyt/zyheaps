@@ -1,5 +1,9 @@
 package zygame.display.base;
 
+import zygame.events.EventListener;
+import zygame.events.EventTools;
+import zygame.events.EventType;
+import zygame.events.Event;
 import zygame.layout.ILayout;
 import h2d.RenderContext;
 import h2d.Interactive;
@@ -12,7 +16,7 @@ import zygame.display.base.IDisplayObject;
 /**
  * 基础的绘制类型
  */
-class BaseGraphics extends Graphics implements IInteractiveObject {
+class BaseGraphics extends Graphics implements IInteractiveObject implements IEventListener {
 	public var dirt:Bool = false;
 
 	/**
@@ -128,6 +132,12 @@ class BaseGraphics extends Graphics implements IInteractiveObject {
 				addChildAt(interactive, 0);
 				this.interactive = interactive;
 				interactive.cursor = Default;
+				interactive.onPush = function(e) {
+					this.onMousePush();
+				}
+				interactive.onRelease = function(e) {
+					this.onMouseRelease();
+				}
 			}
 		} else {
 			// 关闭触摸
@@ -164,4 +174,35 @@ class BaseGraphics extends Graphics implements IInteractiveObject {
 	public function get_contentHeight():Float {
 		return getHeight(this);
 	}
+
+	dynamic public function onMousePush():Void {
+		this.dispatchEvent(new Event(Event.PUSH), true);
+	}
+
+	dynamic public function onMouseRelease():Void {
+		this.dispatchEvent(new Event(Event.RELEASE), true);
+	}
+
+	private var __events:EventListener = new EventListener();
+
+	public function addEventListener<T>(type:EventType<T>, listener:T->Void) {
+		__events.addEventListener(type, listener);
+	}
+
+	public function removeEventListener<T>(type:EventType<T>, listener:T->Void) {
+		__events.removeEventListener(type, listener);
+	}
+
+	public function hasEventListener<T>(type:EventType<T>):Bool {
+		return __events.hasEventListener(type);
+	}
+
+	public function dispatchEvent(event:Event, bubble:Bool = false):Void {
+		if (!mouseChildren || @:privateAccess event.__target == null)
+			@:privateAccess event.__target = this;
+		this.__events.dispatchEvent(event, bubble);
+		EventTools.dispatchParentEvent(this, event, bubble);
+	}
+
+	public var mouseChildren:Bool = true;
 }

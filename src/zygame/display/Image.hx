@@ -201,4 +201,6 @@ class Image extends Bitmap implements IDisplayObject {
 	public function get_contentHeight():Float {
 		return getHeight(this);
 	}
+
+	public var mouseChildren:Bool = false;
 }
