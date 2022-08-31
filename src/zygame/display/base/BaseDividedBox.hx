@@ -66,8 +66,8 @@ class BaseDividedBox extends Box {
 		Start.current.s2d.stopCapture();
 	}
 
-	private function superAddChild(obj:Object):Void {
-		super.addChildAt(cast obj, this.numChildren);
+	private function superAddChild(obj:Object, index:Null<Int> = null):Void {
+		super.addChildAt(cast obj, index == null ? this.numChildren : index);
 	}
 
 	private function onMove(e:Event):Void {

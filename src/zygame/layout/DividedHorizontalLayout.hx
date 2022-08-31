@@ -16,12 +16,18 @@ class DividedHorizontalLayout extends HorizontalLayout {
 		// 重新排序
 		var view:HDividedBox = cast self;
 		var dragChilds = @:privateAccess view.children.filter((f) -> f is DragDividedRenderer);
-		view.removeChildren();
-		var childs = view.getChilds().copy();
+		var allChilds = @:privateAccess view.children;
+		// view.removeChildren();
+		var childs = view.getChilds();
+		var delChilds = allChilds.filter((f) -> childs.indexOf(f) == -1);
+		for (object in delChilds) {
+			view.removeChild(object);
+		}
 		if (childs.length == 1) {
 			var ichild:IDisplayObject = cast childs[0];
 			ichild.left = ichild.right = ichild.top = ichild.bottom = 0;
-			@:privateAccess view.superAddChild(childs[0]);
+			if (childs[0].parent == null)
+				@:privateAccess view.superAddChild(childs[0]);
 		} else if (childs.length > 1) {
 			// 左边
 			var left = childs[0];
@@ -80,15 +86,20 @@ class DividedHorizontalLayout extends HorizontalLayout {
 				mathItem(index, object, index == len - 1);
 			}
 
+			var cindex = 0;
 			// 开始添加组件
 			for (index => object in childs) {
 				var idsipaly:IDisplayObject = cast object;
-				@:privateAccess view.superAddChild(object);
+				if (object.parent == null)
+					@:privateAccess view.superAddChild(object, cindex);
+				cindex++;
 				if (index < childs.length - 1) {
 					var dragItem:DragDividedRenderer = cast(dragChilds[index] == null ? view.createDragItemRenderer() : dragChilds[index]);
 					dragItem.index = index;
 					dragItem.isEnd = index == childs.length - 2;
-					@:privateAccess view.superAddChild(dragItem);
+					if (dragItem.parent == null)
+						@:privateAccess view.superAddChild(dragItem, cindex);
+					cindex++;
 					var idsipaly:IDisplayObject = cast dragItem;
 					idsipaly.top = idsipaly.bottom = 0;
 				}
