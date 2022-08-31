@@ -16,7 +16,7 @@ class DragDividedRenderer extends ItemRenderer {
 		super();
 		bg = new Quad(5, 5, 0xe0e0e0, this);
 		this.width = 10;
-		this.height = 5;
+		this.height = 10;
 		this.bg.enableInteractive = true;
 		bg.interactive.cursor = Move;
 		this.mouseChildren = false;

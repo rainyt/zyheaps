@@ -9,9 +9,9 @@ import zygame.display.base.IObject;
 using zygame.utils.LayoutTools;
 
 /**
- * 横向切割器的布局计算处理
+ * 竖向切割器的布局计算处理
  */
-class DividedHorizontalLayout extends HorizontalLayout {
+class DividedVerticalLayout extends VerticalLayout {
 	override public function updateLayout(self:IObject, children:Array<Object>) {
 		// 重新排序
 		var view:BaseDividedBox = cast self;
@@ -30,40 +30,40 @@ class DividedHorizontalLayout extends HorizontalLayout {
 				@:privateAccess view.superAddChild(childs[0]);
 		} else if (childs.length > 1) {
 			var item:DragDividedRenderer = cast(dragChilds[0] == null ? view.createDragItemRenderer() : dragChilds[0]);
-			var itemWidth = item.contentWidth;
-			var allWidth = view.width - (childs.length - 1) * itemWidth;
+			var itemHeight = item.contentHeight;
+			var allHeight = view.height - (childs.length - 1) * itemHeight;
 			var cCounts = childs.length;
-			var maxWidth = allWidth - (childs.length - 1) * itemWidth;
+			var maxHeight = allHeight - (childs.length - 1) * itemHeight;
 			var offest = 0.;
 
 			function mathItem(index:Int, object:Object, isFillAll:Bool, setFixWidth:Null<Float> = null):Void {
-				var pWidth = allWidth / cCounts;
+				var pHeight = allHeight / cCounts;
 				cCounts--;
-				var divideWidth:Null<Float> = @:privateAccess view.__dividedState.get(index);
-				var fixWidth = divideWidth == null ? pWidth : divideWidth - offest;
+				var divideHeight:Null<Float> = @:privateAccess view.__dividedState.get(index);
+				var fixHeight = divideHeight == null ? pHeight : divideHeight - offest;
 				if (setFixWidth != null)
-					fixWidth = setFixWidth;
-				if (fixWidth < 10) {
-					fixWidth = 10;
-				} else if (fixWidth > maxWidth) {
-					fixWidth = maxWidth;
+					fixHeight = setFixWidth;
+				if (fixHeight < 10) {
+					fixHeight = 10;
+				} else if (fixHeight > maxHeight) {
+					fixHeight = maxHeight;
 				}
 
 				if (index < childs.length - 1) {
-					fixWidth -= index * itemWidth;
-					offest += fixWidth;
+					fixHeight -= index * itemHeight;
+					offest += fixHeight;
 				} else {
-					fixWidth -= itemWidth;
+					fixHeight -= itemHeight;
 				}
 				var idsipaly:IDisplayObject = cast object;
 				if (!isFillAll) {
-					idsipaly.width = fixWidth;
-					allWidth -= fixWidth;
-					maxWidth -= fixWidth;
+					idsipaly.height = fixHeight;
+					allHeight -= fixHeight;
+					maxHeight -= fixHeight;
 				} else {
-					idsipaly.width = allWidth;
+					idsipaly.height = allHeight;
 				}
-				idsipaly.top = idsipaly.bottom = 0;
+				idsipaly.left = idsipaly.right = 0;
 			}
 
 			// 开始与结尾
@@ -100,7 +100,7 @@ class DividedHorizontalLayout extends HorizontalLayout {
 						@:privateAccess view.superAddChild(dragItem, cindex);
 					cindex++;
 					var idsipaly:IDisplayObject = cast dragItem;
-					idsipaly.top = idsipaly.bottom = 0;
+					idsipaly.left = idsipaly.right = 0;
 				}
 			}
 		}

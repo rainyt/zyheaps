@@ -20,6 +20,8 @@ import hxd.res.DefaultFont;
 class TextInput extends h2d.TextInput implements IDisplayObject {
 	private var _select:Quad = new Quad(1, 1);
 
+	public var mouseChildren:Bool = true;
+
 	public function new(?parent:Object) {
 		var font = FontBuilder.getFont(Label.defaultFont, _size, {
 			chars: " "

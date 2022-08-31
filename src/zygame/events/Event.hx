@@ -37,4 +37,10 @@ class Event {
 	public function new(type:String) {
 		this.type = type;
 	}
+
+	private var _preventDefault:Bool = false;
+
+	public function preventDefault():Void {
+		_preventDefault = true;
+	}
 }

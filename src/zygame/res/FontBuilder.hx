@@ -36,7 +36,7 @@ class FontBuilder extends hxd.res.FontBuilder {
 		try {
 			#if hl
 			// 中文支持，请使用支持SDF的字体
-			if (name.endsWith("ttf")) {
+			if (name.endsWith("ttf") || name.endsWith("ttc")) {
 				if (!hlfontBytes.exists(name)) {
 					final bytes = AssetsTools.getBytes(name);
 					hlfontBytes.set(name, bytes);

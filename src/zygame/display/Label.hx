@@ -18,7 +18,11 @@ class Label extends Text implements IDisplayObject {
 	/**
 	 * 默认字体
 	 */
+	#if mac
+	public static var defaultFont:String = "/System/Library/Fonts/STHeiti Medium.ttc";
+	#else
 	public static var defaultFont:String = "黑体";
+	#end
 
 	/**
 	 * 默认字体颜色

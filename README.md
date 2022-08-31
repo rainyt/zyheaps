@@ -54,7 +54,7 @@ haxelib git hlsdl https://github.com/rainyt/hlsdl.git
 - [x] 文本输入(TextInput) zygame.display.TextInput
 - [x] 下拉框(DownListView) zygame.display.DownListView
 - [x] 横向切割容器(HDividedBox) zygame.display.HDividedBox
-- [ ] 竖向切割容器(VDividedBox) zygame.display.VDividedBox
+- [x] 竖向切割容器(VDividedBox) zygame.display.VDividedBox
 
 ## Batch Component
 - [x] 按钮(BButton) zygame.display.batch.BButton

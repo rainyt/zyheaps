@@ -57,6 +57,7 @@ class BaseDividedBox extends Box {
 	}
 
 	private function onItemPush(e:zygame.events.Event):Void {
+		e.preventDefault();
 		__moveItem = e.target;
 		__moveOffest = 0;
 		Start.current.s2d.startCapture(onMove);
@@ -70,23 +71,9 @@ class BaseDividedBox extends Box {
 		super.addChildAt(cast obj, index == null ? this.numChildren : index);
 	}
 
-	private function onMove(e:Event):Void {
-		switch e.kind {
-			case ERelease:
-				Start.current.s2d.stopCapture();
-			case EMove:
-				var pos = this.globalToLocal(new Point(e.relX, e.relY));
-				__moveItem.x = pos.x - __moveItem.width / 2;
-				if (__moveItem.index != 0 && __moveItem.isEnd) {
-					__dividedState.set(__moveItem.index, this.width - __moveItem.x);
-				} else
-					__dividedState.set(__moveItem.index, __moveItem.x);
-				this.updateLayout();
-			default:
-		}
-	}
+	public function onMove(e:Event):Void {}
 
-	public function setDividedWidth(index:Int, width:Float):Void {
+	public function setDividedState(index:Int, width:Float):Void {
 		__dividedState.set(index, width);
 		this.updateLayout();
 	}
