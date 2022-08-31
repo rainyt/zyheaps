@@ -30,11 +30,13 @@ class DividedHorizontalLayout extends HorizontalLayout {
 			var item:DragDividedRenderer = cast(dragChilds[0] == null ? view.createDragItemRenderer() : dragChilds[0]);
 			var itemWidth = item.contentWidth;
 			var allWidth = view.width - (childs.length - 1) * itemWidth;
-			var pWidth = allWidth / childs.length;
+			var cCounts = childs.length;
 			var maxWidth = allWidth - (childs.length - 1) * itemWidth;
 			var offest = 0.;
 
 			function mathItem(index:Int, object:Object, isFillAll:Bool, setFixWidth:Null<Float> = null):Void {
+				var pWidth = allWidth / cCounts;
+				cCounts--;
 				var divideWidth:Null<Float> = @:privateAccess view.__dividedState.get(index);
 				var fixWidth = divideWidth == null ? pWidth : divideWidth - offest;
 				if (setFixWidth != null)
