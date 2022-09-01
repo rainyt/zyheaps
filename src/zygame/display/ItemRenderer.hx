@@ -38,6 +38,9 @@ class ItemRenderer extends Box implements IItemRenderer {
 	}
 
 	override function draw(ctx:RenderContext) {
+		if(dirt){
+			this.updateLayout();
+		}
 		super.draw(ctx);
 	}
 

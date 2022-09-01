@@ -1,5 +1,8 @@
 package zygame.res;
 
+import zygame.display.HDividedBox;
+import zygame.display.VDividedBox;
+import zygame.display.ListView;
 import zygame.display.ScrollView;
 import haxe.Exception;
 import h2d.Object;
@@ -131,5 +134,10 @@ class XMLBuilder extends Builder<Xml> {
 		});
 		// ScrollView
 		addClass(ScrollView);
+		// ListView
+		addClass(ListView);
+		// HDividedBox VDividedBox
+		addClass(HDividedBox);
+		addClass(VDividedBox);
 	}
 }
