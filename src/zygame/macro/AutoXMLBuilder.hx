@@ -150,10 +150,10 @@ class AutoXMLBuilder {
 		}
 		// 绑定ids映射
 		for (key => value in ids) {
-			var t = TPath({
+			var t = value.indexOf(".") == -1 ? TPath({
 				pack: ["zygame", "display"],
 				name: value
-			});
+			}) : toTPath(value);
 			fields.push({
 				name: key,
 				access: [APublic],
@@ -173,6 +173,15 @@ class AutoXMLBuilder {
 			});
 		}
 		return fields;
+	}
+
+	private static function toTPath(value:String):Dynamic {
+		var array = value.split(".");
+		var valueName = array.pop();
+		return TPath({
+			pack: array,
+			name: valueName
+		});
 	}
 
 	/**

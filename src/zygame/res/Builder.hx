@@ -53,12 +53,16 @@ class Builder<T> {
 	 * @return Dynamic
 	 */
 	public function createInstance(type:String, data:Dynamic, array:Array<Dynamic> = null):Dynamic {
-		if (createFunc.exists(type)) {
-			return createFunc.get(type)(data);
+		var bindType = type;
+		if (bindType.indexOf(".") != -1) {
+			bindType = bindType.split(".").pop();
 		}
-		var c = classDefine.get(type);
+		if (createFunc.exists(bindType)) {
+			return createFunc.get(bindType)(data);
+		}
+		var c = classDefine.get(bindType);
 		if (c == null) {
-			c = Type.resolveClass(type);
+			c = Type.resolveClass(bindType);
 		}
 		return Type.createInstance(c, array == null ? [] : array);
 	}
