@@ -22,8 +22,8 @@ import zygame.display.base.IDisplayObject;
  * 使用XML格式创建UI
  */
 class XMLBuilder extends Builder<Xml> {
-	public static function parserFromId(id:String, parent:Object):Object {
-		return parser(AssetsBuilder.getXml(id), parent);
+	public static function parserFromId(id:String, parent:Object, ids:Map<String, Object> = null):Object {
+		return parser(AssetsBuilder.getXml(id), parent, ids);
 	}
 
 	public static function parser(xml:Xml, parent:Object, ids:Map<String, Object> = null):Object {

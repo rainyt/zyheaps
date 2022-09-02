@@ -130,7 +130,11 @@ class AutoXMLBuilder {
 						switch f.expr.expr {
 							case EBlock(exprs):
 								if (parentId != null) {
-									exprs.insert(0, macro zygame.res.XMLBuilder.parserFromId($v{xmlid}, this.$parentId));
+									exprs.insert(0, macro {
+										if (this.ids == null)
+											this.ids = [];
+										zygame.res.XMLBuilder.parserFromId($v{xmlid}, this.$parentId, this.ids);
+									});
 								} else {
 									exprs.insert(0, macro zygame.res.XMLBuilder.parserFromId($v{xmlid}, this));
 								}
@@ -144,7 +148,9 @@ class AutoXMLBuilder {
 					expr: if (parentId != null) {
 						macro {
 							super.onInit();
-							zygame.res.XMLBuilder.parserFromId($v{xmlid}, this.$parentId);
+							if (this.ids == null)
+								this.ids = [];
+							zygame.res.XMLBuilder.parserFromId($v{xmlid}, this.$parentId, this.ids);
 						}
 					} else {
 						macro {
