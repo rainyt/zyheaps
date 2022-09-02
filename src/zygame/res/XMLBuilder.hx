@@ -1,5 +1,6 @@
 package zygame.res;
 
+import zygame.display.TextInput;
 import zygame.display.data.ButtonSkin;
 import zygame.display.DownListView;
 import zygame.display.HDividedBox;
@@ -155,5 +156,7 @@ class XMLBuilder extends Builder<Xml> {
 			}
 			return false;
 		});
+		// TextInput
+		addClass(TextInput);
 	}
 }

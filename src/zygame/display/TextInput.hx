@@ -1,205 +1,62 @@
 package zygame.display;
 
-import h2d.col.Bounds;
 import h2d.RenderContext;
-import zygame.core.Start;
-import zygame.layout.ILayout;
-import zygame.display.base.IDisplayObject;
-#if hl
-import zygame.display.text.glyphme.TrueTypeFont;
-#end
-import hxd.Event;
-import h2d.Font;
-import zygame.res.FontBuilder;
 import h2d.Object;
-import hxd.res.DefaultFont;
 
 /**
- * 自动兼容中文输入的TextInput
+ * 输入文本支持
  */
-class TextInput extends h2d.TextInput implements IDisplayObject {
-	private var _select:Quad = new Quad(1, 1);
+@:access(h2d.TextInput)
+class TextInput extends Box {
+	private var _bg:Quad = new Quad(1, 1, 0xf0f0f0);
 
-	public var mouseChildren:Bool = true;
+	private var _select:Quad = new Quad(1, 1, 0x0);
 
-	/**
-	 * 是否使用父节点的尺寸，如ScrollView通常自身会有一个`Box`，布局尺寸应该按`ScrollView`获取。
-	 */
-	public var useLayoutParent:IDisplayObject;
+	private var _textInput:BaseTextInput;
 
 	public function new(?parent:Object) {
-		var font = FontBuilder.getFont(Label.defaultFont, _size, {
-			chars: " "
-		});
-		#if hl
-		@:privateAccess cast(font, TrueTypeFont).__forceHasChar = true;
-		#end
-		super(font, parent);
-		this.addChildAt(_select, 0);
+		super(parent);
+		this.addChild(_bg);
+		this.addChild(_select);
 		_select.alpha = 0.5;
+		_textInput = new BaseTextInput(this);
+		_textInput.setColor(0x0);
 	}
 
-	private var _size:Int = 40;
-
-	/**
-	 * 设置文本大小
-	 * @param size 
-	 */
-	public function setSize(size:Int):Void {
-		_size = size;
-		if (font != null) {
-			if (_size != font.size) {
-				this.font = FontBuilder.getFont(Label.defaultFont, _size, {
-					chars: text == "" ? " " : text
-				});
-				#if hl
-				@:privateAccess cast(font, TrueTypeFont).__forceHasChar = true;
-				#end
-				this.text = this.text;
-			}
-		}
+	override function set_width(width:Null<Float>):Null<Float> {
+		_textInput.width = width;
+		_bg.width = width;
+		return super.set_width(width);
 	}
 
-	/**
-	 * 设置文本颜色
-	 * @param color 
-	 */
-	public function setColor(color:UInt):Void {
-		this.color.setColor(0xff000000 + color);
-	}
-
-	/**
-	 * 指定使用的字体
-	 */
-	public var useFont:Font;
-
-	override function set_text(t:String):String {
-		if (t == null) {
-			t = "null";
-		}
-		if (font != null && t == this.text)
-			return t;
-		// 当文本存在时，将旧的文本清理，重新构造
-		if (useFont != null) {
-			if (font != useFont) {
-				this.font.dispose();
-			}
-			this.font = useFont;
-		} else {
-			if (this.font != null) {
-				if (font != DefaultFont.get())
-					this.font.dispose();
-			}
-			this.font = FontBuilder.getFont(Label.defaultFont, _size, {
-				chars: t
-			});
-			#if hl
-			@:privateAccess cast(this.font, TrueTypeFont).__forceHasChar = true;
-			#end
-		}
-		// this.dirt = true;
-		return super.set_text(t);
-	}
-
-	public function set_width(value:Null<Float>):Null<Float> {
-		this.width = value;
-		dirt = true;
-		return value;
-	}
-
-	public var width(default, set):Null<Float>;
-
-	public var height(default, set):Null<Float>;
-
-	public function set_height(value:Null<Float>):Null<Float> {
-		this.height = value;
-		dirt = true;
-		return value;
-	}
-
-	public var left:Null<Float>;
-
-	public var right:Null<Float>;
-
-	public var top:Null<Float>;
-
-	public var bottom:Null<Float>;
-
-	public var centerX:Null<Float>;
-
-	public var centerY:Null<Float>;
-
-	public var layout:ILayout;
-
-	public function updateLayout() {
-		layoutIDisplayObject(this);
-	}
-
-	public function onInit() {}
-
-	public var dirt:Bool;
-
-	public function get_stageWidth():Float {
-		return Start.current.stageWidth;
-	}
-
-	public var stageWidth(get, never):Float;
-
-	public function get_stageHeight():Float {
-		return Start.current.stageHeight;
-	}
-
-	public var stageHeight(get, never):Float;
-
-	public var ids:Map<String, Object>;
-
-	public function get<T:Object>(id:String, c:Class<T>):T {
-		throw new haxe.exceptions.NotImplementedException();
-	}
-
-	public var contentWidth(get, null):Float;
-
-	public function get_contentWidth():Float {
-		return getWidth(this);
-	}
-
-	public var contentHeight(get, null):Float;
-
-	public function get_contentHeight():Float {
-		return getHeight(this);
+	override function set_height(height:Null<Float>):Null<Float> {
+		_bg.height = height;
+		return super.set_height(height);
 	}
 
 	override function draw(ctx:RenderContext) {
 		if (dirt) {
-			if (width != null) {
-				this.inputWidth = Std.int(width);
-			}
-			dirt = false;
+			this._textInput.y = (this.contentHeight - this._textInput.textHeight) / 2;
 		}
-		this._select.visible = this.selectionRange != null;
+		this._select.y = _textInput.y;
+		this._select.visible = this._textInput.selectionRange != null;
 		if (_select.visible) {
-			_select.height = this.calcHeight;
-			if (this.selectionSize != 0) {
-				_select.x = this.selectionPos - this.scrollX;
-				_select.width = this.selectionSize;
+			_select.height = this._textInput.calcHeight;
+			if (this._textInput.selectionSize != 0) {
+				_select.x = this._textInput.selectionPos - this._textInput.scrollX;
+				if (_select.x < 0) {
+					_select.x = 0;
+					_select.width = this._textInput.selectionSize;
+					if (_select.width > contentWidth) {
+						_select.width = contentWidth;
+					}
+				} else {
+					_select.width = this._textInput.selectionSize;
+				}
 			}
 		} else {
 			_select.width = 0;
 		}
 		super.draw(ctx);
-	}
-
-	public var percentageWidth(default, set):Null<Float>;
-
-	public function set_percentageWidth(value:Null<Float>):Null<Float> {
-		this.percentageWidth = value;
-		return value;
-	}
-
-	public var percentageHeight(default, set):Null<Float>;
-
-	public function set_percentageHeight(value:Null<Float>):Null<Float> {
-		this.percentageHeight = value;
-		return value;
 	}
 }

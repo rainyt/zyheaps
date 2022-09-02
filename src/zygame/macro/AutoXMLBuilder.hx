@@ -20,7 +20,6 @@ class AutoXMLBuilder {
 	}
 
 	public static function build(xmlid:String, parent:String = null):Array<Field> {
-		trace("parent=", parent);
 		var fields = Context.getBuildFields();
 		var xml:Xml = Xml.parse(File.getContent(firstProjectData.assetsPath.get(xmlid + ".xml")));
 		var ids:Map<String, String> = [];
