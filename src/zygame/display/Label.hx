@@ -23,6 +23,7 @@ class Label extends Text implements IDisplayObject {
 	#else
 	public static var defaultFont:String = "黑体";
 	#end
+	public static var defaultSize:Int = 28;
 
 	/**
 	 * 默认字体颜色
@@ -97,6 +98,7 @@ class Label extends Text implements IDisplayObject {
 	 */
 	public function new(text:String = null, parent:Object = null) {
 		super(DefaultFont.get(), parent);
+		_size = defaultSize;
 		if (text != null)
 			this.text = text;
 		this.setColor(defaultColor);
