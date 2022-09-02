@@ -50,6 +50,7 @@ class ObjectRecycler<T:IItemRenderer> {
 		var item = create();
 		var type = Type.getClass(item);
 		var type2 = Type.getClass(obj);
+		release(item);
 		return type == type2;
 	}
 }

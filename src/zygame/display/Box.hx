@@ -21,6 +21,11 @@ class Box extends h2d.Object implements IInteractiveObject implements IEventList
 
 	public var enableInteractive(default, set):Bool;
 
+	/**
+	 * 是否使用父节点的尺寸，如ScrollView通常自身会有一个`Box`，布局尺寸应该按`ScrollView`获取。
+	 */
+	public var useLayoutParent:IDisplayObject;
+
 	public function new(?parent:Object) {
 		super(parent);
 		this.onInit();

@@ -35,6 +35,7 @@ class FontBuilder extends hxd.res.FontBuilder {
 	public static function getFont(name:String, size:Int, ?options:hxd.res.FontBuilder.FontBuildOptions):h2d.Font {
 		try {
 			#if hl
+			// trace(options.chars);
 			// 中文支持，请使用支持SDF的字体
 			if (name.endsWith("ttf") || name.endsWith("ttc")) {
 				if (!hlfontBytes.exists(name)) {

@@ -22,6 +22,11 @@ class TextInput extends h2d.TextInput implements IDisplayObject {
 
 	public var mouseChildren:Bool = true;
 
+	/**
+	 * 是否使用父节点的尺寸，如ScrollView通常自身会有一个`Box`，布局尺寸应该按`ScrollView`获取。
+	 */
+	public var useLayoutParent:IDisplayObject;
+
 	public function new(?parent:Object) {
 		var font = FontBuilder.getFont(Label.defaultFont, _size, {
 			chars: " "

@@ -21,6 +21,11 @@ class Image extends Bitmap implements IDisplayObject {
 	 */
 	public var dirt:Bool = false;
 
+	/**
+	 * 是否使用父节点的尺寸，如ScrollView通常自身会有一个`Box`，布局尺寸应该按`ScrollView`获取。
+	 */
+	public var useLayoutParent:IDisplayObject;
+
 	private var __scaleGrid:ScaleGrid;
 
 	private var __scale9Grid:Rect;

@@ -56,6 +56,9 @@ function layoutIDisplayObject(display:IDisplayObject):Void {
 		var dh = getHeight(display);
 		if (display.parent is IDisplayObject) {
 			var display:IDisplayObject = cast display.parent;
+			if (display.useLayoutParent != null) {
+				display = cast display.useLayoutParent;
+			}
 			w = getWidth(display);
 			h = getHeight(display);
 		}

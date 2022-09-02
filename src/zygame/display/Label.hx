@@ -31,6 +31,11 @@ class Label extends Text implements IDisplayObject {
 
 	public var dirt:Bool = false;
 
+	/**
+	 * 是否使用父节点的尺寸，如ScrollView通常自身会有一个`Box`，布局尺寸应该按`ScrollView`获取。
+	 */
+	public var useLayoutParent:IDisplayObject;
+
 	public var width(default, set):Null<Float>;
 
 	function set_width(width:Null<Float>):Null<Float> {
@@ -123,20 +128,22 @@ class Label extends Text implements IDisplayObject {
 		}
 		if (font != null && t == this.text)
 			return t;
-		// 当文本存在时，将旧的文本清理，重新构造
-		if (useFont != null) {
-			if (font != useFont) {
-				this.font.dispose();
-			}
-			this.font = useFont;
-		} else {
-			if (this.font != null) {
-				if (font != DefaultFont.get())
+		if (t != "") {
+			// 当文本存在时，将旧的文本清理，重新构造
+			if (useFont != null) {
+				if (font != useFont) {
 					this.font.dispose();
+				}
+				this.font = useFont;
+			} else {
+				if (this.font != null) {
+					if (font != DefaultFont.get())
+						this.font.dispose();
+				}
+				this.font = FontBuilder.getFont(defaultFont, _size, {
+					chars: t
+				});
 			}
-			this.font = FontBuilder.getFont(defaultFont, _size, {
-				chars: t
-			});
 		}
 		this.dirt = true;
 		return super.set_text(t);
@@ -152,8 +159,9 @@ class Label extends Text implements IDisplayObject {
 		_size = size;
 		if (font != null) {
 			if (_size != font.size) {
-				font = null;
-				this.text = this.text;
+				this.font = FontBuilder.getFont(defaultFont, _size, {
+					chars: text
+				});
 			}
 		}
 	}

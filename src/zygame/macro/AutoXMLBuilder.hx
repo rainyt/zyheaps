@@ -19,12 +19,14 @@ class AutoXMLBuilder {
 		return _firstProjectData;
 	}
 
-	public static function build(xmlid:String):Array<Field> {
+	public static function build(xmlid:String, parent:String = null):Array<Field> {
+		trace("parent=", parent);
 		var fields = Context.getBuildFields();
 		var xml:Xml = Xml.parse(File.getContent(firstProjectData.assetsPath.get(xmlid + ".xml")));
 		var ids:Map<String, String> = [];
 		var assets:Array<FileType> = [];
 		parserIds(xml, ids, assets);
+		var parentId = parent != null ? parent : null;
 		var className = Context.getLocalClass().get().superClass.t.toString();
 		if (className == "zygame.display.LoaderXMLScene") {
 			// 支持载入的场景
@@ -127,7 +129,11 @@ class AutoXMLBuilder {
 					case FFun(f):
 						switch f.expr.expr {
 							case EBlock(exprs):
-								exprs.insert(0, macro zygame.res.XMLBuilder.parserFromId($v{xmlid}, this));
+								if (parentId != null) {
+									exprs.insert(0, macro zygame.res.XMLBuilder.parserFromId($v{xmlid}, this.$parentId));
+								} else {
+									exprs.insert(0, macro zygame.res.XMLBuilder.parserFromId($v{xmlid}, this));
+								}
 							default:
 						}
 					default:
@@ -135,7 +141,17 @@ class AutoXMLBuilder {
 				}
 			} else {
 				var on_init:Function = {
-					expr: macro zygame.res.XMLBuilder.parserFromId($v{xmlid}, this),
+					expr: if (parentId != null) {
+						macro {
+							super.onInit();
+							zygame.res.XMLBuilder.parserFromId($v{xmlid}, this.$parentId);
+						}
+					} else {
+						macro {
+							super.onInit();
+							zygame.res.XMLBuilder.parserFromId($v{xmlid}, this);
+						}
+					},
 					ret: macro:Void,
 					args: []
 				}

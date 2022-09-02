@@ -14,6 +14,11 @@ interface IObject {
 	public var y(default, set):Float;
 
 	/**
+	 * 是否使用父节点的尺寸，如ScrollView通常自身会有一个`Box`，布局尺寸应该按`ScrollView`获取。
+	 */
+	public var useLayoutParent:IDisplayObject;
+
+	/**
 	 * 宽度
 	 */
 	public var width(default, set):Null<Float>;

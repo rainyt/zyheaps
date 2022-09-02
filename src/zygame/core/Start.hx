@@ -123,6 +123,7 @@ class Start extends #if js zygame.core.platform.JsStart #else App #end {
 		// trace("changed scale:", __currentScale, "size:", this.stageWidth, this.stageHeight);
 		// 控制场景的尺寸变化
 		@:privateAccess SceneManager.onResize();
+		this.topView.updateLayout();
 		topView.width = this.stageWidth;
 		topView.height = this.stageHeight;
 	}

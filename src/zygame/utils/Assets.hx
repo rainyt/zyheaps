@@ -1,5 +1,8 @@
 package zygame.utils;
 
+import h2d.Font;
+import zygame.display.Label;
+import zygame.res.FontBuilder;
 import hxd.clipper.Rect;
 import zygame.res.AssetsBuilder;
 import h3d.scene.Object;
@@ -399,6 +402,30 @@ class Assets {
 	 */
 	public function createSpine(atlasName:String, jsonName:String):#if spine_hx Spine #else Dynamic #end {
 		return this.getSpineAtlas(atlasName).buildSpriteSkeleton(atlasName, this.getJson(jsonName));
+	}
+
+	/**
+	 * 构造一个缓存文字
+	 * @param id 缓存文字ID
+	 * @param size 缓存文字的尺寸
+	 * @param chars 缓存文字字符串
+	 * @param font 缓存文字的字体，如果不提供的话，会使用`Label.defaultFont`的字体
+	 */
+	public function createCacheFont(id:String, size:Int, chars:String, font:String = null):Void {
+		var font = FontBuilder.getFont(font == null ? Label.defaultFont : font, size, {
+			chars: chars
+		});
+		this.setTypeAssets(FONT, id, font);
+	}
+
+	/**
+	 * 根据ID获取缓存字体
+	 * @param id 
+	 * @return Font
+	 */
+	public function getFont(id:String):Font {
+		var font = this.getTypeAssets(FONT, id);
+		return font;
 	}
 
 	/**

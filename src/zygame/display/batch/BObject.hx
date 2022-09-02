@@ -1,5 +1,6 @@
 package zygame.display.batch;
 
+import zygame.display.base.IDisplayObject;
 import zygame.layout.ILayout;
 import h2d.col.Bounds;
 import h2d.Interactive;
@@ -13,6 +14,11 @@ import zygame.display.base.IBatchDisplayObject;
  */
 class BObject implements IBatchDisplayObject {
 	private var __transform:Matrix = new Matrix();
+
+	/**
+	 * 是否使用父节点的尺寸，如ScrollView通常自身会有一个`Box`，布局尺寸应该按`ScrollView`获取。
+	 */
+	public var useLayoutParent:IDisplayObject;
 
 	private var __worldTransform:Matrix = new Matrix();
 

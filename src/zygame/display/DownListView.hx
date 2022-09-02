@@ -1,5 +1,6 @@
 package zygame.display;
 
+import h2d.RenderContext;
 import zygame.events.Event;
 import zygame.display.data.ObjectRecycler;
 import zygame.display.data.ArrayCollection;
@@ -67,6 +68,8 @@ class DownListView extends Box implements IListView {
 				listview.remove();
 			});
 		}
+		this.height = 64;
+		this.width = 200;
 	}
 
 	override function set_width(width:Null<Float>):Null<Float> {
@@ -128,6 +131,12 @@ class DownListView extends Box implements IListView {
 
 	public function set_selectedItems(value:Array<Dynamic>):Array<Dynamic> {
 		return value;
+	}
+
+	override function draw(ctx:RenderContext) {
+		if (dirt)
+			this.updateData();
+		super.draw(ctx);
 	}
 
 	public function updateData() {

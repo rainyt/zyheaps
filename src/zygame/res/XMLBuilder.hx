@@ -1,5 +1,7 @@
 package zygame.res;
 
+import zygame.display.data.ButtonSkin;
+import zygame.display.DownListView;
 import zygame.display.HDividedBox;
 import zygame.display.VDividedBox;
 import zygame.display.ListView;
@@ -80,6 +82,9 @@ class XMLBuilder extends Builder<Xml> {
 		addClass(Box);
 		// 按钮
 		addClass(Button, function(xml:Xml) {
+			if (xml.exists("up")) {
+				return Button.create(xml.get("up"), xml.get("down"));
+			}
 			return Button.create(xml.get("src"));
 		}, function(object, key, xml) {
 			switch (key) {
@@ -139,5 +144,16 @@ class XMLBuilder extends Builder<Xml> {
 		// HDividedBox VDividedBox
 		addClass(HDividedBox);
 		addClass(VDividedBox);
+		// DownListView
+		addClass(DownListView, (xml) -> {
+			return new DownListView(new ButtonSkin(xml.get("up"), xml.get("down")));
+		}, (o, s, x) -> {
+			switch (s) {
+				case "size":
+					o.setSize(Std.parseInt(x.get("size")));
+					return true;
+			}
+			return false;
+		});
 	}
 }

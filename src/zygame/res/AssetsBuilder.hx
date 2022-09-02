@@ -1,5 +1,6 @@
 package zygame.res;
 
+import h2d.Font;
 import hxd.clipper.Rect;
 import hxd.fmt.hmd.Library;
 import h3d.scene.Object;
@@ -51,6 +52,21 @@ class AssetsBuilder {
 			var tile = assets.getBitmapDataTile(id);
 			if (tile != null)
 				return tile;
+		}
+		return null;
+	}
+
+	/**
+	 * 获取字体
+	 * @param id 
+	 * @return Font
+	 */
+	public static function getFont(id:String):Font {
+		id = StringUtils.getName(id);
+		for (assets in assetsList) {
+			var f = assets.getFont(id);
+			if (f != null)
+				return f;
 		}
 		return null;
 	}

@@ -24,6 +24,11 @@ class ScrollView extends Box {
 
 	private var _touchid:Int = -1;
 
+	/**
+	 * 是否需要自动布局
+	 */
+	public var enableLayout:Bool = false;
+
 	private var _beginPos:Point = new Point();
 	private var _beginTouchPos:Point;
 	private var _movePos:Point;
@@ -105,6 +110,7 @@ class ScrollView extends Box {
 		super(parent);
 		this.view = new Mask(0, 0);
 		_box = new Box(view);
+		_box.useLayoutParent = this;
 		super.addChildAt(view, 0);
 		this.height = this.width = 300;
 		this.enableInteractive = true;
@@ -257,5 +263,11 @@ class ScrollView extends Box {
 
 	override function addChildAt(s:Object, i:Int) {
 		_box.addChildAt(s, i);
+	}
+
+	override function updateLayout() {
+		super.updateLayout();
+		if (enableLayout)
+			this._box.updateLayout();
 	}
 }
