@@ -47,12 +47,12 @@ class DownListView extends Box implements IListView {
 		__button = new Button(skin, this);
 		__button.onClick = (b, e) -> {
 			// 打开下拉选项
-			var pos = this.localToGlobal(new Point(this.x, this.y));
+			var pos = this.parent.localToGlobal(new Point(this.x, this.y));
 			var listview = new ListView(Start.current.topView);
 			listview.itemToText = itemToText;
 			listview.dataProvider = this.dataProvider;
 			listview.x = pos.x;
-			listview.y = pos.y + this.height + 1;
+			listview.y = pos.y + this.contentHeight + 1;
 			listview.width = this.width;
 			listview.height = 400;
 			listview.interactive.onFocusLost = (e) -> {
