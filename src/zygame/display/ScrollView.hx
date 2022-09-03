@@ -270,4 +270,12 @@ class ScrollView extends Box {
 		if (enableLayout)
 			this._box.updateLayout();
 	}
+
+	override function removeChild(s:Object) {
+		this._box.removeChild(s);
+	}
+
+	override function removeChildren() {
+		this._box.removeChildren();
+	}
 }
