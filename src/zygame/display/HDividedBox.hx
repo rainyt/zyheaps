@@ -24,8 +24,14 @@ class HDividedBox extends BaseDividedBox {
 				__moveItem.x = pos.x - __moveItem.width / 2;
 				if (__moveItem.index != 0 && __moveItem.isEnd) {
 					__dividedState.set(__moveItem.index, this.width - __moveItem.x);
-				} else
+				} else {
 					__dividedState.set(__moveItem.index, __moveItem.x);
+					if (__children.length == 2) {
+						if (__dividedState.exists(1)) {
+							__dividedState.set(1, this.width - __moveItem.x);
+						}
+					}
+				}
 				this.updateLayout();
 			default:
 		}

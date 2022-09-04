@@ -69,14 +69,24 @@ class DividedHorizontalLayout extends HorizontalLayout {
 			// 开始与结尾
 			var start = childs[0];
 			var end = childs[childs.length - 1];
-			// 先预处理左边
-			mathItem(0, start, false, null);
-			// 在处理右边
-			if (childs.length > 2) {
-				var divideWidth:Null<Float> = @:privateAccess view.__dividedState.get(childs.length - 2);
-				mathItem(childs.length - 1, end, false, divideWidth == null ? null : divideWidth);
+			if (childs.length == 2) {
+				if (@:privateAccess view.__dividedState.get(1) != null) {
+					mathItem(1, end, false, null);
+					mathItem(0, start, true, null);
+				} else {
+					mathItem(0, start, false, null);
+					mathItem(1, end, true, null);
+				}
 			} else {
-				mathItem(childs.length - 1, end, true);
+				// 先预处理左边
+				mathItem(0, start, false, null);
+				// 在处理右边
+				if (childs.length > 2) {
+					var divideWidth:Null<Float> = @:privateAccess view.__dividedState.get(childs.length - 2);
+					mathItem(childs.length - 1, end, false, divideWidth == null ? null : divideWidth);
+				} else {
+					mathItem(childs.length - 1, end, true);
+				}
 			}
 
 			var len = childs.length - 1;
