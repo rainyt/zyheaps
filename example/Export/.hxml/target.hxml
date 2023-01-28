@@ -3,6 +3,7 @@
 -cp src
 -lib zyheaps
 -lib heaps
+-lib spine-hx
 -lib actuate
 -D html5
 -D target=mac
@@ -23,7 +24,8 @@
 -D platformType=desktop
 -D targetType=cpp
 -D hxp=1
--D actuate=1.8.9
+-D spine-hx=3.8.1
+-D actuate=1.9.0
 -D host=mac
 -D zyheaps=0.0.1
 -D actuate_manual_update=

@@ -1,5 +1,6 @@
 package zygame.res;
 
+import haxe.crypto.Md5;
 import h2d.Font;
 #if hl
 import haxe.io.Bytes;
@@ -51,7 +52,7 @@ class FontBuilder extends hxd.res.FontBuilder {
 				return font;
 			}
 			#else
-			var key = name + "#" + size;
+			var key = name + "#" + size + Md5.encode(options.chars);
 			var f = hxd.res.FontBuilder.FONTS.get(key);
 			if (f != null && f.tile.innerTex != null)
 				return f;

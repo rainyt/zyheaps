@@ -26,6 +26,7 @@ class Main extends Start {
 
 		SceneManager.replaceScene(MainScene);
 
+
 	}
 
 	override function onResize() {

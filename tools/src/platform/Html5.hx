@@ -36,6 +36,6 @@ class Html5 extends BasePlatform {
 	}
 
 	override function onTest() {
-		PlatformTools.launchWebServer(project.app.path + "/html5", 8888);
+		PlatformTools.launchWebServer(project.app.path + "/html5", 4000);
 	}
 }
