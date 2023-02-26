@@ -30,6 +30,13 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 | 文件选择器(FileDialog) | ❌ | ❌ | ✅ | ✅ | ❌ |
 | 输入法(IME) | ❌ | ❌ | ✅ |  check  | ✅  |
 
+## Heaps版本测试（1.10.0）
+- HTML5 [通过]
+- IOS [未测试]
+- Android [未测试]
+- Mac [未测试]
+- Window [未测试]
+
 ## 输入法（IME）
 请注意使用IME需要`rainyt/hlsdl`库支持，可通过安装：
 ```shell
