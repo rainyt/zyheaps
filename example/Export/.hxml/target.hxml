@@ -14,7 +14,7 @@
 -D buildType=release
 -D APP_PACKAGE=com.sample.ilandes
 -D native=1
--D heaps=1.9.1
+-D heaps=1.10.0
 -D APP_TITLE=ILandes
 -D NDK_VERSION=18.1.5063045
 -D APP_COMPANY="Company Name"
