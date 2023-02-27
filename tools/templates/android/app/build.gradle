@@ -17,7 +17,7 @@ android {
         externalNativeBuild {
             cmake {
                 cppFlags '-lstdc++'
-                arguments "-DANDROID_LD=lld"
+                arguments "-DANDROID_LD=lld",'-DANDROID_PLATFORM=android-24'
             }
         }
     }

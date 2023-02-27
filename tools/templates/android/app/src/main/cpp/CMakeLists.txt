@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.1)
 
 project(heapsapp)
 
+add_definitions(-DANDROID_PLATFORM=android-24)
+
 include_directories(hashlink/src)
 
 # LibHL
@@ -91,17 +93,17 @@ file(GLOB ui hashlink/libs/ui/ui_stub.c)
 add_library(ui.hdll STATIC ${ui})
 
 # UV
-file(GLOB uvlibs hashlink/libs/uv/uv.c)
-add_library(uv.hdll STATIC ${uvlibs})
-add_subdirectory(libuv-android)
-include_directories(libuv-android/libuv/include)
-target_link_libraries(uv.hdll uv)
+# file(GLOB uvlibs hashlink/libs/uv/uv.c)
+# add_library(uv.hdll STATIC ${uvlibs})
+# add_subdirectory(libuv-android)
+# include_directories(libuv-android/libuv/include)
+# target_link_libraries(uv.hdll uv)
 
-# add_subdirectory(libuv)
-# file(GLOB libuv hashlink/libs/uv/*.c)
-# add_library(uv.hdll STATIC ${libuv})
-# target_include_directories(uv.hdll PUBLIC libuv/include)
-# target_link_libraries(uv.hdll libuv)
+add_subdirectory(libuv)
+file(GLOB libuv hashlink/libs/uv/*.c)
+add_library(uv.hdll STATIC ${libuv})
+target_include_directories(uv.hdll PUBLIC libuv/include)
+target_link_libraries(uv.hdll uv)
 
 # Heaps Application
 
