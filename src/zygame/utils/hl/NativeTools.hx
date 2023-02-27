@@ -8,7 +8,7 @@ import hxd.impl.Float32;
 @:hlNative("iostools")
 #end
 class NativeTools {
-	#if mac
+	#if (ios || mac)
 	/**
 	 * 获取Mac的分辨率Dpi比
 	 * @return Float32

@@ -34,7 +34,7 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 由于升级到1.10.0版本，一些工作还没完成，因此会存在一些问题，这里做标记：
 - HTML5 [通过]
 - IOS [未测试]
-- Android [未测试]
+- Android [通过]
 - Mac [通过]
 - Window [未测试]
 
