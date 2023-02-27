@@ -31,10 +31,11 @@ haxelib git zyheaps https://github.com/rainyt/zyheaps.git
 | 输入法(IME) | ❌ | ❌ | ✅ |  check  | ✅  |
 
 ## Heaps版本测试（1.10.0）
+由于升级到1.10.0版本，一些工作还没完成，因此会存在一些问题，这里做标记：
 - HTML5 [通过]
 - IOS [未测试]
 - Android [未测试]
-- Mac [未测试]
+- Mac [通过]
 - Window [未测试]
 
 ## 输入法（IME）

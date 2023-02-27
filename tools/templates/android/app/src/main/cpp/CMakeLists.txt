@@ -90,9 +90,22 @@ target_link_libraries(openal.hdll OpenAL)
 file(GLOB ui hashlink/libs/ui/ui_stub.c)
 add_library(ui.hdll STATIC ${ui})
 
+# UV
+file(GLOB uvlibs hashlink/libs/uv/uv.c)
+add_library(uv.hdll STATIC ${uvlibs})
+add_subdirectory(libuv-android)
+include_directories(libuv-android/libuv/include)
+target_link_libraries(uv.hdll uv)
+
+# add_subdirectory(libuv)
+# file(GLOB libuv hashlink/libs/uv/*.c)
+# add_library(uv.hdll STATIC ${libuv})
+# target_include_directories(uv.hdll PUBLIC libuv/include)
+# target_link_libraries(uv.hdll libuv)
+
 # Heaps Application
 
 add_library(heapsapp SHARED out/main.c jni.c stb/glyphme.cpp)
 target_include_directories(heapsapp PRIVATE out)
 target_include_directories(heapsapp PRIVATE stb)
-target_link_libraries(heapsapp hl sdl.hdll fmt.hdll openal.hdll ui.hdll)
+target_link_libraries(heapsapp hl sdl.hdll fmt.hdll openal.hdll ui.hdll uv.hdll)

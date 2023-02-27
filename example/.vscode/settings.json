@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "class.h": "c",
+        "natives.h": "c",
+        "targetconditionals.h": "c"
+    }
+}

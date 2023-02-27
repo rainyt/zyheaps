@@ -12,7 +12,7 @@
     <haxelib name="spine-hx"/>
     <haxelib name="actuate"/>
     <!-- 使用hldx -->
-    <define name="dx"/>
+    <!-- <define name="dx"/> -->
     <!-- 指定源码位置 -->
     <source name="src" />
     <!-- 安卓配置 -->
@@ -26,4 +26,5 @@
     <haxeflag name="--macro" value="addGlobalMetadata('h2d.Object', '@:build(zygame.macro.Uninline.build([\'set_x\',\'set_y\']))')"/>
     
     <!-- <define name="hl_ver" value="1.12.0"/> -->
+    <define name="hl-check"/>
 </project>
