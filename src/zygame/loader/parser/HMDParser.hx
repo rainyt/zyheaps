@@ -7,10 +7,11 @@ import hxd.res.Model;
 import hxd.fs.BytesFileSystem;
 import zygame.utils.AssetsUtils;
 
+
 /**
  * 加载HMD格式的3D数据，如果提供的路径是fbx后缀，也可以加载
  */
-class HMDParser extends BaseParser {
+ class HMDParser extends BaseParser {
 	private var _setName:String = null;
 
 	public static function support(type:String):Bool {
@@ -20,9 +21,10 @@ class HMDParser extends BaseParser {
 
 	override function process() {
 		var path:String = getData();
-		path = path.toLowerCase();
-		if (StringTools.endsWith(path, ".fbx"))
-			path = StringTools.replace(path, ".fbx", ".hmd");
+		if (StringUtils.getExtType(path).toLowerCase() == "fbx") {
+			var fileExt = StringUtils.getExtType(path);
+			path = StringTools.replace(path, "." + fileExt, ".hmd");
+		}
 		AssetsUtils.loadBytes(path, function(data) {
 			var fs = new BytesFileEntry(path, data);
 			var m = new Model(fs);
@@ -32,43 +34,45 @@ class HMDParser extends BaseParser {
 			var rootPath = path.substr(0, path.lastIndexOf("/") + 1);
 			var assets:Assets = new Assets();
 			var pngs = [];
+			function pushToList(path:String) {
+				if (pngs.indexOf(path) == -1) {
+					pngs.push(path);
+				}
+			}
 			for (material in hmd.header.materials) {
 				if (material.diffuseTexture != null && !checkExist(rootName, material.diffuseTexture)) {
-					var texturePath = rootPath + material.diffuseTexture;
-					if (pngs.indexOf(texturePath) == -1) {
-						pngs.push(rootPath + material.diffuseTexture);
-					}
+					pushToList(material.diffuseTexture);
 				}
 				if (material.specularTexture != null && !checkExist(rootName, material.specularTexture)) {
-					var texturePath = rootPath + material.specularTexture;
-					if (pngs.indexOf(texturePath) == -1) {
-						pngs.push(rootPath + material.specularTexture);
-					}
+					pushToList(material.specularTexture);
 				}
 				if (material.normalMap != null && !checkExist(rootName, material.normalMap)) {
-					var texturePath = rootPath + material.normalMap;
-					if (pngs.indexOf(texturePath) == -1) {
-						pngs.push(rootPath + material.normalMap);
-					}
+					pushToList(material.normalMap);
 				}
 			}
-			for (file in pngs) {
-				assets.loadParser(new HMDTextureParser(file));
-			}
-			assets.start((f) -> {
-				if (f == 1) {
-					// 使用HMDid返回
-					var map = @:privateAccess assets._loadedData.get(BITMAP);
-					if (map != null) {
-						for (key => value in map) {
-							_setName = rootName + ":" + key;
-							this.out(this, BITMAP, value, 0);
-						};
-						_setName = null;
-						this.out(this, HMD, hmd, 1);
-					}
+			if (pngs.length > 0) {
+				for (file in pngs) {
+					var parser = new HMDTextureParser(rootPath + file);
+					parser.assetsId = file;
+					assets.loadParser(parser);
 				}
-			});
+				assets.start((f) -> {
+					if (f == 1) {
+						// 使用HMDid返回
+						var map = @:privateAccess assets._loadedData.get(BITMAP);
+						if (map != null) {
+							for (key => value in map) {
+								_setName = key;
+								this.out(this, BITMAP, value, 0);
+							};
+							_setName = null;
+							this.out(this, HMD, hmd, 1);
+						}
+					}
+				});
+			} else {
+				this.out(this, HMD, hmd, 1);
+			}
 		}, error);
 	}
 
@@ -91,8 +95,13 @@ class HMDParser extends BaseParser {
  * HMD加载的图片希望使用原生路径，以便资源复用
  */
 class HMDTextureParser extends BitmapDataParser {
+	public var assetsId:String = null;
+
 	override function getName():String {
 		// 这里直接返回路径
-		return this.getData();
+		assetsId = StringTools.replace(assetsId, ".", "_");
+		assetsId = StringTools.replace(assetsId, "/", "_");
+		return assetsId;
 	}
 }
+
