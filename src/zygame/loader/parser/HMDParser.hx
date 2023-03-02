@@ -66,7 +66,7 @@ class HMDParser extends BaseParser {
 	 * @return Bool
 	 */
 	function checkExist(id:String, path:String):Bool {
-		id += StringUtils.getName(path);
+		id += ":" + StringUtils.getName(path);
 		return AssetsBuilder.getTexture3D(id) != null;
 	}
 
