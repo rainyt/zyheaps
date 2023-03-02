@@ -1,5 +1,7 @@
 package zygame.loader.parser;
 
+import zygame.res.AssetsBuilder;
+import zygame.utils.StringUtils;
 import zygame.utils.Assets;
 import hxd.res.Model;
 import hxd.fs.BytesFileSystem;
@@ -26,20 +28,20 @@ class HMDParser extends BaseParser {
 			var m = new Model(fs);
 			var hmd = m.toHmd();
 			// 解析这里的所有图片
+			var rootName = getName();
 			var rootPath = path.substr(0, path.lastIndexOf("/") + 1);
 			var assets:Assets = new Assets();
 			for (material in hmd.header.materials) {
-				if (material.diffuseTexture != null) {
+				if (material.diffuseTexture != null && !checkExist(rootName, material.diffuseTexture)) {
 					assets.loadFile(rootPath + material.diffuseTexture);
 				}
-				if (material.specularTexture != null) {
+				if (material.specularTexture != null && !checkExist(rootName, material.specularTexture)) {
 					assets.loadFile(rootPath + material.specularTexture);
 				}
-				if (material.normalMap != null) {
+				if (material.normalMap != null && !checkExist(rootName, material.normalMap)) {
 					assets.loadFile(rootPath + material.normalMap);
 				}
 			}
-			var rootName = getName();
 			assets.start((f) -> {
 				if (f == 1) {
 					// 使用HMDid返回
@@ -55,6 +57,17 @@ class HMDParser extends BaseParser {
 				}
 			});
 		}, error);
+	}
+
+	/**
+	 * 检测是否已经存在一样的资源
+	 * @param id 
+	 * @param path 
+	 * @return Bool
+	 */
+	function checkExist(id:String, path:String):Bool {
+		id += StringUtils.getName(path);
+		return AssetsBuilder.getTexture3D(id) != null;
 	}
 
 	override function getName():String {
