@@ -26,16 +26,17 @@ class HMDParser extends BaseParser {
 			var m = new Model(fs);
 			var hmd = m.toHmd();
 			// 解析这里的所有图片
+			var rootPath = path.substr(0, path.lastIndexOf("/") + 1);
 			var assets:Assets = new Assets();
 			for (material in hmd.header.materials) {
 				if (material.diffuseTexture != null) {
-					assets.loadFile(material.diffuseTexture);
+					assets.loadFile(rootPath + material.diffuseTexture);
 				}
 				if (material.specularTexture != null) {
-					assets.loadFile(material.specularTexture);
+					assets.loadFile(rootPath + material.specularTexture);
 				}
 				if (material.normalMap != null) {
-					assets.loadFile(material.normalMap);
+					assets.loadFile(rootPath + material.normalMap);
 				}
 			}
 			var rootName = getName();
