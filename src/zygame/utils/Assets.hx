@@ -304,7 +304,7 @@ class Assets {
 		var hmd = getHMDLibrary(id);
 		if (hmd != null) {
 			return hmd.makeObject((path) -> {
-				return AssetsBuilder.getTexture3D(id + ":" + path);
+				return AssetsBuilder.getTexture3D(id + ":" + StringUtils.getName(path));
 			});
 		}
 		return null;
