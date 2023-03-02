@@ -98,6 +98,14 @@ class Assets {
 		}
 	}
 
+	/**
+	 * 加载一个解析器
+	 * @param parser 
+	 */
+	public function loadParser(parser:BaseParser):Void{
+		_loadlist.push(parser);
+	}
+
 	/** 
 		加载精灵图
 	**/
@@ -304,7 +312,7 @@ class Assets {
 		var hmd = getHMDLibrary(id);
 		if (hmd != null) {
 			return hmd.makeObject((path) -> {
-				return AssetsBuilder.getTexture3D(id + ":" + StringUtils.getName(path));
+				return AssetsBuilder.getTexture3D(path);
 			});
 		}
 		return null;

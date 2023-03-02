@@ -31,16 +31,29 @@ class HMDParser extends BaseParser {
 			var rootName = getName();
 			var rootPath = path.substr(0, path.lastIndexOf("/") + 1);
 			var assets:Assets = new Assets();
+			var pngs = [];
 			for (material in hmd.header.materials) {
 				if (material.diffuseTexture != null && !checkExist(rootName, material.diffuseTexture)) {
-					assets.loadFile(rootPath + material.diffuseTexture);
+					var texturePath = rootPath + material.diffuseTexture;
+					if (pngs.indexOf(texturePath) == -1) {
+						pngs.push(rootPath + material.diffuseTexture);
+					}
 				}
 				if (material.specularTexture != null && !checkExist(rootName, material.specularTexture)) {
-					assets.loadFile(rootPath + material.specularTexture);
+					var texturePath = rootPath + material.specularTexture;
+					if (pngs.indexOf(texturePath) == -1) {
+						pngs.push(rootPath + material.specularTexture);
+					}
 				}
 				if (material.normalMap != null && !checkExist(rootName, material.normalMap)) {
-					assets.loadFile(rootPath + material.normalMap);
+					var texturePath = rootPath + material.normalMap;
+					if (pngs.indexOf(texturePath) == -1) {
+						pngs.push(rootPath + material.normalMap);
+					}
 				}
+			}
+			for (file in pngs) {
+				assets.loadParser(new HMDTextureParser(file));
 			}
 			assets.start((f) -> {
 				if (f == 1) {
@@ -66,11 +79,20 @@ class HMDParser extends BaseParser {
 	 * @return Bool
 	 */
 	function checkExist(id:String, path:String):Bool {
-		id += ":" + StringUtils.getName(path);
-		return AssetsBuilder.getTexture3D(id) != null;
+		return AssetsBuilder.getTexture3D(path) != null;
 	}
 
 	override function getName():String {
 		return _setName != null ? _setName : super.getName();
+	}
+}
+
+/**
+ * HMD加载的图片希望使用原生路径，以便资源复用
+ */
+class HMDTextureParser extends BitmapDataParser {
+	override function getName():String {
+		// 这里直接返回路径
+		return this.getData();
 	}
 }
