@@ -24,7 +24,7 @@ class SpineAtlasParser extends BaseParser {
 		var bitmapParser = new BitmapDataParser(getData().pngs[bitmapIndex]);
 		bitmapParser.error = error;
 		bitmapParser.out = function(parser:BaseParser, type:AssetsType, assetsData:Image, pro:Float) {
-			_images.set(bitmapParser.getName(), assetsData);
+			_images.set(StringUtils.getName(bitmapParser.getName()), assetsData);
 			bitmapIndex++;
 			process();
 		}
