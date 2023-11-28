@@ -102,7 +102,7 @@ class Assets {
 	 * 加载一个解析器
 	 * @param parser 
 	 */
-	public function loadParser(parser:BaseParser):Void{
+	public function loadParser(parser:BaseParser):Void {
 		_loadlist.push(parser);
 	}
 
@@ -312,6 +312,8 @@ class Assets {
 		var hmd = getHMDLibrary(id);
 		if (hmd != null) {
 			return hmd.makeObject((path) -> {
+				path = StringTools.replace(path, ".", "_");
+				path = StringTools.replace(path, "/", "_");
 				return AssetsBuilder.getTexture3D(path);
 			});
 		}

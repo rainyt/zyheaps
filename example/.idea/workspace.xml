@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b33e4bbe-c773-4354-bb49-aec0ce5acdd2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Export/android/app/src/main/cpp/hashlink/src/std/thread.c" beforeDir="false" afterPath="$PROJECT_DIR$/Export/android/app/src/main/cpp/hashlink/src/std/thread.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/AUTHORS" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/ChangeLog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/include/tree.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/include/uv-errno.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/include/uv-threadpool.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/include/uv-version.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/include/uv-win.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/include/uv.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/fs-poll.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/heap-inl.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/inet.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/queue.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/threadpool.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/uv-common.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/uv-common.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/version.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/async.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/atomicops-inl.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/core.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/dl.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/error.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/fs-event.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/fs.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/getaddrinfo.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/getnameinfo.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/handle-inl.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/handle.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/internal.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/loop-watcher.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/pipe.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/poll.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/process-stdio.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/process.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/req-inl.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/req.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/signal.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/snprintf.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/stream-inl.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/stream.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/tcp.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/thread.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/timer.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/tty.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/udp.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/util.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/winapi.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/winapi.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/winsock.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/include/libuv/src/win/winsock.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/libs/sdl/sdl.c" beforeDir="false" afterPath="$PROJECT_DIR$/Export/ios/deps/hashlink/libs/sdl/sdl.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Export/ios/deps/hashlink/libs/uv/uv.c" beforeDir="false" afterPath="$PROJECT_DIR$/Export/ios/deps/hashlink/libs/uv/uv.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zyheaps.xml" beforeDir="false" afterPath="$PROJECT_DIR$/zyheaps.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2MY3O9V4MRr1crVV4zJURGkegEd" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="cidr.known.project.marker" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b33e4bbe-c773-4354-bb49-aec0ce5acdd2" name="Default Changelist" comment="" />
+      <created>1677930653572</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1677930653572</updated>
+    </task>
+    <servers />
+  </component>
+</project>

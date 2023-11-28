@@ -34,6 +34,12 @@ class TextInput extends Box {
 		return super.set_height(height);
 	}
 
+	override function sync(ctx:RenderContext) {
+		super.sync(ctx);
+		if (interactive != null)
+			this.interactive.height = _bg.height;
+	}
+
 	override function draw(ctx:RenderContext) {
 		if (dirt) {
 			this._textInput.y = (this.contentHeight - this._textInput.textHeight) / 2;

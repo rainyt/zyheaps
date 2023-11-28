@@ -10,6 +10,7 @@ class InputScene extends Scene {
 		// input.backgroundColor = 0xffff0000;
 		this.addChild(input);
 		// input.inputWidth = 300;
+		input.height = 80;
 		input.left = 20;
 		input.right = 20;
 		input.centerY = 100;

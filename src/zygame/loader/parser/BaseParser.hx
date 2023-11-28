@@ -1,5 +1,7 @@
 package zygame.loader.parser;
 
+import haxe.io.BytesData;
+import haxe.io.Bytes;
 import zygame.loader.parser.AssetsType;
 import zygame.utils.Assets;
 
