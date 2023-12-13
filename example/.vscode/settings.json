@@ -19,6 +19,8 @@
         "tuple": "c",
         "type_traits": "c",
         "vector": "c",
-        "execinfo.h": "c"
+        "execinfo.h": "c",
+        "pcre2.h": "c",
+        "glext.h": "c"
     }
 }

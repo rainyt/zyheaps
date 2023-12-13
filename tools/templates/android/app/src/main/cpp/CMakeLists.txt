@@ -5,6 +5,7 @@ project(heapsapp)
 add_definitions(-DANDROID_PLATFORM=android-24)
 
 include_directories(hashlink/src)
+include_directories(hashlink/pcre)
 
 # LibHL
 
@@ -15,8 +16,35 @@ file(GLOB libhl
 		)
 list(REMOVE_ITEM libhl ${CMAKE_CURRENT_SOURCE_DIR}/hashlink/src/std/debug.c)
 
-file(GLOB pcre hashlink/include/pcre/pcre*.c)
-file(GLOB pcre hashlink/include/pcre/pcre2_jit_compile.c)
+file(GLOB pcre
+    include hashlink/include/pcre/pcre2_auto_possess.c
+    include hashlink/include/pcre/pcre2_chartables.c
+    include hashlink/include/pcre/pcre2_compile.c
+    include hashlink/include/pcre/pcre2_config.c
+    include hashlink/include/pcre/pcre2_context.c
+    include hashlink/include/pcre/pcre2_convert.c
+    include hashlink/include/pcre/pcre2_dfa_match.c
+    include hashlink/include/pcre/pcre2_error.c
+    include hashlink/include/pcre/pcre2_extuni.c
+    include hashlink/include/pcre/pcre2_find_bracket.c
+    include hashlink/include/pcre/pcre2_jit_compile.c
+    include hashlink/include/pcre/pcre2_maketables.c
+    include hashlink/include/pcre/pcre2_match_data.c
+    include hashlink/include/pcre/pcre2_match.c
+    include hashlink/include/pcre/pcre2_newline.c
+    include hashlink/include/pcre/pcre2_ord2utf.c
+    include hashlink/include/pcre/pcre2_pattern_info.c
+    include hashlink/include/pcre/pcre2_script_run.c
+    include hashlink/include/pcre/pcre2_serialize.c
+    include hashlink/include/pcre/pcre2_string_utils.c
+    include hashlink/include/pcre/pcre2_study.c
+    include hashlink/include/pcre/pcre2_substitute.c
+    include hashlink/include/pcre/pcre2_substring.c
+    include hashlink/include/pcre/pcre2_tables.c
+    include hashlink/include/pcre/pcre2_ucd.c
+    include hashlink/include/pcre/pcre2_valid_utf.c
+    include hashlink/include/pcre/pcre2_xclass.c
+)
 
 file(GLOB mbedtls hashlink/include/mbedtls/library/*.c)
 
@@ -109,7 +137,8 @@ target_link_libraries(uv.hdll uv)
 
 # Heaps Application
 
-add_library(heapsapp SHARED out/main.c jni.c stb/glyphme.cpp)
+add_library(heapsapp SHARED out/main.c jni.c stb/glyphme.cpp ${pcre})
 target_include_directories(heapsapp PRIVATE out)
 target_include_directories(heapsapp PRIVATE stb)
-target_link_libraries(heapsapp hl sdl.hdll fmt.hdll openal.hdll ui.hdll uv.hdll)
+target_link_libraries(heapsapp hl sdl.hdll fmt.hdll openal.hdll ui.hdll uv.hdll android)
+target_compile_definitions(heapsapp PRIVATE _USRDLL LIBHL_EXPORTS HAVE_CONFIG_H PCRE2_CODE_UNIT_WIDTH=16)
