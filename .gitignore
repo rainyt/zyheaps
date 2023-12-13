@@ -4,3 +4,4 @@ tools/hdll/other
 example/Export
 tools/templates/mac/App.app/Contents/MacOS/crash.log
 tools/templates/mac/App.app/Contents/MacOS/userdata/profiles/settings.json
+tools/templates/other

@@ -16,6 +16,7 @@ file(GLOB libhl
 list(REMOVE_ITEM libhl ${CMAKE_CURRENT_SOURCE_DIR}/hashlink/src/std/debug.c)
 
 file(GLOB pcre hashlink/include/pcre/pcre*.c)
+file(GLOB pcre hashlink/include/pcre/pcre2_jit_compile.c)
 
 file(GLOB mbedtls hashlink/include/mbedtls/library/*.c)
 
@@ -30,6 +31,7 @@ add_library(hl STATIC
 target_include_directories(hl PRIVATE hashlink/include/pcre)
 target_include_directories(hl PRIVATE hashlink/include/mbedtls/include)
 target_link_libraries(hl log)
+target_compile_definitions(hl PRIVATE _USRDLL LIBHL_EXPORTS HAVE_CONFIG_H PCRE2_CODE_UNIT_WIDTH=16)
 
 # FMT
 
