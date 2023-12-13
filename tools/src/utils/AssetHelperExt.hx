@@ -29,8 +29,8 @@ class AssetHelperExt {
 			}
 			var stat = FileSystem.stat(sourcePath);
 			var time = stat.mtime.getTime();
-			var cacheid = filepath;
-			var lasttime = Reflect.getProperty(hmdcache, cacheid);
+			var cacheid:String = filepath;
+			var lasttime:Float = Reflect.getProperty(hmdcache, cacheid);
 			if (lasttime == time) {
 				trace("[Cached]FBX2HDM:", StringTools.replace(filepath.toLowerCase(), ".fbx", ".hmd"));
 				FileSystem.deleteFile(filepath);
