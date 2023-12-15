@@ -27,6 +27,7 @@
     
     <!-- <define name="hl_ver" value="1.12.0"/> -->
     <!-- <define name="hl-check"/> -->
+    <define name="DISTRIBUTION_URL" value="gradle-7.0.2-bin.zip"/>
 
     <define name="GC_DEBUG"/>
 </project>

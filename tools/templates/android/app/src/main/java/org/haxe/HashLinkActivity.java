@@ -5,18 +5,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.util.Log;
 
 public class HashLinkActivity extends SDLActivity {
     private static HashLinkActivity instance;
     public static native int startHL();
     public native static void initAssets(AssetManager assetManager, String strDir);
-
-    // Used to load the native libraries on application startup.
-    static {
-        System.loadLibrary("openal");
-        System.loadLibrary("SDL2");
-        System.loadLibrary("heapsapp");
-    }
 
     @Override
     protected String getMainFunction() {
@@ -42,10 +36,9 @@ public class HashLinkActivity extends SDLActivity {
 
     protected void run() {
         super.run();
-        this.startHL();
+        Log.i("HL", "Hashlink startHL");
+        // this.startHL();
     }
-
-
 
     public static Context getContext() {
         return instance.getApplicationContext();
